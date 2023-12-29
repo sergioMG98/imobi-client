@@ -1,0 +1,21 @@
+.dashboardNav{
+    height: 100vh;
+    width: 20vw;
+    background-color: blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.dashLink{
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    box-sizing: border-box;
+    text-transform: uppercase;
+}
+.dashLink:hover{
+    background-color: white;
+    color: blue;
+}

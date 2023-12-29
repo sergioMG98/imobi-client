@@ -1,0 +1,53 @@
+.navbar{
+    height: 94%;
+    width: 100%;
+    border-bottom: 6px solid blue;
+    display: flex;
+    flex-direction: row;
+}
+.navLogo,
+.navLogin{
+    height: 100%;
+    width: 20%;
+}
+.navChoices{
+    height: 100%;
+    width: 60%;
+}
+.navLogo,
+.navChoices,
+.navLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+.navLogo a{
+    color: royalblue;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 30px;
+}
+.navLogin a{
+    text-decoration: none;
+    background-color: royalblue;
+    height: 40%;
+    width: 80%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* nav container */
+.navBuy,
+.navRent,
+.navSell{
+    height: 100%;
+    width: calc(100% / 3);
+    color: royalblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

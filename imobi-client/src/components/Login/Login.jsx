@@ -64,6 +64,7 @@ function Login(){
         };
 
         try {
+            console.log("option", options);
             const response = await fetch(`http://127.0.0.1:8000/api/register`,options);
             if(!response.ok){
                 throw new Error(`HTTP error! Status: ${response.status}`);

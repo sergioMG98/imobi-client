@@ -1,0 +1,64 @@
+.addProductContainer form {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.addForm{
+    width: 80%;
+    
+}
+
+.addForm textarea{
+    width: 100%;
+    height: 100%;
+    resize: none;
+    border: none;
+    border-bottom: 2px solid blue;
+    background-color: transparent;
+}
+
+.textAreaAddProduct{
+    height: 40%;
+    display: flex;
+}
+.entriesDataProduct{
+    height: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.addForm input {
+    height: 30px;
+    width: 45%;
+    border: none;
+    border-bottom: 2px solid blue;
+    background-color: transparent;
+}
+
+
+.addProductButton{
+    height: 10%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+}
+
+.addProductButton button {
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background-color: blue;
+    text-transform: uppercase;
+}
+
+.addForm textarea:focus,
+.addForm input:focus{
+    outline: none;
+}
+.addProductButton button:hover{
+    background-color: royalblue;
+}

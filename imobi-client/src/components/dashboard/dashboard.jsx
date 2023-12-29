@@ -1,5 +1,6 @@
 import "./dashboard.css";
-
+import AddProduct from "./addProduct/AddProduct";
+import { Link } from "react-router-dom";
 function Dashboard(){
     return(
         <div className="dashboard">
@@ -7,8 +8,8 @@ function Dashboard(){
                 <div className="logo dashLink">imobi</div>
                 
                 <div>
-                    <div className="product dashLink">product</div>
-                    <div className="postProduct dashLink">post product</div>
+                    <Link className="product dashLink" to={'/product'}>product</Link>
+                    <Link className="dashLink" to={'/addProduct'}>Add Product</Link>
                     <div className="agenda dashLink">agenda</div>
                     <div className="contact dashLink">contact</div>  
                 </div>

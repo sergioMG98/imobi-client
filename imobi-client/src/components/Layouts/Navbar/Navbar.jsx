@@ -9,10 +9,9 @@ function Navbar(){
             </div>
 
             <div className="navChoices">
-                <div className="navBuy">acheter</div>
-                <div className="navRent">louer</div>
-                <div className="navSell">vendre</div>
-
+                <Link className="navBuy" to={"/page"} state={'buy'}>acheter</Link>
+                <Link className="navRent" to={"/page"} state={'rent'}>louer</Link>
+                <Link className="navSell" to={"/page"} state={'sell'}>vendre</Link>
             </div>
 
             <div className="navLogin">

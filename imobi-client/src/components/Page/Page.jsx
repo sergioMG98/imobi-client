@@ -1,22 +1,27 @@
-import { useEffect, useState } from "react";
 import Navbar from "../Layouts/Navbar/Navbar";
 import CardProduct from "../CardProduct/CardProduct";
-import './Home.css';
+import { useState, useEffect } from "react";
 
-function Home(){
-
+function Page(){
     const [product, setProduct] = useState([]);
+    const [choice, setChoice] = useState('vendre');
 
+    console.log("coucou" , product);
     const getProduct = async() => {
         let options = {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
+            body: JSON.stringify({
+                "status" : choice,
+            }),
         };
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/getProduct`, options);
+            console.log("coucou 3" , choice);
+            const response = await fetch(`http://127.0.0.1:8000/api/getProductSpecific`, options);
             const data = await response.json();
+            console.log("data page" ,data.product);
             setProduct(data.product);
         } catch(error){
 
@@ -25,11 +30,12 @@ function Home(){
 
     useEffect(()=> {
         getProduct();
-    }, []);
+    }, [choice]);
 
 
-    return (
-        <div className="home">
+   
+    return(
+        <div>
             <div className="navbarContainer">
                 <Navbar></Navbar>
             </div>
@@ -45,4 +51,4 @@ function Home(){
         </div>
     )
 }
-export default Home;
+export default Page;

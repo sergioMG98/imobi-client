@@ -1,0 +1,39 @@
+
+.cardProduct{
+    height: 400px;
+    width: 30%;
+    background-color: red;
+}
+.imageCard{
+    height: 45%;
+    width: 100%;
+    background-color: blue;
+}
+.descriptionCard{
+    height: 55%;
+    width: 100%;
+}
+.cardPrice{
+    height: 33%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: blue;
+    font-weight: bold;
+    background-color: palegreen;
+}
+.caracteristiqueCard{
+    height: 33%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: cadetblue;
+}
+.cardType,
+.cardLieux{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    justify-content: center;align-items: center;
+}

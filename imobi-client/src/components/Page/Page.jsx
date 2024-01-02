@@ -6,7 +6,6 @@ function Page(){
     const [product, setProduct] = useState([]);
     const [choice, setChoice] = useState('vendre');
 
-    console.log("coucou" , product);
     const getProduct = async() => {
         let options = {
             method: 'POST',

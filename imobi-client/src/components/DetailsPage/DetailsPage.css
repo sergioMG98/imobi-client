@@ -1,0 +1,86 @@
+.detailsContent{
+    position: relative;
+    height: calc(100vh - 100px);
+    width: 100vw;
+    display: flex;
+
+    flex-wrap: wrap;
+    align-items: center;
+    overflow-y: auto;
+    padding: 50px 50px;
+    box-sizing: border-box;
+    background-color: antiquewhite;
+}
+
+/************ detail content child ****************/
+.detailsPresentation{
+    height: 700px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: blue;
+}
+
+.detailsImage{
+    height: 80%;
+    width: 100%;
+    background-color: black;
+}
+.detailsTitle{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+/* ************ */
+.detailsDescription {
+    height: 700px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: blueviolet;
+}
+.detailsCaracteristique{
+    height: 700px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: red;
+}
+.detailsEmplacement {
+    height: 700px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: yellow;
+}
+.detailsBilanEnergetique{
+    height: 700px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: springgreen;
+}
+/**/
+.detailsContent div h2 {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 30px;
+    text-transform: uppercase;
+    background-color: tomato;
+}
+.detailsChild{
+    height: 90%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px;
+    font-size: 20px;
+}

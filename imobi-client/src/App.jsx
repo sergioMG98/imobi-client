@@ -8,6 +8,7 @@ import Login from './components/Login/Login';
 import Product from './components/dashboard/product/products';
 import AddProduct from './components/dashboard/addProduct/AddProduct';
 import Page from './components/Page/Page';
+import DetailsPage from './components/DetailsPage/DetailsPage';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -32,6 +33,10 @@ function App() {
     {
       path: "/page",
       element: <Page/>
+    },
+    {
+      path: "/detailsPage",
+      element: <DetailsPage/>
     }
   ])
   return (

@@ -1,0 +1,15 @@
+.detailDashboard{
+    display: flex;
+    flex-direction: row;
+}
+.dashContent{
+    height: 100vh;
+    width: 80vw;
+}
+
+.sellerProductDetail{
+    min-height: 90%;
+    width: 100%;
+    overflow-y: auto;
+    background-color: darkblue;
+}

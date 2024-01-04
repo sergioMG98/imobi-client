@@ -41,35 +41,27 @@ function DetailsPage(props){
        /*  console.log("element", caracteristique); */
 
        function filterCaracteristique(item){
-/*             if(item == 'id' || item != 'description' ||item != 'product_id'){
-                console.log("=>", item ,caracteristique[0][item]);
-            } */
+
             switch (item) {
                 case "piece":
-                    console.log("item", item ,caracteristique[0][item]);
+                    
                     return (<div>{item} : {caracteristique[0][item]}</div>)
                     break;
             
                 case "surface":
-                    console.log("item", item ,caracteristique[0][item]);
+                    
                     return (<div>{item} : {caracteristique[0][item]}</div>)
                     break;
 
                 case "salleDeBain":
-                    console.log("item", item ,caracteristique[0][item]);
-                    return (<div>{item} : {caracteristique[0][item]}</div>)
+                    
+                    return (<div>salle de bain : {caracteristique[0][item]}</div>)
                     break;
 
                 case "chambre":
-                    console.log("item", item ,caracteristique[0][item]);
+                    
                     return (<div>{item} : {caracteristique[0][item]}</div>)
                     break;
-                   
-                case "bilanEnergetique":
-                    console.log("item", item ,caracteristique[0][item]);
-                    return (<div>{item} : {caracteristique[0][item]}</div>)
-                    break;
-            
 
                 default:
                     break;
@@ -82,8 +74,6 @@ function DetailsPage(props){
                 caracteristique[0][element] ? 
                     <div>
                         {filterCaracteristique(element)}
-                        
-                        {/* {element} = {caracteristique[0][element]}  */}
                     </div>
                 : "" 
 
@@ -91,22 +81,6 @@ function DetailsPage(props){
 
         }));
             
-       
-/*         Object.values(caracteristique).forEach(element => {
-            Object.keys(element).forEach(item=> {
-                
-                if (element[item] != null) {
-                        console.log("element", item, element[item]);
-                        return (
-                            <div>
-                                <ul>
-                                    <li>{item}</li>
-                                </ul>
-                            </div>
-                        );
-                }
-            });
-        });   */
     }
 
 /*     console.log("details" , product[0]); */
@@ -116,7 +90,6 @@ function DetailsPage(props){
             <div className="navbarContainer">
                 <Navbar></Navbar>
             </div>
-       {/*      {product != null ? console.log("!= null", product[0]) : console.log("null", product )} */}
 
             <div className="detailsContent">
                 <div className="detailsPresentation">

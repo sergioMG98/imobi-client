@@ -11,7 +11,7 @@ function CardProduct(props){
             </div>
             <div className="descriptionCard">
                 <div className="cardPrice">
-                    {props.product.prix}
+                    {props.product.prix} €
                 </div>
                 <div className="caracteristiqueCard">
                     <div className="cardType">
@@ -21,7 +21,7 @@ function CardProduct(props){
                         {props.product.surfaceTerrain}
                     </div>
                 </div>
-                <div className="details">
+                <div className="detailsBtn">
                     <Link to={"/detailsPage"} state={props.product.id}>details</Link>
                 </div>
             </div>

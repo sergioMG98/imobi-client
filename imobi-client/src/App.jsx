@@ -9,6 +9,7 @@ import Product from './components/dashboard/product/products';
 import AddProduct from './components/dashboard/addProduct/AddProduct';
 import Page from './components/Page/Page';
 import DetailsPage from './components/DetailsPage/DetailsPage';
+import DetailDashboard from './components/dashboard/detailDashboard/DetailsDashboard';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -37,6 +38,10 @@ function App() {
     {
       path: "/detailsPage",
       element: <DetailsPage/>
+    },
+    {
+      path: "/detailDashboard",
+      element: <DetailDashboard/>
     }
   ])
   return (

@@ -1,31 +1,76 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Dashboard from "../dashboard";
 import "./products.css";
+import { Link } from "react-router-dom";
 
 function Product(){
-    const [products, setProducts] = useState([
-        {
-            emplacement: "valeur emplacement",
-            immeuble: "nom immeuble",
-            prix: "prix immeuble",
-        }
-    ]);
+    const [products, setProducts] = useState([]);
 
     const sellerProduct = () => {
-/*         
-        products?.map(element => {
-            console.log("ele",element);
+       /*  console.log("test" ,element); */
+       function filterItem(item, element){
+        /* console.log("switch",item); */
+        switch (item) {
+            case 'prix':
+                return (<div className="cardSellerPrice cardSellerElement"> <strong>{item} : </strong> {element[item]} €</div>)
+                break;
+        
+            case 'status':
+                    if ( element[item] == "sell") {
+                        return (<div className="cardSellerStatus cardSellerElement"> <strong>{item} : </strong> A vendre</div>)
+                    } else if (element[item] == "rent"){
+                        return (<div className="cardSellerStatus cardSellerElement"> <strong>{item} : </strong> A louer</div>)
+                    }
+                break;
+        
+            default:
+                break;
+        }
+       } 
 
-            Object.entries(element).map(([items,values]) => {
-                console.log('tit' , items);
-                return (
-                    <div>{items}</div>
-                )
+        return (
+            products.map((element, index) => {
+                console.log("ele",element.id);
+                return(
+                    <Link to={"/detailDashboard"} state={element.id} className="productSellerCard" id={"product_seller_"+index}>
+                        <div className="cardProductSellerImage">
+
+                        </div>
+                        <div className="cardProductSellerInfo">
+                            {Object.keys(element).map(item => {
+                                /* console.log(item, element[item]); */
+                                return (filterItem(item, element))
+
+                            })}
+                        </div>
+
+                    </Link>
+                );
             })
-        })
- */
+            
+        );
+
     }
 
+    const getProduct = async() => {
+        let options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        try {
+            const response = await fetch(`http://127.0.0.1:8000/api/getProductSeller`, options);
+            const data = await response.json();
+            setProducts(data.product);
+        } catch(error){
+
+        }
+    }
+
+    useEffect(()=> {
+        getProduct();
+    }, []);
 
 
     console.log("produc" , products);
@@ -42,16 +87,6 @@ function Product(){
                     {sellerProduct()}
                 </div>
 
-{/*                 {products?.map((elements, index) => {
-                    <div className="product" key={index}>
-                        {Object.entries(elements).forEach(([element,values]) => {
-                            
-                            {element}
-                        })}
-                        {elements}
-
-                    </div>
-                })} */}
             </div>
 
         </div>

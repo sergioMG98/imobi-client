@@ -37,3 +37,23 @@
     display: flex;
     justify-content: center;align-items: center;
 }
+.detailsBtn{
+    height: 33%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.detailsBtn a{
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: blue;
+    height: 60%;
+    width: 50%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}

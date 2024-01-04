@@ -1,10 +1,17 @@
 import Navbar from "../Layouts/Navbar/Navbar";
 import CardProduct from "../CardProduct/CardProduct";
 import { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom'
 
 function Page(){
     const [product, setProduct] = useState([]);
-    const [choice, setChoice] = useState('vendre');
+    const [choice, setChoice] = useState();
+
+    const location = useLocation();
+    if(choice == undefined || choice != location.state){
+        setChoice(location.state);
+    }
+
 
     const getProduct = async() => {
         let options = {

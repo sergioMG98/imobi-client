@@ -1,0 +1,58 @@
+.calendarParent{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.calendarContent{
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* ------------- ---------------- */
+.calendarHeaderContainer{
+    height: 5%;
+    /* width: 100%;background-color: violet; */
+}
+
+
+
+/* -------------- ------------- */
+.weekdays{
+    height: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.weekdays div{
+    height: 100%;
+    width: calc(100% / 7);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: cadetblue;
+}
+/* --------------- --------------- */
+
+.calendar{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+/*     background-color: darkblue; */
+    gap: 15px;
+    overflow-y: auto;
+}
+
+.dayContainer{
+    height: calc(92% / 5);
+    width: calc(90% / 7);
+    box-sizing: border-box;
+    border: 2px solid black;
+}
+.padding {
+    border: none;
+}

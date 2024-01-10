@@ -15,30 +15,93 @@
 
 .addForm textarea{
     width: 100%;
-    height: 100%;
+    height: 90%;
     resize: none;
-    border: none;
-    border-bottom: 2px solid blue;
+    border: 2px solid white;
+    border-radius: 10px;
     background-color: transparent;
 }
 
+
 .textAreaAddProduct{
+    position: relative;
     height: 40%;
     display: flex;
 }
+.textAreaAddProduct label{
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    text-transform: uppercase;
+    transition: .5s;
+}
+.textAreaAddProduct textarea:focus,
+.textAreaAddProduct textarea:valid{
+    border: 2px solid blue;
+}
+.textAreaAddProduct textarea:focus + label,
+.textAreaAddProduct textarea:valid + label{
+    transform: translateY(-190%);
+    background-color: #242424;
+    padding: 0 2%;
+}
+
+#addProductSelect{
+    border: 2px solid white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding-left: 4%;
+    text-transform: uppercase;
+}
+#addProductSelect:valid{
+    border: 2px solid blue;
+}
+
+
 .entriesDataProduct{
     height: 40%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.addForm input {
+.addForm .inputContainer {
+    position: relative;
     height: 30px;
     width: 45%;
-    border: none;
-    border-bottom: 2px solid blue;
+    
     background-color: transparent;
+    /* overflow: hidden; */
 }
+
+.inputContainer input{
+    height: 100%;
+    width: 100%;
+    border: 2px solid white;
+    background-color: transparent;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+.inputContainer label{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    text-transform: uppercase;
+    transition: .5s;
+}
+.inputContainer input:focus,
+.inputContainer input:valid{
+    border: 2px solid blue;
+}
+
+.inputContainer input:focus + label,
+.inputContainer input:valid + label{
+    transform: translateY(-80%);
+    background-color: #242424;
+    padding: 0 2%;
+}
+
+
 
 .addForm select{
     height: 30px;

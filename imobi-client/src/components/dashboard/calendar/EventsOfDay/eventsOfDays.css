@@ -1,0 +1,160 @@
+.EventsOFDays{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    height: 90%;
+    width: 90%;
+    background-color: teal;
+}
+.closePopUp button{
+    position: absolute;
+    top: -4%;
+    right: -2%;
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    color: black;
+    font-size: large;
+    font-weight: bold;
+}
+/* --------------------------------- */
+.eventsOfDaysHeader{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.eventsOfDaysHeader h1 {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+}
+/* --------------------------------- */
+.eventsDayBody{
+    height: 90%;
+    width: 100%;
+}
+
+/* ---------------------------------- */
+.eventsDaysContent{
+    display: none;
+}
+.eventsDaysContent.active{
+    background-color: slategray;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+.eventsDay{
+    height: 200px;
+    width: 90%;
+    background-color: crimson;
+}
+/* --------------------------------- */
+.formEvents{
+    display: none;
+}
+.formEvents.active{
+    height: 100%;
+    width: 100%;
+    background-color: darkblue;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+.formHeader{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.eventsInput{
+    height: 90%;
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow-y: auto;
+    padding: 20px 0;
+    gap: 20px;
+    background-color: brown;
+}
+.boxInput{
+    position: relative;
+    height: 40px;
+    width: 45%;
+}
+.boxInput input{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid white;
+    background-color: transparent;
+}
+.boxInput label{
+    position: absolute;
+    top: 30%;
+    left: 1%;
+    padding-left: 9%;
+    transition: .5s;
+    background-color: brown;
+}
+.boxInput input:focus ,
+.boxInput input:valid{
+    border: 2px solid blue;
+}
+.boxInput input:focus + label,
+.boxInput input:valid + label {
+    top: -25%;
+    left: 7%;
+    padding: 0 10px;
+    background-color: brown;
+}
+.eventsInput button {
+    background-color: blue;
+    height: 40px;
+    width: 94%;
+    border-radius: 10px;
+    font-size: large;
+}
+
+
+.AllContact{
+    height: 90%;
+    width: 50%;
+    background-color: darkcyan;
+}
+
+/* --------------------------------- */
+.btnAddEvents {
+    height: 100%;
+    width: 20%;
+    /* background-color: antiquewhite; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnAddEvents button{
+    height: 60%;
+    width: 60%;
+    background-color: blue;
+    border-radius: 20px;
+    font-size: 20px;
+}
+/* ------------------------------ */
+

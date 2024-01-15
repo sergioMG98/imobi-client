@@ -17,17 +17,54 @@ function Calendar(){
 
     const [events, setEvents] = useState(
         //parse : converti text en objet
-        localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []
+        /* localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [] */
     ); 
 
-    const eventForDate = date => events.find(e => e.date === date);
-    
-    useEffect(() => {
+    const getEvents = async() => {
+        
+        let options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        try {
+            
+            const response = await fetch(`http://127.0.0.1:8000/api/allEvents`, options);
+            const data = await response.json();
+            /* console.log('=> :', data.data); */
+            setEvents(data.data);
+
+
+            localStorage.setItem('events', JSON.stringify(data.data));
+        } catch(error){
+            console.log("error");
+        }
+    }
+    /* console.log('events', events); */
+
+/*     events.forEach(element => {
+        console.log('events', element);
+    }); */
+
+/*     const eventForDate = date => eventsStorage.find(e => e.date === date);
+     */
+/*     useEffect(() => {
+        getevents();
         //strigngify converti un objet en chaine 
         localStorage.setItem('events', JSON.stringify(events));
-    }, [events]);
+    }, [events]); */
+
+    const eventForDate = date => events?.find(obj => {
+        return obj.date == date;
+    })
+    useEffect(() => {
+        getEvents();
+    }, [])
 
     useEffect(() => {
+        
+        
         const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const semaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
 
@@ -73,8 +110,10 @@ function Calendar(){
         const daysArr = [];
         
         for(let i = 1; i <= paddingDays + daysInMonth; i++){
-            const dayString = `${i - paddingDays}/${month + 1}/${year}`;
-            
+            /* const dayString = `${i - paddingDays}/${month + 1}/${year}`; */
+            const dayString = month + 1 >= 10 ? `${year}-${month + 1}-${i - paddingDays}` : `${year}-0${month + 1}-${i - paddingDays}`
+            ;
+            /* console.log("=>  : " ,dayString); */
             if(i > paddingDays){
                 daysArr.push({
                     value: i - paddingDays,
@@ -91,7 +130,7 @@ function Calendar(){
                 });
             }
         }
-
+        /* console.log("test", daysArr); */
         setDays(daysArr);
 
     }, [events, nav]);
@@ -125,6 +164,7 @@ function Calendar(){
                     </div>
 
                     <div id="calendar" className="calendar">
+                        
                         {days.map((d, index) => (
                             <div className={`dayContainer ${d.value}`} key={index}>
                                 <Day

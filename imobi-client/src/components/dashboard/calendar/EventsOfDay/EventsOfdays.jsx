@@ -1,19 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import './eventsOFDays.css';
+import DisplayEvents from "./DisplayEvents/DisplayEvents";
 
 function EventsOfDays({clicked, onClose}){
 
     const [events , setEvents] = useState(localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []);
     const [statesBtn, setStatesBtn] = useState(true);
 
-    const [titre , setTitre] = useState();
-    const [lastname, setLastname] = useState();
-    const [firstname, setFirstname] = useState();
-    const [phone, setPhone] = useState();
-    const [adresse, setAdresse] = useState();
-    const [phoneProprietaire, setPhoneProprietaire] = useState();
-    const [startVisit, setStartVisit] = useState();
-    const [endVisit, setEndVisit] = useState();
+    const [titre , setTitre] = useState('');
+    const [lastnameVisitor, setLastnameVisitor] = useState('');
+    const [firstnameVisitor, setFirstnameVisitor] = useState('');
+    const [phoneVisitor, setPhoneVisitor] = useState('');
+    const [adresse, setAdresse] = useState('');
+    const [phoneOwner, setPhoneOwner] = useState('');
+    const [startVisit, setStartVisit] = useState('');
+    const [endVisit, setEndVisit] = useState('');
 
     const btnCreateEvents = () => {
         
@@ -38,9 +39,46 @@ function EventsOfDays({clicked, onClose}){
             setStatesBtn(true);
         }
     }
-   
-    const createEvent = () => {
 
+    const createEvent = async(e) => {
+
+        let options = {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json",
+            },
+            body: JSON.stringify({
+                "date" : clicked,
+                "startVisit": startVisit, 
+                "endVisit": endVisit,
+                "adresse": adresse,
+                "title" : titre, 
+                "lastnameVisitor" : lastnameVisitor, 
+                "firstnameVisitor" : firstnameVisitor, 
+                "phoneVisitor" : phoneVisitor, 
+                "phoneOwner" : phoneOwner
+            }),
+        };
+
+        try{
+            console.log("option", options);
+            const response = await fetch('http://127.0.0.1:8000/api/newEvent',options);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log("creation product", data);
+
+            if(data){
+                alert(data.message);
+                
+            } else {
+                alert("try again");
+            }
+
+        } catch (error){
+            console.error("Fetch error:" , error);
+        }
     }
    
     return (
@@ -57,14 +95,14 @@ function EventsOfDays({clicked, onClose}){
                 <div className="eventsDaysContent active">
                     {
                         events.map((element, index) => (
-                        element.date == clicked ?
-                            <div className="eventsDay" key={index}>
-                                
-                                {element.title}
-                            </div>
+                        element.date == clicked ? 
+
+                            <DisplayEvents element={element} key={index} clicked={clicked}/>
+
                         : null
                         ))
                     }
+
                 </div>
                 
                 <div className="formEvents">
@@ -74,42 +112,42 @@ function EventsOfDays({clicked, onClose}){
 
                     <div className="eventsInput">
                         <div className="boxInput">
-                            <input type="text" name="titre" id="titre" required onClick={(e) => setTitre(e.target.value)}/>
+                            <input type="text" name="titre" id="titre" required onChange={(e) => setTitre(e.target.value)}/>
                             <label htmlFor="titre">titre</label>
                         </div>
 
                         <div className="boxInput">
-                            <input type="text" name="lastname" id="lastname" required onClick={(e) => setLastname(e.target.value)}/>
+                            <input type="text" name="lastname" id="lastname" required onChange={(e) => setLastnameVisitor(e.target.value)}/>
                             <label htmlFor="lastname">nom visiteur</label>
                         </div>
 
                         <div className="boxInput">
-                            <input type="text" name="firstname" id="firstname" required onClick={(e) => setFirstname(e.target.value)}/>
+                            <input type="text" name="firstname" id="firstname" required onChange={(e) => setFirstnameVisitor(e.target.value)}/>
                             <label htmlFor="firstname">prenom visiteur</label>
                         </div>
 
                         <div className="boxInput">
-                            <input type="tel" name="phone" id="phone" required onClick={(e) => setPhone(e.target.value)}/>
+                            <input type="tel" name="phone" id="phone" required onChange={(e) => setPhoneVisitor(e.target.value)}/>
                             <label htmlFor="phone">telephone</label>
                         </div>
 
                         <div className="boxInput">
-                            <input type="text" name="adresse" id="adresse" required onClick={(e) => setAdresse(e.target.value)}/>
+                            <input type="text" name="adresse" id="adresse" required onChange={(e) => setAdresse(e.target.value)}/>
                             <label htmlFor="adresse">adresse lieu</label>
                         </div>
 
                         <div className="boxInput">
-                            <input type="tel" name="phoneProprietaire" id="phoneProprietaire" onClick={(e) => setPhoneProprietaire(e.target.value)}/>
+                            <input type="tel" name="phoneProprietaire" id="phoneProprietaire" onChange={(e) => setPhoneOwner(e.target.value)}/>
                             <label htmlFor="phoneProprietaire">telephone proprietaire</label>
                         </div>
 
                         <div className="boxInput">
-                            <input type="time" name="startVisit" id="startVisit" required onClick={(e) => setStartVisit(e.target.value)}/>
+                            <input type="time" name="startVisit" id="startVisit" required onChange={(e) => setStartVisit(e.target.value)}/>
                             <label htmlFor="startVisit">debut visite</label>
                         </div>
 
                         <div className="boxInput">
-                            <input type="time" name="endVisit" id="endVisit" required onClick={(e) => setEndVisit(e.target.value)}/>
+                            <input type="time" name="endVisit" id="endVisit" required onChange={(e) => setEndVisit(e.target.value)}/>
                             <label htmlFor="endVisit">fin de la visite</label>
                         </div>
 

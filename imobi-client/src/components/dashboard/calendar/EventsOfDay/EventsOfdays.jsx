@@ -4,6 +4,7 @@ import DisplayEvents from "./DisplayEvents/DisplayEvents";
 
 function EventsOfDays({clicked, onClose}){
 
+    console.log('eventOfDays', clicked);
     const [events , setEvents] = useState(localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []);
     const [statesBtn, setStatesBtn] = useState(true);
 
@@ -37,6 +38,28 @@ function EventsOfDays({clicked, onClose}){
             btn.innerHTML = "crée event";
 
             setStatesBtn(true);
+        }
+    }
+
+    const resetEvents = async() => {
+        console.log('get events');
+        let options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        try {
+            
+            const response = await fetch(`http://127.0.0.1:8000/api/allEvents`, options);
+            const data = await response.json();
+            /* console.log('=> :', data.data); */
+            setEvents(data.data);
+
+
+            localStorage.setItem('events', JSON.stringify(data.data));
+        } catch(error){
+            console.log("error");
         }
     }
 
@@ -76,6 +99,21 @@ function EventsOfDays({clicked, onClose}){
                 alert("try again");
             }
 
+            if (data.status == 'true') {
+
+                let eventsDayBody = document.querySelector('.eventsDaysContent');
+                let formEvents = document.querySelector('.formEvents');
+                let btn = document.querySelector('.createEvent');
+
+                eventsDayBody.classList.add('active');
+                formEvents.classList.remove('active');
+    
+                btn.innerHTML = "crée event";
+    
+                setStatesBtn(true);
+
+                resetEvents();
+            }
         } catch (error){
             console.error("Fetch error:" , error);
         }
@@ -97,7 +135,7 @@ function EventsOfDays({clicked, onClose}){
                         events.map((element, index) => (
                         element.date == clicked ? 
 
-                            <DisplayEvents element={element} key={index} clicked={clicked}/>
+                            <DisplayEvents element={element} key={index} clicked={clicked} />
 
                         : null
                         ))

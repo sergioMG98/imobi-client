@@ -10,6 +10,7 @@ import CalendarHeader from "./CalendarHeader/CalendarHeader";
 import EventsOfDays from "./EventsOfDay/EventsOfdays";
 
 function Calendar(){
+    console.log('calendar');
     const [nav, setNav] = useState(0);
     const [days, setDays] = useState([]);
     const [dateDisplay, setDateDisplay] = useState('');
@@ -20,8 +21,9 @@ function Calendar(){
         /* localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [] */
     ); 
 
+
     const getEvents = async() => {
-        
+        console.log('get events');
         let options = {
             method: 'GET',
             headers: {
@@ -41,23 +43,11 @@ function Calendar(){
             console.log("error");
         }
     }
-    /* console.log('events', events); */
-
-/*     events.forEach(element => {
-        console.log('events', element);
-    }); */
-
-/*     const eventForDate = date => eventsStorage.find(e => e.date === date);
-     */
-/*     useEffect(() => {
-        getevents();
-        //strigngify converti un objet en chaine 
-        localStorage.setItem('events', JSON.stringify(events));
-    }, [events]); */
 
     const eventForDate = date => events?.find(obj => {
         return obj.date == date;
     })
+
     useEffect(() => {
         getEvents();
     }, [])
@@ -195,31 +185,6 @@ function Calendar(){
                     onClose={() => setClicked(null)}
                 /> : ''
             }
-
-
-{/*             {
-                clicked && eventForDate(clicked) && 
-                <NewEventModal
-                    clicked={clicked}
-                    onClose={() => setClicked(null)}
-                    onSave={title => {
-                        setEvents([ ...events, {title, date:clicked} ]);
-                        setClicked(null);
-                }}
-            />
-            } */}
-
-{/*             {
-                clicked && eventForDate(clicked) && 
-                <DeleteEventModal
-                    eventText={eventForDate(clicked).title}
-                    onClose={() => setClicked(null)}
-                    onDelete={() => {
-                        setEvents(events.filter(e => e.date !== clicked));
-                        setClicked(null);
-                    }}
-                />
-            } */}
 
         </>
 

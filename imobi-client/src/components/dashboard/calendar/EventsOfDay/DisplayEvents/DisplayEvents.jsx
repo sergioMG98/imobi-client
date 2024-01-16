@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 function DisplayEvents ({element, clicked}){
 
+    const [events , setEvents] = useState(localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []);
+
     const [titre , setTitre] = useState(element.title);
     const [lastnameVisitor, setLastnameVisitor] = useState(element.lastnameVisitor);
     const [firstnameVisitor, setFirstnameVisitor] = useState(element.firstnameVisitor);
@@ -12,6 +14,29 @@ function DisplayEvents ({element, clicked}){
     const [endVisit, setEndVisit] = useState(element.endVisit);
 
     const [date, setDate] = useState(clicked);
+   
+
+    const resetEvents = async() => {
+        console.log('get events display');
+        let options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        try {
+            
+            const response = await fetch(`http://127.0.0.1:8000/api/allEvents`, options);
+            const data = await response.json();
+            /* console.log('=> :', data.data); */
+            setEvents(data.data);
+
+
+            localStorage.setItem('events', JSON.stringify(data.data));
+        } catch(error){
+            console.log("error");
+        }
+    }
 
     const modifEvent = async(element) => {
         
@@ -35,13 +60,13 @@ function DisplayEvents ({element, clicked}){
         };
 
         try{
-            console.log("option", options);
+            
             const response = await fetch('http://127.0.0.1:8000/api/updateEvent',options);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
             const data = await response.json();
-            console.log("creation product", data);
+            
 
             if(data){
                 alert(data.message);
@@ -81,6 +106,13 @@ function DisplayEvents ({element, clicked}){
             } else {
                 alert("try again");
             }
+            if (data.status == 'true') {
+                console.log('display 1');
+                resetEvents();
+                console.log('display 2');
+                /* window.location.reload(false); */
+
+            }
 
         } catch (error){
             console.error("Fetch error:" , error);
@@ -90,7 +122,7 @@ function DisplayEvents ({element, clicked}){
     return (
 
         <div className="eventsDay" >
-            {console.log('log test', element)}
+            
             <div className="eventData">
                 <div className="enventDataInput">
                     <input type="text" name="titre" value={titre} onChange={(e) => setTitre(e.target.value)} />

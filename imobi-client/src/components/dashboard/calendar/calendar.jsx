@@ -160,7 +160,7 @@ function Calendar(){
                                 <Day
                                     key={index}
                                     day={d}
-                                    onClose={() => setClicked(null)}
+                                   /*  onClose={() => setClicked(null)} */
                                     onClick={() => {
                                         console.log("click !", d.value, d.date);
                                         if(d.value !== 'padding'){
@@ -168,7 +168,6 @@ function Calendar(){
                                         }
 
                                     }}
-                                    clicked={clicked}
                                 />
                             </div>
 

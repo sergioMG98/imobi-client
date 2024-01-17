@@ -11,6 +11,7 @@ import Page from './components/Page/Page';
 import DetailsPage from './components/DetailsPage/DetailsPage';
 import DetailDashboard from './components/dashboard/detailDashboard/DetailsDashboard';
 import Calendar from './components/dashboard/calendar/calendar';
+import Contact from './components/dashboard/Contact/Contact';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -47,6 +48,10 @@ function App() {
     {
       path: "/calendar",
       element: <Calendar/>
+    },
+    {
+      path: "/contact",
+      element: <Contact/>
     }
   ])
   return (

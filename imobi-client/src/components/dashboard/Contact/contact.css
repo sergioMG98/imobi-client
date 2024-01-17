@@ -1,0 +1,91 @@
+.contact{
+    display: flex;
+    flex-direction: row;
+}
+.contactContent{
+    height: 100vh;
+    width: 100vw;
+}
+
+.contactHeader{
+    height: 10%;
+    width: 100%;
+}
+.allContact{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: antiquewhite;
+}
+/* ------------------------------------------- */
+.allCustomers,
+.friendsContact{
+    position: relative;
+    height: 80%;
+    width: 45%;
+    background-color: cadetblue;
+}
+/* --------------------------------------------- */
+
+.detailCustomerProducts{
+    display: none;
+}
+
+.customersContent {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: .5s;
+}
+
+
+.allContact.active .allCustomers{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+}
+.allContact.active .allCustomers .customersContent{
+    height: 100%;
+    width: 30%;
+    overflow-y: auto;
+    background-color: turquoise;
+}
+.allContact.active .allCustomers .detailCustomerProducts{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 70%;
+    background-color: violet;
+    overflow-y: auto;
+}
+/* ------------------------------------------ */
+
+.allContact.active .friendsContact{
+    height: 80%;
+    width: 10%;
+    background-color: chartreuse;
+    transition: .4s;
+}
+
+/* ------------------------------------------ */
+.customers{
+    height: 10%;
+    width: 100%;
+    background-color: blue;
+    border-bottom: 2px solid black;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+/* ------------------------------------------ */
+
+.detailsCardProduct{
+    height: 100px;
+    width: 100%;
+    background-color: crimson;
+    border-bottom: 2px solid black;
+}

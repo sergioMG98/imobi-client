@@ -4,8 +4,8 @@ import DisplayEvents from "./DisplayEvents/DisplayEvents";
 
 function EventsOfDays({clicked, onClose}){
 
-    console.log('eventOfDays', clicked);
-    const [events , setEvents] = useState(localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []);
+    console.log('eventOfDays');
+    const [events , setEvents] = useState(localStorage.getItem('events') && localStorage.getItem('events') != "undefined" ? JSON.parse(localStorage.getItem('events')) : "erreur");
     const [statesBtn, setStatesBtn] = useState(true);
 
     const [titre , setTitre] = useState('');

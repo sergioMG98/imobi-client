@@ -11,7 +11,7 @@ function Dashboard(){
                     <Link className="product dashLink" to={'/product'}>product</Link>
                     <Link className="dashLink" to={'/addProduct'}>Add Product</Link>
                     <Link className="agenda dashLink" to={'/calendar'}>agenda</Link>
-                    <div className="contact dashLink">contact</div>  
+                    <Link className="contact dashLink" to={'/contact'}>contact</Link>
                 </div>
 
                 <div>

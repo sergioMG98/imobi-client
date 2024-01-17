@@ -1,6 +1,6 @@
 import "./day.css";
 
-function Day({day, onClick, clicked}){
+function Day({day, onClick}){
 
     const className = `day ${day.value === 'padding' ? 'padding' : 'calendarDay'} ${day.isCurrentDay ? 'currentDay' : ''}`;
     /* console.log("day", day); */

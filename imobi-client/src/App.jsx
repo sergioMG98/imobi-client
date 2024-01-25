@@ -8,6 +8,7 @@ import Login from './components/Login/Login';
 import Product from './components/dashboard/product/products';
 import AddProduct from './components/dashboard/addProduct/AddProduct';
 import Page from './components/Page/Page';
+import CustomerSell from './components/CustomerSell/CustomerSell';
 import DetailsPage from './components/DetailsPage/DetailsPage';
 import DetailDashboard from './components/dashboard/detailDashboard/DetailsDashboard';
 import Calendar from './components/dashboard/calendar/calendar';
@@ -36,6 +37,10 @@ function App() {
     {
       path: "/page",
       element: <Page/>
+    },
+    {
+      path: "/pageSell",
+      element: <CustomerSell/>
     },
     {
       path: "/detailsPage",

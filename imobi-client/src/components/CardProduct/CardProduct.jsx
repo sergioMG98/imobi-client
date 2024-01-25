@@ -7,20 +7,23 @@ function CardProduct(props){
     return (
         <div className="cardProduct" id={props.product.id}>
             <div className="imageCard">
-
+            {/* {console.log("d", props.product)} */}
             </div>
             <div className="descriptionCard">
+
+                <div className="cardType">
+                    {props.product.type}
+                </div>
+
                 <div className="cardPrice">
                     {props.product.prix} €
                 </div>
-                <div className="caracteristiqueCard">
-                    <div className="cardType">
-                        {props.product.piece}
-                    </div>
-                    <div className="cardLieux">
-                        {props.product.surfaceTerrain}
-                    </div>
+
+
+                <div className="cardLieux">
+                    {props.product.surfaceTerrain}
                 </div>
+                
                 <div className="detailsBtn">
                     <Link to={"/detailsPage"} state={props.product.id}>details</Link>
                 </div>

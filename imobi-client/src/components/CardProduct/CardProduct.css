@@ -1,8 +1,12 @@
 
 .cardProduct{
-    height: 400px;
-    width: 30%;
-    background-color: red;
+    height: 420px;
+    width: 45%;
+    background-color: rgb(198, 198, 198);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid blue;
+    box-sizing: border-box;
 }
 .imageCard{
     height: 45%;
@@ -12,30 +16,38 @@
 .descriptionCard{
     height: 55%;
     width: 100%;
+    background-color: rgb(175, 175, 175);
+    display: flex;
+    flex-wrap: wrap;
 }
 .cardPrice{
     height: 33%;
-    width: 100%;
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     color: blue;
     font-weight: bold;
-    background-color: palegreen;
+    /* background-color: palegreen; */
 }
-.caracteristiqueCard{
+.cardLieux{
     height: 33%;
     width: 100%;
     display: flex;
-    flex-direction: row;
-    background-color: cadetblue;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 13%;
+    color: blue;
+    /* background-color: cadetblue; */
 }
-.cardType,
-.cardLieux{
-    height: 100%;
+.cardType {
+    height: 33%;
     width: 50%;
     display: flex;
-    justify-content: center;align-items: center;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: blue;
 }
 .detailsBtn{
     height: 33%;

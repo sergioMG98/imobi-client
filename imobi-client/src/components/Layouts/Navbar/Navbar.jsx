@@ -11,7 +11,7 @@ function Navbar(){
             <div className="navChoices">
                 <Link className="navBuy" to={"/page"} state={'sell'}>acheter</Link>
                 <Link className="navRent" to={"/page"} state={'rent'}>louer</Link>
-                <Link className="navSell" to={"/page"} state={'buy'}>vendre</Link>
+                <Link className="navSell" to={"/pageSell"}>vendre</Link>
             </div>
 
             <div className="navLogin">

@@ -118,7 +118,7 @@ function EventsOfDays({clicked, onClose}){
             console.error("Fetch error:" , error);
         }
     }
-   
+   console.log('events', events);
     return (
         <div className="EventsOFDays">
             <div className="eventsOfDaysHeader">

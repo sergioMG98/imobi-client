@@ -1,0 +1,467 @@
+.contentPage{
+    height: calc(100vh - 100px);
+    width: 100%;
+}
+/* ------------------------------------- */
+.filterContainer{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: royalblue;
+}
+.someFilter{
+    /* background-color: teal; */
+    height: 100%;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2%;
+}
+.allFilter{
+    position: relative;
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: slategrey; */
+}
+.allFilterInput h2{
+    height: 60px;
+    width: 100%;
+    box-sizing: border-box;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+/*  */
+
+.projectFilter,
+.searchFilter,
+.typeFilter,
+.budgetFilter{
+    position: relative;
+    height: 60%;
+    width: 20%;
+    border-radius: 20px;
+    background-color: white;
+    color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.filterDiv button{
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 20px;
+    color: blue;
+    text-transform: uppercase;
+    font-size: large;
+}
+.filterDiv button:hover{
+    position: relative;
+    background-color: blue;
+    color: white;
+}
+.filterDiv .formFilter{
+    display: none;
+}
+.filterDiv.active .formFilter{
+    display: flex;
+    position: absolute;
+    top: 63px;
+    left: 0px;
+    height: 300px;
+    width: 500px;
+    background-color: white;
+    border: 2px solid blue;
+}
+/*  */
+.bigFilterSearch{
+    position: relative;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bigFilterSearch input{
+    height: 50%;
+    width: 93%;
+    border-radius: 20px;
+    border: 2px solid slategray;
+    background-color: transparent;
+}
+.bigFilterSearch label{
+    position: absolute;
+    top: 8px;
+    left: 8%;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+    background: white;
+}
+/*  */
+
+.allFilter button{
+    position: relative;
+    height: 60%;
+    width: 80%;
+    border-radius: 20px;
+    background-color: white;
+    color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: large;
+}
+.allFilter button:hover{
+    position: relative;
+    background-color: blue;
+    color: white;
+}
+.allFilter .allFormFilter{
+    display: none;
+}
+.allFilter.active .allFormFilter{
+    display: flex;
+    position: absolute;
+    top: 78px;
+    right: 0px;
+    height: 79vh;
+    width: 500px;
+    background-color: white;
+    border: 2px solid blue;
+    flex-direction: column;
+}
+.allFilterInput{
+    height: 85%;
+    width: 100%;
+    color: blue;
+    overflow-y: auto;
+}
+.allFilterInput h2{
+    color: blue;
+}
+.bigFilterBudget {
+    height: 140px;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 2%;
+    justify-content: center ;   
+}
+.bigFilterInput h2{
+    width: 100%;
+    height: 60px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    padding-left: 20px;
+}
+.bigFilterBudget div{
+    position: relative;
+    height: 40px;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid rgb(195, 195, 195);
+    border-radius: 20px;
+    
+}
+.bigFilterBudget div input{
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    color: black;
+    border: none;
+}
+.bigFilterBudget div label{
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    background: white;
+}
+/*  */
+.bigFilterType{
+    height: 300px;
+    width: 100%;
+}
+.bigFilterCheckboxContainer{
+    height: 240px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    gap: 1%;
+    padding: 10px;
+}
+.bigFilterCheckboxContainer .checkboxFilter{
+    border: 2px solid darkgray;
+}
+.checkboxFilter label{
+    display: flex;
+    align-items: center;
+}
+/*  */
+
+
+.btn-allFilter{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: steelblue;
+}
+.btn-allFilter button{
+    height: 40%;
+    
+}
+
+/*  */
+/* .bigFilterPiece{
+   width: 100%; 
+   height: 100px;
+} */
+.numberPiece,
+.surfaceMinimum{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+.numberPiece div,
+.surfaceMinimum div {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid darkgray;
+    border-radius: 10px;
+}
+
+/*  */
+.performanceEnergetique{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+}
+.ges,
+.dpe{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 45%;
+}
+.ges select,
+.dpe select{
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding-left: 46%;
+    background-color: transparent;
+    color: blue;
+}
+
+.ges label,
+.dpe label {
+    position: absolute;
+    top: -9px;
+    left: 20px;
+    text-transform: uppercase;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+
+/*  */
+.criteresContainer{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8%;
+    box-sizing: border-box;
+    padding: 0 4%;
+}
+
+.critere {
+    position: relative;
+    width: 45%;
+    height: 40px;
+    border: 2px solid darkgray;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+}
+
+/*  */
+
+.formFilter{
+    display: flex;
+    flex-wrap: wrap;
+}
+.formFilter h2 {
+    height: 15%;
+    width: 100%;
+    color: blue;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    padding: 2% 0 0 2%;
+}
+.btn-filterValidate{
+    height: 35%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid grey;
+    box-sizing: border-box;
+}
+.btn-filterValidate button {
+    height: 40%;
+    width: 40%;
+    border-radius: 20px;
+    background-color: blue;
+    color: white;
+    font-size: large;
+    text-transform: uppercase;
+}
+/*  */
+.searchPlace{
+    position: relative;
+    height: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchPlace input{
+    height: 40%;
+    width: 80%;
+    border-radius: 20px;
+    border: 2px solid blue;
+    background-color: transparent;
+    outline: none;
+    color: blue;
+    box-sizing: border-box;
+    padding: 10px;
+}
+.searchPlace label{
+    position: absolute;
+    left: 20%;
+    top: 24%;
+    height: 13%;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    color: blue;
+    text-transform: uppercase;
+}
+/*  */
+.checkboxFilterContainer{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    padding: 10px;
+    gap: 10px;
+}
+.checkboxFilter{
+    height: 25%;
+    border: 2px solid blue;
+    box-sizing: border-box;
+    padding: 1%;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+/*  */
+
+.budgetMin,
+.budgetMax{
+    position: relative;
+    height: 50%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.budgetMin input,
+.budgetMax input{
+    height: 30%;
+    width: 80%;
+    background-color: transparent;
+    border: 2px solid blue;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    padding-left: 10px;
+    color: blue;
+}
+.budgetMin input:focus,
+.budgetMax input:focus{
+    height: 30%;
+    width: 80%;
+    background-color: transparent;
+    border: 2px solid rgb(4, 236, 4);
+    border-radius: 20px;
+    outline: none;
+}
+
+
+.budgetMin label,
+.budgetMax label{
+    position: absolute;
+    left: 20%;
+    top: 27%;
+    height: 13%;
+    width: 40%;
+    color: blue;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+
+
+
+/* ------------------------------------ */
+.cardContainer{
+    width: 100%;
+    height: 90%;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10%;
+    overflow-y: auto;
+    /* background-color: bisque; */
+}

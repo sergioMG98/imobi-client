@@ -9,6 +9,10 @@ function Page(){
     const [choice, setChoice] = useState();
     const [filterChoice, setFilterChoice] = useState();
 
+    const [search, setSearch] = useState('');
+
+    const [latitude ,setLatitude] = useState();
+    const [longitude, setLongitude] = useState();
     const [productsFiltered, setProductsFiltered] = useState([]);
     const [budgetMin, setBudgetMin] = useState(0);
     const [budgetMax, setBudgetMax] = useState(0);
@@ -37,6 +41,7 @@ function Page(){
             }),
         };
         try {
+            
             const response = await fetch(`http://127.0.0.1:8000/api/getProductSpecific`, options);
             const data = await response.json();
             /* console.log("data page" ,data.product); */
@@ -212,11 +217,34 @@ function Page(){
         let temporary = [];
 
         
-        // filtre budget
-        temporary.push(
-            product.filter((element) => element.prix >= budgetMin && element.prix <= budgetMax)
-        );
+        // filtre budget  
+        if (budgetMax != 0 || budgetMin != 0) {
 
+            let tempo = [];
+
+            if (budgetMin != 0 && budgetMax == 0) {
+                tempo.push( product.filter((element) => element.prix >= budgetMin ));
+            } else if(budgetMin == 0 && budgetMax != 0) {
+                tempo.push( product.filter((element) => element.prix <= budgetMax ))
+            } else {
+                tempo.push( product.filter((element) => element.prix >= budgetMin && element.prix <= budgetMax ))
+            }
+             
+            if (tempo.length != 0) {
+                            // remet des valeurs
+                for (let index = 0; index < tempo.length; index++) {
+    
+                    tempo[index].forEach(element => {
+                
+                        temporary.push(element);
+                    });
+            }
+
+            }
+
+
+            
+        }
         // filtre type de bien
         if (typeBien.length != 0) {
 
@@ -340,6 +368,7 @@ function Page(){
                     product.filter((element) => element.ges == ges)
                 );
             }
+
             // reset temporary
             while (temporary.length != 0) {
                 temporary.pop();
@@ -390,11 +419,11 @@ function Page(){
             let tempo = [];
 
             // si le tableau n'est pas vide
-            if (temporary[0].length != 0) {
+            if (temporary.length != 0) {
 
                 criteres.forEach(element => {
                     
-                    let t = temporary[0].filter(items => items.element != null)
+                    let t = temporary.filter(items => items.element != null)
 
                     if (t.length != 0) {
                         // je push une valeur
@@ -434,17 +463,50 @@ function Page(){
                 });
             }
         } 
+        console.log("d", temporary);
+        
+        if (temporary.length == 0) {
+            setProductsFiltered(["erreurRecherche"]);
+        } else {
+            setProductsFiltered(temporary);
+        }
+        
 
+        // ferme le popup du bigFiltre
+        moreFilter('bigFilter');
     }
     
-    /* ------------ filter function --------------- */
+
+    // search
+
+    const getGeo = async() => {
+        let options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        };
+        try {
+            const response = await fetch(`https://api-adresse.data.gouv.fr/search/?q=${search}`, options);
+            const data = await response.json();
+            console.log("data page" , data);
+            console.log("latitude" , data.features[0].geometry.coordinates[1]);
+            setLatitude(data.features[0].geometry.coordinates[1]),
+            setLongitude(data.features[0].geometry.coordinates[0])
+
+        } catch(error){
+
+        }
+    }
+
+
 
 
     useEffect(()=> {
         getProduct();
     }, [choice]);
 
-    /* console.log('=> ', productsFiltered); */
+    
     return(
         <div>
             <div className="navbarContainer">
@@ -455,10 +517,9 @@ function Page(){
                 
                 <div className="filterContainer">
                     <div className="someFilter">
-{/*                         <div className="projectFilter filterDiv" onClick={() => moreFilter('projectFilter')}>
-                            project
-                            <div className="formFilterProject"></div>
-                        </div> */}
+                        <div className="projectFilter filterDiv" onClick={() => moreFilter('projectFilter')}>
+                            <button onClick={() => window.location.reload(true)}>clear</button>   
+                        </div>
 
                         <div className="searchFilter filterDiv" >
                             
@@ -467,13 +528,13 @@ function Page(){
                             <div className="formFilter">
                                 <h2>chercher une ville</h2>
                                 <div className="searchPlace">
-                                    <input type="text" id="searchFilterForm" />
+                                    <input type="text" id="searchFilterForm" onChange={(e) => setSearch(e.target.value)}/>
                                     <label htmlFor="searchFilterForm">votre lieu de recherche</label>
                                 </div>
                                 
 
                                 <div className="btn-filterValidate">
-                                    <button>valider</button>
+                                    <button onClick={() => getGeo()}>valider</button>
                                 </div>
                             </div>    
                         </div>
@@ -564,12 +625,12 @@ function Page(){
                                     <h2>budget</h2>
                                     <div>
                                         <label htmlFor="bigBudgetMMin">budget min</label>
-                                        <input type="number" name="" value={budgetMin} id="bigBudgetMin" onChange={(e) => setBudgetMin(e.target.value)}/>
+                                        <input type="number" name="" placeholder={budgetMin} id="bigBudgetMin" onChange={(e) => setBudgetMin(e.target.value)}/>
                                     </div>
 
                                     <div>
                                         <label htmlFor="bigBudgetMin">budget max</label>
-                                        <input type="number" name="" value={budgetMax} id="bigBudgetMin" onChange={(e) => setBudgetMax(e.target.value)}/>
+                                        <input type="number" name="" placeholder={budgetMax} id="bigBudgetMin" onChange={(e) => setBudgetMax(e.target.value)}/>
                                     </div>
                                 </div>
 
@@ -785,18 +846,24 @@ function Page(){
                     {
                         
                         productsFiltered.length == 0 ? 
-                        
-                            /* console.log("=>", product) */
+                            // si productFiltered est vide
                             product?.map((elements, index) => 
                                 <CardProduct product={elements} key={index}></CardProduct>
                             )
                         : 
-                            /* console.log('filtered', productsFiltered) */
-                            productsFiltered?.map((elements, index) => 
-                                
-                                <CardProduct product={elements} key={index}></CardProduct>
-                                
-                            )
+                            /* console.log('filtered', productsFiltered[0]) */
+
+                            productsFiltered[0] == "erreurRecherche" ?
+                                <div>
+                                    aucune annonce ne correspond a votre recherche
+                                </div>
+                            :
+
+                                productsFiltered?.map((elements, index) => 
+                                    
+                                    <CardProduct product={elements} key={index}></CardProduct>
+                                    
+                                )
                     }
 
                     

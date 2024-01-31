@@ -1,0 +1,17 @@
+.customerSellContent{
+    height: calc(100vh - 100px);
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.contactSeller{
+    height: 100%;
+    width: 30%;
+    background-color: blue;
+}
+.carteContainer {
+    height: 100%;
+    width: 70%;
+    background-color: violet;
+}

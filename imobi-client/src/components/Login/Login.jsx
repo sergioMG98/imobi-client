@@ -28,18 +28,17 @@ function Login(){
         };
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/login`,options);
-            if(!response.ok){
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
+            const response = await fetch(`${import.meta.env.VITE_API_URL3}`,options);
 
             const data = await response.json();
-            console.log("login data", data);
 
             if(data){
                 alert(data.message);
                 if (data.status == 'true') {
                     navigate("/product");
+                }
+                if (data.token) {
+                    localStorage.setItem("TokenUserImobi", data.token);
                 }
                 
             } else {
@@ -65,10 +64,7 @@ function Login(){
 
         try {
             console.log("option", options);
-            const response = await fetch(`http://127.0.0.1:8000/api/register`,options);
-            if(!response.ok){
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
+            const response = await fetch(`${import.meta.env.VITE_API_URL4}`,options);
 
             const data = await response.json();
             console.log("login data", data);
@@ -76,7 +72,10 @@ function Login(){
             if(data){
                 alert(data.message);
                 if (data.status == 'true') {
-                    navigate("/product");
+                    navigate("/profil");
+                }
+                if (data.token) {
+                    localStorage.setItem("TokenUserImobi", data.token);
                 }
             } else {
                 alert("try again");
@@ -118,8 +117,8 @@ function Login(){
                         connexion
                     </div>
                     <form action="" method="post" className="loginForm">
-                        <input type="email" name="loginEmail" id="" placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
-                        <input type="password" name="loginPassword" id="" placeholder="mot de passe" onChange={(e) => setPassword(e.target.value)}/>
+                        <input type="email" name="loginEmail" id="loginEmail" placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
+                        <input type="password" name="loginPassword" id="loginPassword" placeholder="mot de passe" onChange={(e) => setPassword(e.target.value)}/>
 
                         <button type="submit" onClick={handleLogin}>connexion</button>
                     </form>
@@ -136,10 +135,10 @@ function Login(){
                         inscription
                     </div>
                     <form action="" method="post" className="registerForm">
-                        <input type="text" name="registerLastName" id="" placeholder="votre nom" onChange={(e) => setLastname(e.target.value)}/>
-                        <input type="text" name="registerFirstName" id="" placeholder="votre prénom" onChange={(e) => setFirstname(e.target.value)}/>
-                        <input type="email" name="registerEmail" id="" placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
-                        <input type="password" name="registerPassword" id="" placeholder="mot de passe" onChange={(e) => setPassword(e.target.value)}/>
+                        <input type="text" name="registerLastName" id="registerLastName" placeholder="votre nom" onChange={(e) => setLastname(e.target.value)}/>
+                        <input type="text" name="registerFirstName" id="registerFirstName" placeholder="votre prénom" onChange={(e) => setFirstname(e.target.value)}/>
+                        <input type="email" name="registerEmail" id="registerEmail" placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
+                        <input type="password" name="registerPassword" id="registerPassword" placeholder="mot de passe" onChange={(e) => setPassword(e.target.value)}/>
 
                         <button type="submit" onClick={handleRegister}>connexion</button>
                     </form>

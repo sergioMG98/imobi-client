@@ -94,6 +94,9 @@
     border-radius: 20px;
     border: 2px solid slategray;
     background-color: transparent;
+    color: black;
+    box-sizing: border-box;
+    padding-left: 20px;
 }
 .bigFilterSearch label{
     position: absolute;

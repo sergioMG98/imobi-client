@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 function DisplayEvents ({element, clicked}){
 
-    const [events , setEvents] = useState(localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []);
-
     const [titre , setTitre] = useState(element.title);
     const [lastnameVisitor, setLastnameVisitor] = useState(element.lastnameVisitor);
     const [firstnameVisitor, setFirstnameVisitor] = useState(element.firstnameVisitor);
@@ -26,11 +24,9 @@ function DisplayEvents ({element, clicked}){
         };
         try {
             
-            const response = await fetch(`http://127.0.0.1:8000/api/allEvents`, options);
+            const response = await fetch(`${import.meta.env.VITE_API_URL12}`, options);
             const data = await response.json();
             /* console.log('=> :', data.data); */
-            setEvents(data.data);
-
 
             localStorage.setItem('events', JSON.stringify(data.data));
         } catch(error){
@@ -61,7 +57,7 @@ function DisplayEvents ({element, clicked}){
 
         try{
             
-            const response = await fetch('http://127.0.0.1:8000/api/updateEvent',options);
+            const response = await fetch(`${import.meta.env.VITE_API_URL13}`,options);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -93,7 +89,7 @@ function DisplayEvents ({element, clicked}){
 
         try{
             console.log("option", options);
-            const response = await fetch('http://127.0.0.1:8000/api/deleteEvent',options);
+            const response = await fetch(`${import.meta.env.VITE_API_URL14}`,options);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }

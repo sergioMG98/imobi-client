@@ -13,6 +13,7 @@ import DetailsPage from './components/DetailsPage/DetailsPage';
 import DetailDashboard from './components/dashboard/detailDashboard/DetailsDashboard';
 import Calendar from './components/dashboard/calendar/calendar';
 import Contact from './components/dashboard/Contact/Contact';
+import Profil from './components/dashboard/profil/profil';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,40 +24,44 @@ function App() {
       element: <Home/>
     },
     {
-      path: "/login",
+      path: `${import.meta.env.VITE_API_URL21}`,
       element: <Login/>
     },
     {
-      path: "/product",
+      path: `${import.meta.env.VITE_API_URL22}`,
       element: <Product/>
     },
     {
-      path: "/addProduct",
+      path: `${import.meta.env.VITE_API_URL23}`,
       element: <AddProduct/>
     },
     {
-      path: "/page",
+      path: `${import.meta.env.VITE_API_URL24}`,
       element: <Page/>
     },
     {
-      path: "/pageSell",
+      path: `${import.meta.env.VITE_API_URL25}`,
       element: <CustomerSell/>
     },
     {
-      path: "/detailsPage",
+      path: `${import.meta.env.VITE_API_URL26}`,
       element: <DetailsPage/>
     },
     {
-      path: "/detailDashboard",
+      path: `${import.meta.env.VITE_API_URL27}`,
       element: <DetailDashboard/>
     },
     {
-      path: "/calendar",
+      path: `${import.meta.env.VITE_API_URL28}`,
       element: <Calendar/>
     },
     {
-      path: "/contact",
+      path: `${import.meta.env.VITE_API_URL29}`,
       element: <Contact/>
+    },
+    {
+      path: `${import.meta.env.VITE_API_URL30}`,
+      element: <Profil/>
     }
   ])
   return (

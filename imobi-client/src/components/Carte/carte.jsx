@@ -6,11 +6,12 @@ import CustomerSell from '../CustomerSell/CustomerSell';
 
 import "leaflet/dist/leaflet.css";
 import "./carte.css";
+import { useEffect } from 'react';
 
 
-function Carte({values}) {
+function Carte({values ,setSeller_id, latitude, longitude}) {
        
-    console.log('map page', values);
+    console.log('map page', latitude ,longitude);
 
 
     /* ----- montre l'emplacement exact du lieu ---- */
@@ -19,44 +20,61 @@ function Carte({values}) {
     ];
 
     for(let index = 0; index < values.length; index++) {
-        markers.push(
-            {
-                geocode:[values[index].latitude, values[index].longitude],
-                popUp: "hello i'am here",
-                lastname: values[index].lastname ,
-                firstname: values[index].firstname
-            }
-        )
+        if (values[index].latitude != null && values[index].longitude != null) {
+            markers.push(
+                {
+                    geocode:[values[index].latitude, values[index].longitude],
+                    popUp: `hello i'am here ${index} `,
+                    lastname: values[index].lastname ,
+                    firstname: values[index].firstname,
+                    seller_id: values[index].seller_id,
+                    phone: values.phone
+                },
+            )
+        }
+
     }
     const customIcon = L.icon({
         iconUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3SPYGZOym3ZgkAwHKEbzieVI93Gcytqnh_g&usqp=CAU',
         iconSize: [38, 38] // size of the icon
     });
     const seeSeller = (marker) => {
-        console.log('je rentre');
-        document.querySelector('.contactSeller').innerHTML += `
-            <div classname=""></div>
-            <div>${marker.lastname}</div>
-            <div>${marker.firstname}</div>
-            <div>telephone</div>
-            <div>e-mail</div>
-            `; 
-    }
+        
+        let parentDiv = document.querySelector('.infoSeller');
+        let childDiv = document.createElement("div").innerHTML += `
+            
+                ${marker.lastname} ${marker.firstname}
+                ${marker.phone != undefined ? marker.phone : ''}
+        
+        `;
 
-    console.log('-->', markers);
+        parentDiv.innerHTML = '';
+        parentDiv.prepend(childDiv);
+
+        setSeller_id(marker.seller_id);
+    }
+    
+/*     useEffect(()=> {
+        let mapcontainer = document.querySelector("#mapContainer");
+        mapcontainer.location.reload(false);
+    }, []); */
+
+
     return (
        
-        <MapContainer center={[values[0].latitude, values[0].longitude]} zoom={14}>
-
+        <MapContainer key={JSON.stringify( latitude, longitude)} center={[latitude,  longitude]} zoom={14}>
+                {console.log('changement --> ', latitude)}
             <TileLayer 
                 attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
             />
 
-                {markers?.map(marker => (
-                    <Marker position={marker.geocode} icon={customIcon} >
+                {markers?.map((marker , index) => (
+                    
+                    <Marker position={marker.geocode} icon={customIcon} key={index}>
+                    
                         <Popup >
-                            {marker.lastname}  {marker.firstname}   
+                            {marker.lastname}  {marker.firstname}
                             <button onClick={() => seeSeller(marker)}>voir</button>
                         </Popup>
                     </Marker>

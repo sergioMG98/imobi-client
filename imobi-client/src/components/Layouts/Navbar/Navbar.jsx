@@ -9,13 +9,13 @@ function Navbar(){
             </div>
 
             <div className="navChoices">
-                <Link className="navBuy" to={"/page"} state={'sell'}>acheter</Link>
-                <Link className="navRent" to={"/page"} state={'rent'}>louer</Link>
-                <Link className="navSell" to={"/pageSell"}>vendre</Link>
+                <Link className="navBuy" to={`${import.meta.env.VITE_API_URL24}`} state={'sell'}>acheter</Link>
+                <Link className="navRent" to={`${import.meta.env.VITE_API_URL24}`} state={'rent'}>louer</Link>
+                <Link className="navSell" to={`${import.meta.env.VITE_API_URL25}`}>vendre</Link>
             </div>
 
             <div className="navLogin">
-                <Link to="/login">connexion</Link>
+                <Link to={`${import.meta.env.VITE_API_URL21}`}>connexion</Link>
             </div>
         </div>
     )

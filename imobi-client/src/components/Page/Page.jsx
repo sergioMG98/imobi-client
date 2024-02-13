@@ -9,7 +9,7 @@ function Page(){
     const [choice, setChoice] = useState();
     const [filterChoice, setFilterChoice] = useState();
 
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState();
 
     const [latitude ,setLatitude] = useState();
     const [longitude, setLongitude] = useState();
@@ -42,9 +42,9 @@ function Page(){
         };
         try {
             
-            const response = await fetch(`http://127.0.0.1:8000/api/getProductSpecific`, options);
+            const response = await fetch(`${import.meta.env.VITE_API_URL1}`, options);
             const data = await response.json();
-            /* console.log("data page" ,data.product); */
+            console.log("data page" ,data.product);
             setProduct(data.product);
         } catch(error){
 
@@ -110,7 +110,7 @@ function Page(){
     const moreType = (value) => {
 
         let type = typeBien.find((element) => element == value);
-
+       
         if (type == undefined) {
             setTypeBien([...typeBien,value])
 
@@ -120,50 +120,6 @@ function Page(){
             })
         }
         
-    }
-
-    const filter = (x) => {
-        
-        let resultType = [];
-        let newArray = [];
-        let result;
-        
-        result = product.filter((element) => element.prix >= budgetMin && element.prix <= budgetMax)
-        
-        if (typeBien.length != 0) {
-
-            if (result.length == 0) {
-
-                // filtre le tableau
-                typeBien.forEach(element => {
-                    resultType.push(product.filter((items) => items.type == element));
-                });
-
-            } else {
-                
-                // filtre le tableau
-                typeBien.forEach(element => {
-                    resultType.push(result.filter((items) => items.type == element));
-                });
-            }
-
-            // met les valeurs dans un tableau
-            resultType.forEach(element => {
-                for (let index = 0; index < element.length; index++) {
-                    newArray.push(element[index]);
-                    
-                }
-                
-            });
-        
-            setProductsFiltered(newArray);
-
-        } else {
-            setProductsFiltered(result);
-        }
-
-        // pour fermer l'onglet du filtre
-        moreFilter(x);
     }
 
     /* grand filtre */
@@ -197,7 +153,7 @@ function Page(){
     }
 
     const moreCritere = (value) => {
-
+        console.log("couocu", value, criteres);
         let crit = criteres.find((element) => element == value);
         
         if (crit == undefined) {
@@ -211,12 +167,14 @@ function Page(){
         
     }
 
-    const BigFilter = () => {
+    const BigFilter = (btn) => {
 
         /* -------------- */
         let temporary = [];
 
         
+
+
         // filtre budget  
         if (budgetMax != 0 || budgetMin != 0) {
 
@@ -231,7 +189,8 @@ function Page(){
             }
              
             if (tempo.length != 0) {
-                            // remet des valeurs
+                
+                // remet des valeurs
                 for (let index = 0; index < tempo.length; index++) {
     
                     tempo[index].forEach(element => {
@@ -241,17 +200,56 @@ function Page(){
             }
 
             }
-
-
             
         }
+
+        // filtre search 
+        if (search != undefined) {
+
+            let tempo = [];
+            
+            if (temporary.length != 0) {
+                
+                temporary.forEach((element,index) => {
+                    
+                    if (element.ville == search) {
+                        tempo.push(element);
+                    }
+                })
+
+            } else {
+                product.forEach((element,index) => {
+                    console.log("search", element.ville);
+                    if (element.ville == search) {
+                        tempo.push(element);
+                    }
+                })
+            }
+            console.log("avant",tempo);
+            // reset temporary
+            while (temporary.length != 0) {
+                temporary.pop();
+            }
+            // remet des valeurs
+            for (let index = 0; index < tempo.length; index++) {
+                
+                temporary.push(tempo[index]);
+                /* tempo.forEach(element => {
+                
+                    temporary.push(element);
+                }); */
+            }
+            console.log("apres",temporary);
+
+        }
+
         // filtre type de bien
         if (typeBien.length != 0) {
 
             let tempo = [];
 
             // si le tableau n'est pas vide
-            if (temporary[0].length != 0) {
+            if (temporary.length != 0) {
 
                 typeBien.forEach(element => {
 
@@ -473,12 +471,12 @@ function Page(){
         
 
         // ferme le popup du bigFiltre
-        moreFilter('bigFilter');
+        moreFilter(btn);
     }
     
 
     // search
-
+/* 
     const getGeo = async() => {
         let options = {
             method: 'GET',
@@ -497,16 +495,16 @@ function Page(){
         } catch(error){
 
         }
+        BigFilter('searchFilter');
     }
-
+ */
 
 
 
     useEffect(()=> {
         getProduct();
     }, [choice]);
-
-    
+    console.log("ee",productsFiltered);
     return(
         <div>
             <div className="navbarContainer">
@@ -534,7 +532,7 @@ function Page(){
                                 
 
                                 <div className="btn-filterValidate">
-                                    <button onClick={() => getGeo()}>valider</button>
+                                    <button onClick={() => BigFilter('searchFilter') /* getGeo() */}>valider</button>
                                 </div>
                             </div>    
                         </div>
@@ -578,12 +576,12 @@ function Page(){
                                 </div>
 
                                 <div className="btn-filterValidate">
-                                    <button onClick={() => filter('typeFilter')}>valider</button>
+                                    <button onClick={() => BigFilter('typeFilter')}>valider</button>
                                 </div>
                             </div>  
                         </div>
 
-                        <div className="budgetFilter filterDiv" >
+                        <div className="budgetFilter filterDiv" >   
                             
                             <button onClick={() => moreFilter('budgetFilter')}>budget</button>
                             
@@ -601,7 +599,7 @@ function Page(){
                                 </div> 
 
                                 <div className="btn-filterValidate">
-                                    <button onClick={() => filter('budgetFilter')}>valider</button>
+                                    <button onClick={() => BigFilter('budgetFilter')}>valider</button>
                                 </div>
                             </div>  
                         </div>
@@ -617,7 +615,7 @@ function Page(){
                                 <div className="bigFilterSearch bigFilterInput">
                                     
                                     <label htmlFor="bigPlace">votre lieu</label>
-                                    <input type="text" name="" id="bigPlace" />
+                                    <input type="text" name="" id="bigPlace" onChange={(e) => setSearch(e.target.value)}/>
                                     
                                 </div>
 
@@ -803,7 +801,8 @@ function Page(){
                                         <div className="critere crit-piscine" onClick={() => moreCritere('piscine')}>
                                             <input 
                                                 type="checkbox" 
-                                                name="" 
+                                                name="piscine" 
+                                                value="piscine"
                                                 id="bigPiscine" 
                                                 checked={criteres.find((element) => element == "piscine") != undefined ? 'checked' : null}
                                                 />
@@ -814,6 +813,7 @@ function Page(){
                                             <input 
                                                 type="checkbox" 
                                                 name="" 
+                                                value="ascenseur"
                                                 id="bigAscenseur"
                                                 checked={criteres.find((element) => element == "ascenseur") != undefined ? 'checked' : null}
                                                 />
@@ -836,7 +836,7 @@ function Page(){
                             
 
                             <div className="btn-allFilter">
-                                <button onClick={() => BigFilter()}>valider</button>
+                                <button onClick={() => BigFilter('bigFilter')}>valider</button>
                             </div>
                         </div>
                     </div>

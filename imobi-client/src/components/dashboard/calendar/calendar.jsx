@@ -10,6 +10,8 @@ import CalendarHeader from "./CalendarHeader/CalendarHeader";
 import EventsOfDays from "./EventsOfDay/EventsOfdays";
 
 function Calendar(){
+    let token = localStorage.getItem('TokenUserImobi');
+
     console.log('calendar');
     const [nav, setNav] = useState(0);
     const [days, setDays] = useState([]);
@@ -28,6 +30,7 @@ function Calendar(){
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
             },
         };
         try {
@@ -100,10 +103,12 @@ function Calendar(){
         const daysArr = [];
         
         for(let i = 1; i <= paddingDays + daysInMonth; i++){
-            /* const dayString = `${i - paddingDays}/${month + 1}/${year}`; */
-            const dayString = month + 1 >= 10 ? `${year}-${month + 1}-${i - paddingDays}` : `${year}-0${month + 1}-${i - paddingDays}`
-            ;
-            /* console.log("=>  : " ,dayString); */
+            
+            // met un zero devant un nombre unique comme 9 -> 09
+            const numberDays = (i - paddingDays) >= 1 && (i - paddingDays) <= 9 ? `0${i - paddingDays}` : (i - paddingDays);
+
+            const dayString = month + 1 >= 10 ? `${year}-${month + 1}-${numberDays}` : `${year}-0${month + 1}-${numberDays}`;
+            
             if(i > paddingDays){
                 daysArr.push({
                     value: i - paddingDays,
@@ -154,15 +159,15 @@ function Calendar(){
                     </div>
 
                     <div id="calendar" className="calendar">
-                        
+                        {console.log("all days =========", days )}
                         {days.map((d, index) => (
                             <div className={`dayContainer ${d.value}`} key={index}>
                                 <Day
                                     key={index}
                                     day={d}
-                                   /*  onClose={() => setClicked(null)} */
+                                    
                                     onClick={() => {
-                                        console.log("click !", d.value, d.date);
+                                        console.log("-----> click !", d);
                                         if(d.value !== 'padding'){
                                             setClicked(d.date);
                                         }

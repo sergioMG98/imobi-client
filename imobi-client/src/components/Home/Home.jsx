@@ -8,6 +8,7 @@ function Home(){
     const [product, setProduct] = useState([]);
 
     const getProduct = async() => {
+        
         let options = {
             method: 'GET',
             headers: {
@@ -15,7 +16,7 @@ function Home(){
             },
         };
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/getProduct`, options);
+            const response = await fetch(`${import.meta.env.VITE_API_URL }`, options);
             const data = await response.json();
             setProduct(data.product);
         } catch(error){
@@ -26,7 +27,6 @@ function Home(){
     useEffect(()=> {
         getProduct();
     }, []);
-
 
     return (
         <div className="home">

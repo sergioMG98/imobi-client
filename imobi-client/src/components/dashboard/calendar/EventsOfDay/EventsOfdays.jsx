@@ -5,7 +5,7 @@ import DisplayEvents from "./DisplayEvents/DisplayEvents";
 function EventsOfDays({clicked, onClose}){
 
     console.log('eventOfDays');
-    const [events , setEvents] = useState(localStorage.getItem('events') && localStorage.getItem('events') != "undefined" ? JSON.parse(localStorage.getItem('events')) : "erreur");
+    const [events , setEvents] = useState(localStorage.getItem('events') != "undefined" ? JSON.parse(localStorage.getItem('events')) : [{}]);
     const [statesBtn, setStatesBtn] = useState(true);
 
     const [titre , setTitre] = useState('');
@@ -51,7 +51,7 @@ function EventsOfDays({clicked, onClose}){
         };
         try {
             
-            const response = await fetch(`http://127.0.0.1:8000/api/allEvents`, options);
+            const response = await fetch(`${import.meta.env.VITE_API_URL10}`, options);
             const data = await response.json();
             /* console.log('=> :', data.data); */
             setEvents(data.data);
@@ -85,7 +85,7 @@ function EventsOfDays({clicked, onClose}){
 
         try{
             console.log("option", options);
-            const response = await fetch('http://127.0.0.1:8000/api/newEvent',options);
+            const response = await fetch(`${import.meta.env.VITE_API_URL11}`,options);
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -118,7 +118,7 @@ function EventsOfDays({clicked, onClose}){
             console.error("Fetch error:" , error);
         }
     }
-   console.log('events', events);
+   /* console.log('events', events); */
     return (
         <div className="EventsOFDays">
             <div className="eventsOfDaysHeader">
@@ -130,6 +130,7 @@ function EventsOfDays({clicked, onClose}){
             </div>
             
             <div className="eventsDayBody">
+                {console.log("events", events)}
                 <div className="eventsDaysContent active">
                     {
                         events.map((element, index) => (

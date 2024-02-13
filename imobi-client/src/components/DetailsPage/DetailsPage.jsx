@@ -27,7 +27,7 @@ function DetailsPage(props){
         };
         try {
             console.log("detail 2" , location.state);
-            const response = await fetch(`http://127.0.0.1:8000/api/getProductById`, options);
+            const response = await fetch(`${import.meta.env.VITE_API_URL2}`, options);
             const data = await response.json();
 /*             console.log("data page" ,data.product); */
             setProduct(data.product[0]);

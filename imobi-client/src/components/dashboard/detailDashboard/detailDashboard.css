@@ -10,6 +10,88 @@
 .sellerProductDetail{
     min-height: 90%;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     overflow-y: auto;
-    background-color: darkblue;
+    /* background-color: darkblue; */
+    box-sizing: border-box;
+    padding: 20px;
+    gap: 2%;
+}
+/* ----------------------- */
+
+.updateTextareaDiv{
+    position: relative;
+    height: 200px;
+    width: 82%;
+    /* background-color: blueviolet; */
+}
+.updateTextareaDiv textarea {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    resize: none;
+    border-radius: 20px;
+    border: 2px solid blue;
+    background-color: transparent;
+}
+.updateTextareaDiv label {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    padding: 0 20px;
+    background-color: rgb(36, 36, 36);
+    text-transform: uppercase;
+}
+
+.updateDiv {
+    position: relative;
+    height: 50px;
+    width: 40%;
+    margin-top: 30px;
+}
+.updateDiv input,
+.updateDiv select {
+    box-sizing: border-box;
+    padding: 0 20px;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    border: 2px solid crimson;
+    background-color: transparent;
+}
+.updateDiv label {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    text-transform: uppercase;
+    padding: 0 20px;
+    background-color:  rgb(36, 36, 36);
+}
+
+.updateDiv input:valid ,
+.updateDiv input:focus,
+.updateDiv select:valid,
+.updateDiv select:focus{
+    border: 2px solid blue;
+}
+
+.updateDiv input:valid + label, 
+.updateDiv input:focus + label{
+    top: -10px;
+    left: 20px; 
+}
+
+
+
+.sellerProductDetail button {
+    height: 50px;
+    width: 40%;
+    border-radius: 20px;
+    background-color: blue;
+    text-transform: uppercase;
+    font-size: large;
+    margin-top: 30px;
 }

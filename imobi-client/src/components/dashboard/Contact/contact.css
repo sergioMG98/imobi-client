@@ -10,6 +10,10 @@
 .contactHeader{
     height: 10%;
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
 }
 .allContact{
     height: 90%;
@@ -17,15 +21,15 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: antiquewhite;
+   /*  background-color: antiquewhite; */
 }
 /* ------------------------------------------- */
 .allCustomers,
 .friendsContact{
     position: relative;
     height: 80%;
-    width: 45%;
-    background-color: cadetblue;
+    width: 80%;
+   /*  background-color: cadetblue; */
 }
 /* --------------------------------------------- */
 
@@ -39,6 +43,7 @@
     display: flex;
     flex-direction: column;
     transition: .5s;
+    overflow-y: auto;
 }
 
 
@@ -51,15 +56,15 @@
     height: 100%;
     width: 30%;
     overflow-y: auto;
-    background-color: turquoise;
 }
 .allContact.active .allCustomers .detailCustomerProducts{
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 70%;
-    background-color: violet;
+    background-color: white;
     overflow-y: auto;
+    color: black;
 }
 /* ------------------------------------------ */
 
@@ -82,10 +87,3 @@
     padding-left: 20px;
 }
 /* ------------------------------------------ */
-
-.detailsCardProduct{
-    height: 100px;
-    width: 100%;
-    background-color: crimson;
-    border-bottom: 2px solid black;
-}

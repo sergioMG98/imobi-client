@@ -468,3 +468,22 @@
     overflow-y: auto;
     /* background-color: bisque; */
 }
+@media (max-width: 575px) {
+    .filterDiv {
+        display: none;
+    }
+    .allFilter {
+        width: 400px;
+    }
+    .allFilter.active .allFormFilter {
+        width: 100vw;
+    }
+    .critere {
+        width: 44%;
+    }
+}
+@media (min-width: 1460px) {
+    .cardContainer {
+        gap: 5%;
+    }
+}

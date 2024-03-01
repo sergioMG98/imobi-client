@@ -19,12 +19,95 @@
     display: flex;
     flex-direction: column;
 }
+/*  */
+.contactBtn{
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    background-color: rgb(0, 114, 253);
 
+}
+.contactBtn button {
+    height: 80%;
+    background-color: blue;
+    width: 100px;
+    text-transform: uppercase;
+    border-radius: 15px;
+}
+.formContact {
+    display: none;
+}
+
+.formContact.active {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    height: calc(100vh - 100px);
+    width: 100vw;
+    background-color: white;
+    z-index: 20;
+}
+.formContact.active .btnFerme {
+    height: 50px;
+    width: 50px;
+    background-color: transparent;
+    color: black;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    text-transform: uppercase;
+    font-size: 40px;
+    
+}
+.formContact .formContactToSeller div input {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}
+.formContact .formContactToSeller div label {
+    background-color: white;
+    color: black;
+}
+/*  */
 .detailsImage{
     height: 80%;
     width: 100%;
+    position: relative;
     background-color: black;
 }
+.detailsImage img {
+    height: 100%;
+    width: 100%;
+}
+
+.detailsImage .rightBtn,
+.detailsImage .leftBtn {
+    display: none;
+}
+
+.detailsImage:hover .rightBtn,
+.detailsImage:hover .leftBtn {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    background-color: #0056ffb0;
+    align-items: center;
+}
+.detailsImage .rightBtn {
+    right: 0;
+}
+
+
+/*  */
 .detailsTitle{
     height: 20%;
     width: 100%;
@@ -205,6 +288,7 @@
 
 /*  */
 
+
 /* map */
 .detailMapContainer{
     height: 90%;
@@ -214,4 +298,90 @@
 .leaflet-container{
     height: 100%;
     z-index: 9;
+}
+/*  */
+@media (max-width: 400px){
+    .detailsContent{
+        padding: 20px;
+    }
+    .detailsTitle{
+        padding-left: 0;
+    }
+    .detailsContent div h2 {
+        padding-left: 0;
+    }
+    .detailsCaracteristique {
+        height: auto;
+    }
+    .detailsChild {
+        height: auto;
+        align-content: flex-start;
+    }
+    .detailItemCara {
+        width: 100%;
+        margin-top: 5px;
+    }
+    .gesContainer, .dpeContainer {
+        width: 100%;
+    }
+    .gesEtiquette, .dpeEtiquette{
+        width: 80%;
+    }
+    .indicatorContainer{
+        width: 20%;
+    }
+    .indicatorEnergetiqueGes, .indicatorEnergetiqueDpe {
+        width: 45%;
+    }
+    .detailsBilanEnergetique{
+        height: 695px;
+    }
+}
+@media (max-width: 575px){
+    .burger {
+        width: 15%;
+    }
+    .detailsContent{
+        padding: 20px;
+    }
+    .detailsTitle{
+        padding-left: 0;
+    }
+    .detailsContent div h2 {
+        padding-left: 0;
+    }
+    .detailsCaracteristique {
+        height: auto;
+    }
+    .detailsChild {
+        height: auto;
+        align-content: flex-start;
+    }
+    .detailItemCara {
+        width: 100%;
+        margin-top: 5px;
+    }
+    .gesContainer, .dpeContainer {
+        width: 100%;
+    }
+    .gesEtiquette, .dpeEtiquette{
+        width: 80%;
+    }
+    .indicatorContainer{
+        width: 20%;
+    }
+    .indicatorEnergetiqueGes, .indicatorEnergetiqueDpe {
+        width: 62%;
+    }
+    .detailsBilanEnergetique{
+        height: 695px;
+    }
+}
+@media (min-width: 1200px) {
+    .indicatorContainer {
+        width: 25%;
+    }
+    .dpeEtiquette {
+        width: 75%;
+    }
 }

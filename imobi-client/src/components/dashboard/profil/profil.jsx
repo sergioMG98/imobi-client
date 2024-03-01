@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import './profil.css';
 
 function Profil(){
+    let token = localStorage.getItem('TokenUserImobi');
+
     const [ProfilArray, setProfilArray] = useState([]);
 
     const [lastname, setLastname] = useState();
@@ -38,6 +40,12 @@ function Profil(){
             const data = await response.json();
             console.log('=> :', data);
             setProfilArray(data.data);
+
+            setLastname(data.data.lastname);
+            setFirstname(data.data.firstname);
+            setEmail(data.data.email);
+            setPhone(data.data.phone);
+            setLabel(data.data.label);
 
             if (data.data[0].label != null) {
                 setResponseModif('true')
@@ -88,6 +96,7 @@ function Profil(){
     // obtention des coordonnes du lieu
     const getGeo = async(valeurInput) => {
         console.log("getGeo", valeurInput);
+        setLabel(valeurInput);
         let options = {
             method: 'GET',
             headers: {
@@ -125,12 +134,12 @@ function Profil(){
     useEffect(() => {
         getProfil();
     }, [])
-    
+
     return (
         <div className="profilPage">
             <div className="dashboardContainer">
                 {
-                    responseModif == 'true' ? <Dashboard></Dashboard> : ""
+                    responseModif == 'true' || ProfilArray.label != null ? <Dashboard></Dashboard> : ""
                 }
                 
             </div>
@@ -140,32 +149,32 @@ function Profil(){
 
                 <div className="formProfil">
                     <div className="lastnameProfil profilDiv">
-                        <input type="text" id="lastname" value={ProfilArray?.lastname} onChange={(e) => setLastname(e.target.value)} required />
+                        <input type="text" id="lastname" value={lastname} onChange={(e) => setLastname(e.target.value)} required />
                         <label htmlFor="lastname">nom</label>
                     </div>
                     
                     <div className="firstnameProfil profilDiv">
-                        <input type="text" id="firstname" value={ProfilArray?.firstname}  onChange={(e) => setFirstname(e.target.value)} required />
+                        <input type="text" id="firstname" value={firstname}  onChange={(e) => setFirstname(e.target.value)} required />
                         <label htmlFor="firstname">prenom</label>
                     </div>
 
                     <div className="emailProfil profilDiv">
-                        <input type="email"  id="email" value={ProfilArray?.email} onChange={(e) => setEmail(e.target.value)} required />
+                        <input type="email"  id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                         <label htmlFor="email">email</label>
                     </div>
 
                     <div className="passwordProfil profilDiv">
-                        <input type="password" id="password" value={ProfilArray?.password} onChange={(e) => setPassword(e.target.value)}/>
+                        <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                         <label htmlFor="password">new mot de passe</label>
                     </div>
 
                     <div className="phoneProfil profilDiv">
-                        <input type="tel" id="phone" value={ProfilArray?.phone} /* pattern="[0-9]{6}" */ onChange={(e) => setPhone(e.target.value)} required />
+                        <input type="tel" id="phone" value={phone} /* pattern="[0-9]{6}" */ onChange={(e) => setPhone(e.target.value)} required />
                         <label htmlFor="phone">téléphone</label>
                     </div>
 
                     <div className="cityProfil profilDiv">
-                        <input type="text" id="city" onChange={(e) => getGeo(e.target.value)} required/>
+                        <input type="text" id="city" value={label} onChange={(e) => getGeo(e.target.value)} required/>
                         <label htmlFor="city">bureau de travail</label>
                         
                         <div className="allSearch">

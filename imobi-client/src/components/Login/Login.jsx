@@ -35,7 +35,7 @@ function Login(){
             if(data){
                 alert(data.message);
                 if (data.status == 'true') {
-                    navigate("/product");
+                    navigate(`${import.meta.env.VITE_API_URL22}`);
                 }
                 if (data.token) {
                     localStorage.setItem("TokenUserImobi", data.token);

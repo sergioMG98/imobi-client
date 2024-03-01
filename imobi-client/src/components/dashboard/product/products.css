@@ -74,7 +74,7 @@
     height: 100%;
     width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     color: blue;
     background-color: white;
 }
@@ -464,3 +464,36 @@
 }
 
 
+@media (max-width: 575px) {
+    .dashboardContainer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 60px;
+        width: 60px;
+    }
+    .filtreButton {
+        width: 80px;
+    }
+    .barProduct{
+        display: none;
+    }
+    .cardProductSellerInfo{
+        height: 100%;
+    }
+    .cardSellerElement{
+        width: 50%;
+        height: 50%;
+        position: initial;
+    }
+    .productSellerCard{
+        height: 100px;
+        width: 90%;
+    }
+    .dashContent{
+        width: 100vw;
+    }
+    .dashContent h1 {
+        font-size: x-large;
+    }
+}

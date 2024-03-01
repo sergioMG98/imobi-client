@@ -81,3 +81,8 @@
 .changeFormArea{
     color: black;
 }
+@media (max-width: 575px) {
+    .loginFormContainer, .registerFormContainer {
+        width: 100%;
+    }
+}

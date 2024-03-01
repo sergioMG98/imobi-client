@@ -93,3 +93,11 @@
     text-transform: uppercase;
     font-size: large;
 }
+@media (max-width: 575px) {
+    .profilContent {
+        width: 100%;
+    }
+    .profilDiv {
+        width: 80%;
+    }
+}

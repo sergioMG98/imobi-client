@@ -95,3 +95,74 @@
     font-size: large;
     margin-top: 30px;
 }
+
+#addProductTypeLabel {
+    width: 64%;
+}
+
+.imagePlace {
+    margin-top: 20px;
+    height: 400px;
+    width: 83%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.imagePlace .image {
+    height: 100%;
+    width: 70%;
+    box-sizing: border-box;
+    padding: 2%;
+    position: relative;
+}
+.imagePlace .image img {
+    height: 100%;
+    width: 100%;
+}
+
+.imagePlace .image .rightBtn,
+.imagePlace .image .leftBtn {
+    display: none;
+}
+
+.imagePlace .image:hover .rightBtn,
+.imagePlace .image:hover .leftBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color: #0056ffb0;
+}
+.imagePlace .image .rightBtn {
+    right: 0;
+}
+
+.imagePlace div {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.imagePlace div button,
+.imagePlace div input {
+    width: 80%;
+}
+
+@media (max-width: 575px) {
+    .dashContent{
+        width: 100vw;
+    }
+    .updateDiv{ 
+        width: 68%;
+    }
+    .updateTextareaDiv{
+        width: 68%;
+        height: 300px;
+    }
+    .dashDetailCo{
+        z-index: 14;
+    }
+
+}

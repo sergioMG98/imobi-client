@@ -8,11 +8,15 @@ function Day({day, onClick}){
         <div onClick={onClick} className={className}>
             {day.value === 'padding' ? '' : day.value}
             
-            {console.log("day", day)}
+           {/*  {console.log("day", day)} */}
 
             {day.event && 
                 
-                <div className="event">evenement</div> }
+                <div className="event">
+                    {
+                        screen.width >= 575 ? "evenement" : "event"
+                    }
+                </div> }
         </div>
     )
 }

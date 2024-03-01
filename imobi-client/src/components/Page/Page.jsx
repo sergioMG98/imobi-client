@@ -23,7 +23,7 @@ function Page(){
     const [dpe, setDpe] = useState();
     const [criteres, setCriteres] = useState([]);
 
-
+    const [img, setImg] = useState();
 
     const location = useLocation();
     if(choice == undefined || choice != location.state){
@@ -44,8 +44,10 @@ function Page(){
             
             const response = await fetch(`${import.meta.env.VITE_API_URL1}`, options);
             const data = await response.json();
-            console.log("data page" ,data.product);
+            console.log("page" ,data);
             setProduct(data.product);
+            setImg(data.imageProduct);
+
         } catch(error){
 
         }
@@ -848,7 +850,7 @@ function Page(){
                         productsFiltered.length == 0 ? 
                             // si productFiltered est vide
                             product?.map((elements, index) => 
-                                <CardProduct product={elements} key={index}></CardProduct>
+                                <CardProduct product={elements} imageProduct={img} key={index}></CardProduct>
                             )
                         : 
                             /* console.log('filtered', productsFiltered[0]) */
@@ -861,7 +863,7 @@ function Page(){
 
                                 productsFiltered?.map((elements, index) => 
                                     
-                                    <CardProduct product={elements} key={index}></CardProduct>
+                                    <CardProduct product={elements} imageProduct={img} key={index}></CardProduct>
                                     
                                 )
                     }

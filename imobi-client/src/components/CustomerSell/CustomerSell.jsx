@@ -18,6 +18,7 @@ function CustomerSell(){
     const [latitude ,setLatitude] = useState();
     const [longitude, setLongitude] = useState();
 
+    // va chercher tout les vendeurs inscript dans l'application
     const getCoordonnes = async() => {
         let options = {
             method: 'GET',

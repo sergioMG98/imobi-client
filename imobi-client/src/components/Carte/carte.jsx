@@ -10,15 +10,13 @@ import { useEffect } from 'react';
 
 
 function Carte({values ,setSeller_id, latitude, longitude}) {
-       
-    console.log('map page', latitude ,longitude);
 
 
     /* ----- montre l'emplacement exact du lieu ---- */
     const markers = [
         
     ];
-
+    // va insere des valeurs dans le tableu markers 
     for(let index = 0; index < values.length; index++) {
         if (values[index].latitude != null && values[index].longitude != null) {
             markers.push(
@@ -34,10 +32,12 @@ function Carte({values ,setSeller_id, latitude, longitude}) {
         }
 
     }
+    // visuel de l'icon
     const customIcon = L.icon({
         iconUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3SPYGZOym3ZgkAwHKEbzieVI93Gcytqnh_g&usqp=CAU',
         iconSize: [38, 38] // size of the icon
     });
+    //creation de contenu pour seller_id
     const seeSeller = (marker) => {
         
         let parentDiv = document.querySelector('.infoSeller');
@@ -63,7 +63,7 @@ function Carte({values ,setSeller_id, latitude, longitude}) {
     return (
        
         <MapContainer key={JSON.stringify( latitude, longitude)} center={[latitude,  longitude]} zoom={14}>
-                {console.log('changement --> ', latitude)}
+                
             <TileLayer 
                 attribution='&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'

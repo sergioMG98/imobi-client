@@ -10,3 +10,17 @@
     box-sizing: border-box;
     background-color: rgb(34, 140, 213);
 }
+
+@media (max-width: 575px) {
+    .contentContainer{
+        padding: 20px;
+    }
+    .cardProduct {
+        width: 100%;
+    }
+}
+@media (min-width: 1460px) {
+    .contentContainer{
+        gap: 5%;
+    }
+}

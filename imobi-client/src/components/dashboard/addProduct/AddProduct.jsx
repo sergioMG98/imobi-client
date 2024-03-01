@@ -29,6 +29,7 @@ function AddProduct() {
     const [latitude, setLatitude] = useState();
     const [ville, setVille] = useState();
     const [label, setLabel] = useState();
+    const [image, setImage] = useState();
 
     const [lastname, setLastname] = useState();
     const [firstname, setFirstname] = useState();
@@ -38,21 +39,53 @@ function AddProduct() {
 
     const [searchMenu, setSearchMenu] = useState([]);
 
-    let addProduct = {status, prix, description, surface, ges, dpe, type, piece, surfaceTerrain, salleDeBain, chambre, terrasse, balcon, garage, piscine, ascenseur, cave, longitude, latitude, ville, lastname, firstname, email, phone, idCustomer, label};
+    let addProduct = {status, prix, description, surface, ges, dpe, type, piece, surfaceTerrain, salleDeBain, chambre, terrasse, balcon, garage, piscine, ascenseur, cave, longitude, latitude, ville, lastname, firstname, email, phone, idCustomer, label, image};
 
     const [stateButton, setStateButton] = useState(false);
 
     // envoie les donnée pour crée les products
     const handleAddProduct = async(e) => {
         /* e.preventDefault(); */
-        console.log('test');
+        console.log('test', piece);
+
+        let formData = new FormData();
+        formData.append('status', status)
+        formData.append('prix', prix)
+        formData.append('description', description)
+        formData.append('surface', surface)
+        formData.append('ges', ges)
+        formData.append('dpe', dpe)
+        formData.append('type', type)
+        formData.append('piece', piece)
+        formData.append('surfaceTerrain', surfaceTerrain)
+        formData.append('salleDeBain', salleDeBain)
+
+        formData.append('chambre', chambre)
+        formData.append('terrasse', terrasse)
+        formData.append('balcon', balcon)
+        formData.append('garage', garage)
+        formData.append('piscine', piscine)
+        formData.append('ascenseur', ascenseur)
+        formData.append('cave', cave)
+        formData.append('longitude', longitude)
+        formData.append('latitude', latitude)
+        formData.append('ville', ville)
+
+        formData.append('lastname', lastname)
+        formData.append('firstname', firstname)
+        formData.append('email', email)
+        formData.append('phone', phone)
+        formData.append('idCustomer', idCustomer);
+        formData.append('label', label);
+        formData.append('image', image);
+
+
         let options = {
             method: "POST",
             headers: {
-                "Content-Type" : "application/json",
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify(addProduct),
+            body: formData,
         };
 
         try{
@@ -63,6 +96,7 @@ function AddProduct() {
 
             if(data.status == 'true' ){
                 alert(data.message);
+                // refresh la page 
                 window.location.reload(false);
             }
 
@@ -87,7 +121,7 @@ function AddProduct() {
             setStateButton(false);
         }
     }
-
+    // va chercher les clients existants
     const getCustomers = async() => {
         let options = {
             method: 'GET',
@@ -178,7 +212,7 @@ function AddProduct() {
                 <Dashboard></Dashboard>
             </div>
 
-            <div className="addProductContainer dashContent">
+            <div className="addProductContainer dashContent addProductCo">
 
                 <h1>création de lieu</h1>
 
@@ -229,6 +263,11 @@ function AddProduct() {
                             <div className="inputContainer">
                                 <input type="number" name="surface"  id="surface" required onChange={(e) => setSurface(e.target.value)}/>
                                 <label htmlFor="surface">surface</label>
+                            </div>
+{/* image */}
+                            <div className="inputContainer">
+                                <input type="file" name="image"  id="image" required onChange={(e) => setImage(e.target.files[0])} />
+                        
                             </div>
 
                             <div className="inputContainer">

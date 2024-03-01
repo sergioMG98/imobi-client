@@ -32,7 +32,7 @@ function Contact(){
             console.log("error");
         }
     }
-
+    // affichage du message au complet
     const productCustomers = (customer_id) => {
 
         let allContact = document.querySelector('.allContact');
@@ -65,7 +65,7 @@ function Contact(){
                 
                 <div classname="messageOfSender" style='height: 50%; width: 100%; box-sizing: border-box; padding: 20px; overflow-y: auto;'> ${element.message} </div>
 
-                <div classname="messageOfSender" style='height: 10%; width: 100%; display: flex; box-sizing: border-box; padding: 20px;'> ${element.mailSender != null ? `<strong>reference de l'annonce :</strong> <pre> ` + element.referenceAnnoce : '<strong></strong>'}  </div>
+                <div classname="messageOfSender" style='height: 10%; width: 100%; display: flex; box-sizing: border-box; padding: 20px;'> ${element.referenceAnnonce != null ? `<strong>reference de l'annonce :</strong> <pre> ` + element.referenceAnnonce : ''}  </div>
                 `
             }
         });
@@ -126,7 +126,7 @@ function Contact(){
         }
     }
     useEffect(() => {
-        getContact();
+        /* getContact(); */
         getMessages();
     }, [])
 

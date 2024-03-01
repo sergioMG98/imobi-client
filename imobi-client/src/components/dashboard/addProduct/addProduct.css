@@ -250,3 +250,36 @@
     background-color: royalblue;
     color: white;
 }
+@media (max-width: 575px) {
+    .addProductContainer .form {
+        width: 82%;
+    }
+    .addProductCo {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .addForm .inputContainer{
+        width: 100%;
+    }
+    .productData {
+        overflow: auto;
+    }
+    .productData h2, .clientData h2 {
+        font-size: large;
+    }
+    #newCustomerButton {
+        width: 98px;
+        right: -2px;
+    }
+    .customer{
+        height: 80px;
+        flex-wrap: wrap;
+
+    }
+    .customer div {
+        height: 50%;
+        width: 50%;
+        justify-content: center;
+    }
+}

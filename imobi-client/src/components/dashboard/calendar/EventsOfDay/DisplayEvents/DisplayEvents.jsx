@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 function DisplayEvents ({element, clicked}){
 
+    let token = localStorage.getItem('TokenUserImobi');
+
     const [titre , setTitre] = useState(element.title);
     const [lastnameVisitor, setLastnameVisitor] = useState(element.lastnameVisitor);
     const [firstnameVisitor, setFirstnameVisitor] = useState(element.firstnameVisitor);
@@ -13,13 +15,14 @@ function DisplayEvents ({element, clicked}){
 
     const [date, setDate] = useState(clicked);
    
-
+    // met a jour les events dans le local storage
     const resetEvents = async() => {
         console.log('get events display');
         let options = {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization : `Bearer ${token}`,
             },
         };
         try {
@@ -40,6 +43,7 @@ function DisplayEvents ({element, clicked}){
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
+                Authorization : `Bearer ${token}`,
             },
             body: JSON.stringify({
                 "id" : element.id,
@@ -81,6 +85,7 @@ function DisplayEvents ({element, clicked}){
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
+                Authorization : `Bearer ${token}`,
             },
             body: JSON.stringify({
                 "id" : element.id,
@@ -132,12 +137,21 @@ function DisplayEvents ({element, clicked}){
 
                 <div className="enventDataInput">
                     <input type="text" name="phoneVisitor" value={phoneVisitor} onChange={(e) => setPhoneVisitor(e.target.value)} />
-                    <label htmlFor="">telephone visiteur</label>
+                    <label htmlFor="">
+                        {
+                            screen.width >= 575 ? "telephone visiteur" : "tel visiteur"
+                        }
+                    </label>
                 </div>
 
                 <div className="enventDataInput">
                     <input type="text" name="phoneOwner" value={phoneOwner} onChange={(e) => setPhoneOwner(e.target.value)} />
-                    <label htmlFor="">telephone proprietaire</label>
+                    <label htmlFor="">
+                        {
+                            screen.width >= 575 ? "telephone proprietaire" : "tel proprietaire"
+                        }
+                        
+                        </label>
                 </div>
 
                 <div className="enventDataInput">

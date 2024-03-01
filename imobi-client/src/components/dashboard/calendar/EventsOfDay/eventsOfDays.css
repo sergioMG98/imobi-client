@@ -63,7 +63,7 @@
     width: 90%;
     background-color: crimson;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
 }
 .eventData{
     height: 100%;
@@ -208,3 +208,47 @@
 }
 /* ------------------------------ */
 
+@media (max-width: 575px) {
+
+    .eventsOfDaysHeader h1 {
+        font-size: large;
+        width: 48%;
+    }
+    .btnAddEvents {
+        width: 40%;
+        justify-content: flex-start;
+
+    } 
+    .closePopUp button {
+        top: 0%;
+        right: 0%;
+        height: 40px;
+        width: 40px;
+    }
+    .eventsInput{
+        width: 100%;
+    }
+    .EventsOFDays {
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+    /*  */
+    .eventsDay{
+        height: 300px;
+    }
+    .eventData{
+        height: 70%;
+        width: 100%;
+    }
+    .eventBtn {
+        height: 30%;
+        width: 100%;
+        flex-direction: row;
+    }
+    .eventBtn button {
+        width: 45%;
+        height: 45%;
+    }
+}

@@ -58,7 +58,6 @@
 .carteContainer {
     height: 100%;
     width: 70%;
-    background-color: violet;
 }
 
 /*  */
@@ -115,4 +114,28 @@
     background-color: royalblue;
     font-size: large;
     text-transform: uppercase;
+}
+@media (max-width: 575px) {
+    .contactSellerContainer{
+        flex-wrap: wrap;
+    }
+    .contactSeller {
+        width: 100%;
+    }
+    .carteContainer{
+        width: 100%;
+        padding: 0 20px;
+    }
+    .infoSeller{
+        display: flex;
+        justify-content: center;
+    }
+    .searchSeller {
+        width: 60%;
+    }
+    .searchMapPlace button {
+        box-sizing: border-box;
+        margin: 0 10px;
+        width: 40%;
+    }
 }

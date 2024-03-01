@@ -56,7 +56,7 @@ function Product(){
         }
        } 
 
-       
+       // si les produits ne sont pas filtrée
        if (productsFiltered.length == 0) {
             return (
                 product.map((element, index) => {
@@ -77,7 +77,7 @@ function Product(){
                 })
             );
         } else {
-        
+            // si les produits sont filtrée
             return (
                 productsFiltered?.map((element, index) => {
                 
@@ -100,7 +100,7 @@ function Product(){
         }
 
     }
-
+    // va chercher les produits de l'agent immobilier
     const getProduct = async() => {
         let options = {
             method: 'GET',
@@ -200,6 +200,7 @@ function Product(){
         }
         
     }
+    // grand filtre
     const BigFilter = () => {
 
         /* -------------- */

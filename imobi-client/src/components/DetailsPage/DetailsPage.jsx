@@ -10,6 +10,16 @@ function DetailsPage(props){
 
     const location = useLocation();
     const [product, setProduct] = useState();
+    const [img, setImg] = useState();
+    const [imageNumber, setImageNumber] = useState(0);
+    const [formState, setFormState] = useState(false);
+
+    const [messageToSeller ,setMessageToSeller] = useState();
+    const [lastnameOfCustomer, setLastnameOfCustomer] = useState();
+    const [firstnameOfCustomer, setFirstnameOfCustomer] = useState();
+    const [mailOfCustomer , setMailOfCustomer] = useState();
+    const [phoneOfCustomer, setPhoneOfCustomer] = useState();
+
 
     useEffect(()=> {
         getProductById();
@@ -26,17 +36,36 @@ function DetailsPage(props){
             }),
         };
         try {
-            console.log("detail 2" , location.state);
+/*             console.log("detail 2" , location.state); */
             const response = await fetch(`${import.meta.env.VITE_API_URL2}`, options);
             const data = await response.json();
-/*             console.log("data page" ,data.product); */
-            setProduct(data.product[0]);
+            console.log("data page" ,data);
+            setProduct(data.product);
+            setImg(data.imageProduct);
         } catch(error){
 
         }
     }
+    // faire defiler l'image
+    const numberImg = (choice) => {
+        if(choice == 1){
+            if ((imageNumber + 1) == img.length) {
+                setImageNumber(0);
+            } else {
+                setImageNumber(imageNumber + 1);
+            }
+            
+        } else {
 
-    console.log('product', product);
+            if ((imageNumber - 1) < 0) {
+                setImageNumber(img.length - 1);
+            } else {
+                setImageNumber(imageNumber - 1);
+            }
+        }
+    }
+
+    /* console.log('product', product); */
     const getCaracteristique = () => {
 
         function filterCaracteristique(item , index){
@@ -216,15 +245,107 @@ function DetailsPage(props){
                 break;
         }
     }
+    // formulaire de contact
+    const contactSeller = () => {
+
+        let formContact = document.querySelector('.formContact');
+
+        if(formState == false) {
+            formContact.classList.add('active')
+            setFormState(true);
+
+        } else {
+            formContact.classList.remove('active')
+            setFormState(false);
+
+        }
+
+
+    }
+    // envoye message
+    const sendMessage = async(id_seller) => {
+        if (id_seller != undefined) {
+            let options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    "message" : messageToSeller,
+                    "lastnameOfCustomer" : lastnameOfCustomer,
+                    "firstnameOfCustomer" : firstnameOfCustomer,
+                    "mailOfCustomer" : mailOfCustomer,
+                    "phoneOfCustomer" : phoneOfCustomer,
+                    "seller_id" : product.user_id,
+                    "referenceAnnonce" :product.id
+                }),
+            };
+            try {
+                
+                const response = await fetch(`${import.meta.env.VITE_API_URL6}`, options);
+                const data = await response.json();
+                console.log("data page" ,data);
+                /* setProduct(data.product); */
+            } catch(error){
+                
+            }
+        } else {
+            alert("veuillez selectionner un agent immobilier pour le contacter")
+        }
+
+
+    }
+
+
     return(
         <div className='details'>
             <div className="navbarContainer">
                 <Navbar></Navbar>
             </div>
+            <div className="contactBtn">
+                <button onClick={() => contactSeller()}>contacter</button>
+                <div className="formContact">
+                    <button className='btnFerme' onClick={() => contactSeller()}>X</button>
+                    
+                    <div className="formContactToSeller">
+                        <div>
+                            <input type="text" onChange={(e) => setMessageToSeller(e.target.value)} id="messageToSeller"/>
+                            <label htmlFor="messageToSeller">message</label>
+                        </div>
+
+                        <div>
+                            <input type="text" onChange={(e) => setLastnameOfCustomer(e.target.value)} id="lastnameOfCustomer"/>
+                            <label htmlFor="lastnameOfCustomer">lastname</label>
+                        </div>
+
+                        <div>
+                            <input type="text" onChange={(e) => setFirstnameOfCustomer(e.target.value)} id="firstnameOfCustomer"/>
+                            <label htmlFor="firstnameOfCustomer">firstname</label>
+                        </div>
+
+                        <div>
+                            <input type="mail" onChange={(e) => setMailOfCustomer(e.target.value)} id="mailOfCustomer"/>
+                            <label htmlFor="mailOfCustomer">mail</label>
+                        </div>
+
+                        <div>
+                            <input type="phone" onChange={(e) => setPhoneOfCustomer(e.target.value)} id="phoneOfCustomer"/>
+                            <label htmlFor="phoneOfCustomer">phone</label>
+                        </div>
+                        
+                        <button onClick={() => sendMessage(product?.user_id)}>envoyer</button>
+                    </div>
+                </div>
+            </div>
 
             <div className="detailsContent">
                 <div className="detailsPresentation">
-                    <div className="detailsImage"></div>
+                    <div className="detailsImage">
+                        <img src={img != undefined ? img[imageNumber] : null} alt="" />
+                        <button className="rightBtn" onClick={() => numberImg(1)}> + </button>
+                        <button className="leftBtn" onClick={() => numberImg(0)}> - </button>
+                    </div>
+
                     <div className="detailsTitle">
                         {product?.type} t-{product?.piece}
                     </div>

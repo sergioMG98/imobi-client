@@ -8,11 +8,41 @@
     border: 1px solid blue;
     box-sizing: border-box;
 }
+/*  */
 .imageCard{
     height: 45%;
     width: 100%;
+    position: relative;
     background-color: blue;
 }
+.imageCard img{
+    height: 100%;
+    width: 100%;
+}
+
+.imageCard .rightBtn,
+.imageCard .leftBtn {
+    display: none;
+}
+
+.imageCard:hover .rightBtn,
+.imageCard:hover .leftBtn {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    background-color: #0056ffb0;
+    align-items: center;
+}
+.imageCard .rightBtn {
+    right: 0;
+}
+
+
+/*  */
 .descriptionCard{
     height: 55%;
     width: 100%;
@@ -68,4 +98,16 @@
     justify-content: center;
     font-weight: bold;
     color: white;
+}
+/*  */
+@media (max-width: 575px) {
+    .cardProduct {
+        width: 100%;
+    }
+}
+@media (min-width: 1460px) {
+
+    .cardProduct {
+        width: 30%;
+    }
 }

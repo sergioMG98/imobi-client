@@ -4,8 +4,12 @@ import DisplayEvents from "./DisplayEvents/DisplayEvents";
 
 function EventsOfDays({clicked, onClose}){
 
-    console.log('eventOfDays');
-    const [events , setEvents] = useState(localStorage.getItem('events') != "undefined" ? JSON.parse(localStorage.getItem('events')) : [{}]);
+    
+    let token = localStorage.getItem('TokenUserImobi');
+
+    const [events , setEvents] = useState(
+        localStorage.getItem('events') != "undefined" ? JSON.parse(localStorage.getItem('events')) : [{}]);
+        
     const [statesBtn, setStatesBtn] = useState(true);
 
     const [titre , setTitre] = useState('');
@@ -47,6 +51,7 @@ function EventsOfDays({clicked, onClose}){
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization : `Bearer ${token}`,
             },
         };
         try {
@@ -69,6 +74,7 @@ function EventsOfDays({clicked, onClose}){
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
+                Authorization : `Bearer ${token}`,
             },
             body: JSON.stringify({
                 "date" : clicked,
@@ -177,7 +183,12 @@ function EventsOfDays({clicked, onClose}){
 
                         <div className="boxInput">
                             <input type="tel" name="phoneProprietaire" id="phoneProprietaire" onChange={(e) => setPhoneOwner(e.target.value)}/>
-                            <label htmlFor="phoneProprietaire">telephone proprietaire</label>
+                            <label htmlFor="phoneProprietaire">
+                                {
+                                    screen.width >= 400 ? "telephone proprietaire" : " tel proprietaire"
+                                }
+                                
+                            </label>
                         </div>
 
                         <div className="boxInput">

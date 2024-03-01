@@ -27,3 +27,10 @@
     border-radius: 10px;
     border: 2px solid black;
 }
+
+@media (max-width: 575px) {
+
+    #header {
+        justify-content: flex-end;
+    }
+}

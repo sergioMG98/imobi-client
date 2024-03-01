@@ -56,3 +56,16 @@
 .padding {
     border: none;
 }
+
+@media (max-width: 575px) {
+    .dayContainer {
+        height: calc( 50% / 5);
+        width: calc(100% / 7);
+    }
+    .calendar {
+        gap: 0;
+    }
+    .calendarHeaderContainer{ 
+        height: 10%;
+    }
+}

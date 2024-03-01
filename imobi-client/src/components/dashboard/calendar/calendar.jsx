@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import Dashboard from "../dashboard";
 import "./calendar.css";
 import Day from "./Days/Day";
-import NewEventModal from "./NewEventModal/NewEventModal";
-import DeleteEventModal from "./DeleteEventModal/DeleteEventModal";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 import EventsOfDays from "./EventsOfDay/EventsOfdays";
 
@@ -23,7 +21,7 @@ function Calendar(){
         /* localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [] */
     ); 
 
-
+    // va chercher tous les events de la personne 
     const getEvents = async() => {
         console.log('get events');
         let options = {
@@ -35,7 +33,7 @@ function Calendar(){
         };
         try {
             
-            const response = await fetch(`http://127.0.0.1:8000/api/allEvents`, options);
+            const response = await fetch(`${import.meta.env.VITE_API_URL20_1}`, options);
             const data = await response.json();
             /* console.log('=> :', data.data); */
             setEvents(data.data);
@@ -47,6 +45,7 @@ function Calendar(){
         }
     }
 
+    // va verifier si il y un evenemnt qui existe pour le jour choisi
     const eventForDate = date => events?.find(obj => {
         return obj.date == date;
     })
@@ -56,8 +55,7 @@ function Calendar(){
     }, [])
 
     useEffect(() => {
-        
-        
+    
         const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const semaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
 
@@ -102,13 +100,14 @@ function Calendar(){
         
         const daysArr = [];
         
+        // va mettre des valeur dans le tableau "dayArr" pour chaque jour
         for(let i = 1; i <= paddingDays + daysInMonth; i++){
             
             // met un zero devant un nombre unique comme 9 -> 09
             const numberDays = (i - paddingDays) >= 1 && (i - paddingDays) <= 9 ? `0${i - paddingDays}` : (i - paddingDays);
 
             const dayString = month + 1 >= 10 ? `${year}-${month + 1}-${numberDays}` : `${year}-0${month + 1}-${numberDays}`;
-            
+            console.log("dateString", daysArr);
             if(i > paddingDays){
                 daysArr.push({
                     value: i - paddingDays,
@@ -148,18 +147,36 @@ function Calendar(){
 
                     </div>
 
-                    <div className="weekdays">
-                        <div>Lundi</div>
-                        <div>Mardi</div>
-                        <div>Mercredi</div>
-                        <div>Jeudi</div>
-                        <div>Vendredi</div>
-                        <div>Samedi</div>
-                        <div>Dimanche</div>
-                    </div>
+                    {
+                        /* determine la taille de l'ecran */
+                        screen.width >= 575 ?
+                            <div className="weekdays">
+
+                                <div>Lundi</div>
+                                <div>Mardi</div>
+                                <div>Mercredi</div>
+                                <div>Jeudi</div>
+                                <div>Vendredi</div>
+                                <div>Samedi</div>
+                                <div>Dimanche</div>
+                            </div>
+                        : 
+                            <div className="weekdays">
+
+                                <div>Lun</div>
+                                <div>Mar</div>
+                                <div>Mer</div>
+                                <div>Jeu</div>
+                                <div>Ven</div>
+                                <div>Sam</div>
+                                <div>Dim</div>
+                            </div>
+                            
+                    }
+
 
                     <div id="calendar" className="calendar">
-                        {console.log("all days =========", days )}
+                        {/* {console.log("all days =========", days )} */}
                         {days.map((d, index) => (
                             <div className={`dayContainer ${d.value}`} key={index}>
                                 <Day

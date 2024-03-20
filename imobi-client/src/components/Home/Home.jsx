@@ -19,11 +19,11 @@ function Home(){
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL }`, options);
             const data = await response.json();
-            console.log("home", data);
+            
             setProduct(data.product);
             setImg(data.imageProduct);
         } catch(error){
-
+            alert(error);
         }
     }
 

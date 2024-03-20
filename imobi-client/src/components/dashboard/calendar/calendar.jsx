@@ -6,19 +6,22 @@ import "./calendar.css";
 import Day from "./Days/Day";
 import CalendarHeader from "./CalendarHeader/CalendarHeader";
 import EventsOfDays from "./EventsOfDay/EventsOfdays";
+import { useLocation } from "react-router-dom";
 
-function Calendar(){
+function Calendar(props){
     let token = localStorage.getItem('TokenUserImobi');
 
     console.log('calendar');
     const [nav, setNav] = useState(0);
     const [days, setDays] = useState([]);
     const [dateDisplay, setDateDisplay] = useState('');
-    const [clicked, setClicked] = useState();
+    const [clicked, setClicked] = useState(
+        localStorage.getItem('reset') ? JSON.parse(localStorage.getItem('reset')) : "",
+    );
 
     const [events, setEvents] = useState(
         //parse : converti text en objet
-        /* localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [] */
+        localStorage.events != 'undefined' ? JSON.parse(localStorage.getItem('events')) : null
     ); 
 
     // va chercher tous les events de la personne 
@@ -36,7 +39,7 @@ function Calendar(){
             const response = await fetch(`${import.meta.env.VITE_API_URL20_1}`, options);
             const data = await response.json();
             /* console.log('=> :', data.data); */
-            setEvents(data.data);
+            /* setEvents(data.data); */
 
 
             localStorage.setItem('events', JSON.stringify(data.data));
@@ -50,12 +53,18 @@ function Calendar(){
         return obj.date == date;
     })
 
+    // va fermer le popup puis delete "reset" dans local storage
+    const clearLocal = () => {
+        setClicked(null);
+        localStorage.removeItem("reset");
+    }
+
     useEffect(() => {
         getEvents();
     }, [])
 
     useEffect(() => {
-    
+        console.log("useEffect ----> ");
         const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const semaine = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
 
@@ -107,7 +116,7 @@ function Calendar(){
             const numberDays = (i - paddingDays) >= 1 && (i - paddingDays) <= 9 ? `0${i - paddingDays}` : (i - paddingDays);
 
             const dayString = month + 1 >= 10 ? `${year}-${month + 1}-${numberDays}` : `${year}-0${month + 1}-${numberDays}`;
-            console.log("dateString", daysArr);
+            
             if(i > paddingDays){
                 daysArr.push({
                     value: i - paddingDays,
@@ -128,6 +137,10 @@ function Calendar(){
         setDays(daysArr);
 
     }, [events, nav]);
+
+    let location = useLocation();
+    console.log("loc", history, clicked);
+
 
     return (
         <>
@@ -176,7 +189,7 @@ function Calendar(){
 
 
                     <div id="calendar" className="calendar">
-                        {/* {console.log("all days =========", days )} */}
+                        {console.log("all days =========", days )}
                         {days.map((d, index) => (
                             <div className={`dayContainer ${d.value}`} key={index}>
                                 <Day
@@ -202,8 +215,9 @@ function Calendar(){
             {
                 clicked ? 
                 <EventsOfDays
+                    days={days}
                     clicked={clicked}
-                    onClose={() => setClicked(null)}
+                    onClose={() => clearLocal()}
                 /> : ''
             }
 

@@ -1,6 +1,8 @@
 .contentPage{
     height: calc(100vh - 100px);
     width: 100%;
+    background: rgb(38,45,196);
+    background: linear-gradient(180deg, rgba(38,45,196,1) 20%, rgba(0,221,255,1) 100%);
 }
 /* ------------------------------------- */
 .filterContainer{
@@ -8,7 +10,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: royalblue;
+    background-color: rgba(0,0,0,0.6);
 }
 .someFilter{
     /* background-color: teal; */
@@ -48,7 +50,7 @@
     width: 20%;
     border-radius: 20px;
     background-color: white;
-    color: blue;
+    color: #1771db;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,14 +59,15 @@
     height: 100%;
     width: 100%;
     background-color: transparent;
+    border: none;
     border-radius: 20px;
-    color: blue;
+    color: #1771db;
     text-transform: uppercase;
     font-size: large;
 }
 .filterDiv button:hover{
     position: relative;
-    background-color: blue;
+    background-color: #1771db;
     color: white;
 }
 .filterDiv .formFilter{
@@ -78,7 +81,8 @@
     height: 300px;
     width: 500px;
     background-color: white;
-    border: 2px solid blue;
+    border: 2px solid #1771db;
+    z-index: 30;
 }
 /*  */
 .bigFilterSearch{
@@ -113,9 +117,10 @@
     position: relative;
     height: 60%;
     width: 80%;
+    border: none;
     border-radius: 20px;
     background-color: white;
-    color: blue;
+    color: #1771db;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -124,7 +129,7 @@
 }
 .allFilter button:hover{
     position: relative;
-    background-color: blue;
+    background-color: #1771db;
     color: white;
 }
 .allFilter .allFormFilter{
@@ -138,17 +143,18 @@
     height: 79vh;
     width: 500px;
     background-color: white;
-    border: 2px solid blue;
+    border: 2px solid #1771db;
     flex-direction: column;
+    z-index: 30;
 }
 .allFilterInput{
     height: 85%;
     width: 100%;
-    color: blue;
+    color: #1771db;
     overflow-y: auto;
 }
 .allFilterInput h2{
-    color: blue;
+    color: #1771db;
 }
 .bigFilterBudget {
     height: 140px;
@@ -226,7 +232,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: steelblue;
+    background-color: #1771db;
 }
 .btn-allFilter button{
     height: 40%;
@@ -284,7 +290,7 @@
     box-sizing: border-box;
     padding-left: 46%;
     background-color: transparent;
-    color: blue;
+    color: #1771db;
 }
 
 .ges label,
@@ -332,7 +338,7 @@
 .formFilter h2 {
     height: 15%;
     width: 100%;
-    color: blue;
+    color: #1771db;
     text-transform: uppercase;
     box-sizing: border-box;
     padding: 2% 0 0 2%;
@@ -350,7 +356,7 @@
     height: 40%;
     width: 40%;
     border-radius: 20px;
-    background-color: blue;
+    background-color: #1771db;
     color: white;
     font-size: large;
     text-transform: uppercase;
@@ -368,10 +374,10 @@
     height: 40%;
     width: 80%;
     border-radius: 20px;
-    border: 2px solid blue;
+    border: 2px solid #1771db;
     background-color: transparent;
     outline: none;
-    color: blue;
+    color: #1771db;
     box-sizing: border-box;
     padding: 10px;
 }
@@ -384,7 +390,7 @@
     display: flex;
     justify-content: center;
     background-color: white;
-    color: blue;
+    color: #1771db;
     text-transform: uppercase;
 }
 /*  */
@@ -399,7 +405,7 @@
 }
 .checkboxFilter{
     height: 25%;
-    border: 2px solid blue;
+    border: 2px solid #1771db;
     box-sizing: border-box;
     padding: 1%;
     border-radius: 10px;
@@ -423,12 +429,12 @@
     height: 30%;
     width: 80%;
     background-color: transparent;
-    border: 2px solid blue;
+    border: 2px solid #1771db;
     border-radius: 20px;
     outline: none;
     box-sizing: border-box;
     padding-left: 10px;
-    color: blue;
+    color: #1771db;
 }
 .budgetMin input:focus,
 .budgetMax input:focus{
@@ -448,7 +454,7 @@
     top: 27%;
     height: 13%;
     width: 40%;
-    color: blue;
+    color: #1771db;
     display: flex;
     justify-content: center;
     background-color: white;

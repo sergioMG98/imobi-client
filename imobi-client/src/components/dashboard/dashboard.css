@@ -1,10 +1,16 @@
 .dashboardNav{
     height: 100vh;
-    width: 20vw;
-    background-color: blue;
+    width: 14vw;
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    color: black;
+    font-weight: bold;
+}
+.dashboardNav a {
+    text-decoration: none;
+    color: black;
 }
 .dashLink{
     height: 50px;
@@ -16,8 +22,8 @@
     text-transform: uppercase;
 }
 .dashLink:hover{
-    background-color: white;
-    color: blue;
+    background-color: #1771db;
+    color: white;
 }
 
 /*  */
@@ -71,6 +77,6 @@
     .line3{
         height: 4px;
         width: 80%;
-        background-color: blue;
+        background-color: white;
     }
 }

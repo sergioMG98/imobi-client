@@ -9,7 +9,7 @@ function Product(){
     const [product, setProducts] = useState([]);
     const [filterChoice, setFilterChoice] = useState();
 
-    const [search, setSearch] = useState('');
+    const [search, setSearch] = useState();
     const [productsFiltered, setProductsFiltered] = useState([]);
     const [budgetMin, setBudgetMin] = useState(0);
     const [budgetMax, setBudgetMax] = useState(0);
@@ -55,7 +55,7 @@ function Product(){
                 break;
         }
        } 
-
+    
        // si les produits ne sont pas filtrée
        if (productsFiltered.length == 0) {
             return (
@@ -71,32 +71,39 @@ function Product(){
 
                                 })}
                             </div>
-
                         </Link>
                     );
                 })
             );
+
+
         } else {
             // si les produits sont filtrée
-            return (
-                productsFiltered?.map((element, index) => {
-                
-                    return(
-                        <Link to={"/detailDashboard"} state={element.id} className="productSellerCard" id={"product_seller_"+index}>
-                        
-                            <div className="cardProductSellerInfo">
-                                {Object.keys(element).map(item => {
-                                    
-                                    return (filterItem(item, element))
 
-                                })}
-                            </div>
-
-                        </Link>
-                    );
-                })
+            if (productsFiltered[0] == "erreurRecherche") {
                 
-            );
+                return (
+                    <div>{`aucune valeur trouvé pour : ${search}`}</div>
+                )
+            } else {
+
+                return (
+                    productsFiltered?.map((element, index) => {
+                        return(
+                            <Link to={"/detailDashboard"} state={element.id} className="productSellerCard" id={"product_seller_"+index}>
+                                <div className="cardProductSellerInfo">
+                                    {Object.keys(element).map(item => {
+                                        
+                                        return (filterItem(item, element))
+
+                                    })}
+                                </div>
+
+                            </Link>
+                        );
+                    })
+                );
+            }
         }
 
     }
@@ -113,7 +120,7 @@ function Product(){
             console.log('option',options);
             const response = await fetch(`${import.meta.env.VITE_API_URL18}`, options);
             const data = await response.json();
-            /* console.log('get', data); */
+            console.log('get', data);
             setProducts(data.product);
         } catch(error){
 
@@ -206,7 +213,8 @@ function Product(){
         /* -------------- */
         let temporary = [];
 
-        
+        console.log('max', budgetMax);
+        console.log('min', budgetMin);
         // filtre budget  
         if (budgetMax != 0 || budgetMin != 0) {
 
@@ -219,7 +227,7 @@ function Product(){
             } else {
                 tempo.push( product.filter((element) => element.prix >= budgetMin && element.prix <= budgetMax ))
             }
-             
+            
             if (tempo.length != 0) {
                             // remet des valeurs
                 for (let index = 0; index < tempo.length; index++) {
@@ -231,10 +239,47 @@ function Product(){
             }
 
             }
-
-
             
         }
+        
+        // filtre search 
+        if (search != undefined) {
+            
+            let tempo = [];
+            
+            if (temporary.length != 0) {
+                
+                temporary.forEach((element,index) => {
+                    
+                    if (element.ville.toLowerCase() == search.toLowerCase()) {
+                        tempo.push(element);
+                    }
+                })
+
+            } else {
+                product.forEach((element,index) => {
+                    
+                    if (element.ville.toLowerCase() == search.toLowerCase()) {
+                        
+                        tempo.push(element);
+                    }
+                })
+            }
+            
+            // reset temporary
+            while (temporary.length != 0) {
+                temporary.pop();
+            }
+            // remet des valeurs
+            for (let index = 0; index < tempo.length; index++) {
+                
+                temporary.push(tempo[index]);
+            }
+            
+
+        }
+
+        
         // filtre type de bien
         if (typeBien.length != 0) {
 
@@ -488,7 +533,7 @@ function Product(){
                                 <div className="bigFilterSearch bigFilterInput">
                                     
                                     <label htmlFor="bigPlace">votre lieu</label>
-                                    <input type="text" name="bigPlace" id="bigPlace" />
+                                    <input type="text" name="bigPlace" id="bigPlace" onChange={(e) => setSearch(e.target.value)}/>
                                     
                                 </div>
 

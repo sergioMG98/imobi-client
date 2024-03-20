@@ -10,6 +10,9 @@ function Login(){
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    // condition pour le mot de passe
+    let pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$";
+
     const navigate = useNavigate();
 
     let userLogin = {email, password};
@@ -18,35 +21,38 @@ function Login(){
     // connexion
     const handleLogin = async (e) => {
         e.preventDefault();
-
-        let options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body : JSON.stringify(userLogin),
-        };
-
-        try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL3}`,options);
-
-            const data = await response.json();
-
-            if(data){
-                alert(data.message);
-                if (data.status == 'true') {
-                    navigate(`${import.meta.env.VITE_API_URL22}`);
+        if (password.match(pattern)) {
+            let options = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body : JSON.stringify(userLogin),
+            };
+    
+            try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL3}`,options);
+    
+                const data = await response.json();
+   
+                if(data){
+                    alert(data.message);
+                    if (data.status == 'true') {
+                        navigate(`${import.meta.env.VITE_API_URL22}`);
+                    }
+                    if (data.token) {
+                        localStorage.setItem("TokenUserImobi", data.token);
+                    }
+                    
+                } else {
+                    alert("try again");
                 }
-                if (data.token) {
-                    localStorage.setItem("TokenUserImobi", data.token);
-                }
-                
-            } else {
-                alert("try again");
+    
+            } catch (error){
+                console.error("Fetch error:", error);
             }
-
-        } catch (error){
-            console.error("Fetch error:", error);
+        } else {
+            alert('les condition du mot de passe ne sont pas respecter');
         }
     }
 
@@ -54,38 +60,42 @@ function Login(){
     const handleRegister = async (e) => {
         e.preventDefault();
 
-        let options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body : JSON.stringify(userRegister),
-        };
-
-        try {
-            console.log("option", options);
-            const response = await fetch(`${import.meta.env.VITE_API_URL4}`,options);
-
-            const data = await response.json();
-            console.log("login data", data);
-
-            if(data){
-                alert(data.message);
-                if (data.status == 'true') {
-                    navigate("/profil");
+        if(password.match(pattern)){
+            let options = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body : JSON.stringify(userRegister),
+            };
+    
+            try {
+                
+                const response = await fetch(`${import.meta.env.VITE_API_URL4}`,options);
+                const data = await response.json();
+                
+    
+                if(data){
+                    alert(data.message);
+                    if (data.status == 'true') {
+                        navigate("/profil");
+                    }
+                    if (data.token) {
+                        localStorage.setItem("TokenUserImobi", data.token);
+                    }
+                } else {
+                    alert("try again");
                 }
-                if (data.token) {
-                    localStorage.setItem("TokenUserImobi", data.token);
-                }
-            } else {
-                alert("try again");
+    
+            } catch (error){
+                console.error("Fetch error:", error);
             }
-
-        } catch (error){
-            console.error("Fetch error:", error);
+        } else {
+            alert('les condition du mot de passe ne sont pas respecter');
         }
-    }
 
+    }
+    
     // choice enter login / register
     const changeForm = (e) => {
         let loginArea = document.querySelector('.loginArea');
@@ -100,8 +110,35 @@ function Login(){
             registerArea.style.display = "none";
             setLogin(true);
         }
+    }
+    // envoie un email pour reset mot de passe
+    const emailResetPassword = async() => {
+        console.log('resetemail',email);
+        if (email != '') {
+            let options = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body : JSON.stringify({email}),
+            };
+            try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL3_1}`,options);
+                const data = await response.json();
+                console.log('resetemail', data);
+                if(data){
+                    alert(data.message);
+                } else {
+                    alert("try again");
+                }
+    
+            } catch (error){
+                console.error("Fetch error:", error);
+            }
+        } else {
+            alert("email non entrée")
+        }
 
-        console.log("login",e.target.className);
     }
 
     return(
@@ -124,6 +161,9 @@ function Login(){
                     </form>
                     <div className="changeFormArea" onClick={(e) => changeForm(e)}>
                         Pas encore de compte ? <strong>Créer un compte</strong>
+                    </div>
+                    <div className="resetPassword" onClick={emailResetPassword}>
+                        mot de passe oublié
                     </div>
                 </div>
             </div>

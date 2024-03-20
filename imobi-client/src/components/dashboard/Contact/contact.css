@@ -1,6 +1,8 @@
 .contact{
     display: flex;
     flex-direction: row;
+    background: rgb(38,45,196);
+    background: linear-gradient(180deg, rgba(38,45,196,1) 20%, rgba(23,113,219,1) 65%, rgba(0,221,255,1) 100%);
 }
 .contactContent{
     height: 100vh;
@@ -79,8 +81,9 @@
 .customers{
     height: 10%;
     width: 100%;
-    background-color: blue;
-    border-bottom: 2px solid black;
+    backdrop-filter: blur(42px);
+    background: #00000078;
+    border-bottom: 1px solid white;
     display: flex;
     align-items: center;
     box-sizing: border-box;

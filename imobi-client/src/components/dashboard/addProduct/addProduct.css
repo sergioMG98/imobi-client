@@ -1,3 +1,8 @@
+.container {
+    background: rgb(38,45,196);
+    background: linear-gradient(180deg, rgba(38,45,196,1) 20%, rgba(23,113,219,1) 65%, rgba(0,221,255,1) 100%);
+}
+
 .addProductContainer .form {
     /* height: 90%; */
     width: 100%;
@@ -37,7 +42,7 @@
 }
 .textAreaAddProduct textarea:focus,
 .textAreaAddProduct textarea:valid{
-    border: 2px solid blue;
+    border: 2px solid #00ff22;
     box-sizing: border-box;
     padding: 20px;
 }
@@ -56,7 +61,7 @@
     text-transform: uppercase;
 }
 #addProductSelect:valid{
-    border: 2px solid blue;
+    border: 2px solid #1771db;
 }
 
 
@@ -97,7 +102,8 @@
 .inputContainer input:valid,
 .inputContainer select:focus,
 .inputContainer select:valid{
-    border: 2px solid blue;
+    /* border: 2px solid white; */
+    border: 2px solid #00ff22;
 }
 
 .inputContainer input:focus + label,
@@ -128,7 +134,8 @@
     height: 40px;
     border: none;
     border-radius: 20px;
-    background-color: blue;
+    background-color: #1771db;
+    border: 2px solid white;
     text-transform: uppercase;
 }
 
@@ -137,7 +144,7 @@
     outline: none;
 }
 .addProductButton button:hover{
-    background-color: royalblue;
+    background-color: blue;
 }
 .productData{
     height: 1000px;
@@ -177,10 +184,13 @@
     top: 10px;
     height: 40px;
     width: 120px;
-    background: blue;
+    background: #1771db;
     border-radius: 20px;
     text-transform: uppercase;
-    border: 2px solid black;
+    border: 2px solid white;
+}
+#newCustomerButton:hover {
+    background: blue; 
 }
 /*  */
 .allCustomerOfSeller {
@@ -205,16 +215,17 @@
     background-color: white;
     color: #242424;
     box-sizing: border-box;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #1771db;
     display: flex;
     align-items: center;
     padding: 0 20px;
 }
 .customer:hover{
-    background-color: royalblue;
+    background-color: #0b3669;
     color: white;
-
+    border-bottom: 2px solid #0b3669;
 }
+
 .customer div {
     height: 100%;
     width: calc(100% / 4);

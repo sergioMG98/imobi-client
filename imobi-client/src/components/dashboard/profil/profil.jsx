@@ -20,12 +20,15 @@ function Profil(){
 
     const [searchMenu, setSearchMenu] = useState([]);
 
+    // condition pour le mot de passe
+    let pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$";
+
+
     // pour obliger a l'ulitisateur de remplir son profil
     const [responseModif , setResponseModif] = useState();
 
     // recuperation du profil
     const getProfil = async() => {
-        let token = localStorage.getItem('TokenUserImobi');
 
         let options = {
             method: 'GET',
@@ -58,44 +61,48 @@ function Profil(){
 
     // modification du profil
     const updateProfil = async() => {
-        let token = localStorage.getItem('TokenUserImobi');
-        let options = {
-            method: "POST",
-            headers: {
-                "Content-Type" : "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-                "lastname" : lastname != null ? lastname : ProfilArray.lastname,
-                "firstname" : firstname != null ? firstname : ProfilArray.firstname,
-                "email" : email != null ? email : ProfilArray.email,
-                "phone" : phone != null ? phone : ProfilArray.phone,
-                "password" : password != null ? password : ProfilArray.password,
-                "latitude" : latitude != null ? latitude : ProfilArray.latitude,
-                "longitude": longitude != null ? longitude : ProfilArray.longitude,
-                "city" : city != null ? city : ProfilArray.city,
-                "label" : label
-            }),
-        };
+        console.log("pa",password);
+        if (password != undefined ? password.match(pattern) : null || password == undefined) {
+            let options = {
+                method: "POST",
+                headers: {
+                    "Content-Type" : "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    "lastname" : lastname != null ? lastname : ProfilArray.lastname,
+                    "firstname" : firstname != null ? firstname : ProfilArray.firstname,
+                    "email" : email != null ? email : ProfilArray.email,
+                    "phone" : phone != null ? phone : ProfilArray.phone,
+                    "password" : password != null ? password : ProfilArray.password,
+                    "latitude" : latitude != null ? latitude : ProfilArray.latitude,
+                    "longitude": longitude != null ? longitude : ProfilArray.longitude,
+                    "city" : city != null ? city : ProfilArray.city,
+                    "label" : label
+                }),
+            };
 
-        try{
-            const response = await fetch(`${import.meta.env.VITE_API_URL20}`,options);
-/*             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            } */
-            const data = await response.json();
-            console.log("modif", data);
+            try{
+                const response = await fetch(`${import.meta.env.VITE_API_URL20}`,options);
 
-            setResponseModif(data.status);
+                const data = await response.json();
+                console.log("modif", data);
 
-        } catch (error){
-            console.error("Fetch error:" , error);
+                setResponseModif(data.status);
+
+            } catch (error){
+                console.error("Fetch error:" , error);
+            }
+        } else {
+            alert('les condition du mot de passe ne sont pas respecter');
         }
+
+
     }
 
     // obtention des coordonnes du lieu
     const getGeo = async(valeurInput) => {
-        console.log("getGeo", valeurInput);
+        // permet de changer la valeur dans input
         setLabel(valeurInput);
         let options = {
             method: 'GET',
@@ -104,12 +111,11 @@ function Profil(){
             },
         };
         try {
-            console.log('option',options);
+            
             const response = await fetch(`${import.meta.env.VITE_API_URL5}${valeurInput}`, options);
             const data = await response.json();
             
             if (data.features.length != 0) {
-                console.log("go", data);
                 setSearchMenu(data.features);
                 document.querySelector('.allSearch').classList.add('active');
 
@@ -122,7 +128,7 @@ function Profil(){
 
     // insertion des valeur dans les constantes
     const putCoordonne = (element) => {
-        console.log("putCoordonne",element);
+        
         setLatitude(element.geometry.coordinates[1]);
         setLongitude(element.geometry.coordinates[0]);
         setCity(element.properties.city);
@@ -169,7 +175,7 @@ function Profil(){
                     </div>
 
                     <div className="phoneProfil profilDiv">
-                        <input type="tel" id="phone" value={phone} /* pattern="[0-9]{6}" */ onChange={(e) => setPhone(e.target.value)} required />
+                        <input type="tel" id="phone" value={phone} onChange={(e) => setPhone(e.target.value)} required />
                         <label htmlFor="phone">téléphone</label>
                     </div>
 

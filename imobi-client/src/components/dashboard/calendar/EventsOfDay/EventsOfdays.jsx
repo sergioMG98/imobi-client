@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import './eventsOFDays.css';
 import DisplayEvents from "./DisplayEvents/DisplayEvents";
 
-function EventsOfDays({clicked, onClose}){
-
+function EventsOfDays({days, clicked, onClose}){
+    console.log('eventsOfDays',clicked);
     
     let token = localStorage.getItem('TokenUserImobi');
 
     const [events , setEvents] = useState(
         localStorage.getItem('events') != "undefined" ? JSON.parse(localStorage.getItem('events')) : [{}]);
-        
+
     const [statesBtn, setStatesBtn] = useState(true);
 
     const [titre , setTitre] = useState('');
@@ -55,7 +55,6 @@ function EventsOfDays({clicked, onClose}){
             },
         };
         try {
-            
             const response = await fetch(`${import.meta.env.VITE_API_URL10}`, options);
             const data = await response.json();
             /* console.log('=> :', data.data); */
@@ -69,7 +68,6 @@ function EventsOfDays({clicked, onClose}){
     }
 
     const createEvent = async(e) => {
-
         let options = {
             method: "POST",
             headers: {
@@ -90,21 +88,15 @@ function EventsOfDays({clicked, onClose}){
         };
 
         try{
-            console.log("option", options);
             const response = await fetch(`${import.meta.env.VITE_API_URL11}`,options);
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
             const data = await response.json();
-            console.log("creation product", data);
-
+            console.log("data",data);
             if(data){
                 alert(data.message);
                 
             } else {
                 alert("try again");
             }
-
             if (data.status == 'true') {
 
                 let eventsDayBody = document.querySelector('.eventsDaysContent');
@@ -118,13 +110,32 @@ function EventsOfDays({clicked, onClose}){
     
                 setStatesBtn(true);
 
-                resetEvents();
+                // remet les inputs a 0
+                setTitre('');
+                setLastnameVisitor('');
+                setFirstnameVisitor('');
+                setPhoneVisitor('');
+                setAdresse('');
+                setPhoneOwner('');
+                setStartVisit('');
+                setEndVisit('');
+                console.log("data",data);
+                
+                
+                // stock les events actualisé
+                localStorage.setItem('events', JSON.stringify(data.events));
+                // va stocker dans local storage le jour selectionné
+                localStorage.setItem('reset', JSON.stringify(clicked));   
+                // va appeler la page , la reset
+                window.location.replace('/calendar');
+                /* resetEvents(); */
             }
         } catch (error){
             console.error("Fetch error:" , error);
         }
     }
-   /* console.log('events', events); */
+   
+
     return (
         <div className="EventsOFDays">
             <div className="eventsOfDaysHeader">
@@ -136,15 +147,15 @@ function EventsOfDays({clicked, onClose}){
             </div>
             
             <div className="eventsDayBody">
-                {console.log("events", events)}
+                
                 <div className="eventsDaysContent active">
                     {
                         events.map((element, index) => (
-                        element.date == clicked ? 
+                            element.date == clicked ? 
 
-                            <DisplayEvents element={element} key={index} clicked={clicked} />
+                                <DisplayEvents days={days} element={element} key={index} clicked={clicked} />
 
-                        : null
+                            : null
                         ))
                     }
 

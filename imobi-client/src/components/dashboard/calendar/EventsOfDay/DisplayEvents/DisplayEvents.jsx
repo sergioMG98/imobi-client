@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function DisplayEvents ({element, clicked}){
+function DisplayEvents ({days, element, clicked}){
 
     let token = localStorage.getItem('TokenUserImobi');
 
@@ -37,6 +37,7 @@ function DisplayEvents ({element, clicked}){
         }
     }
 
+    // modifie les valeurs
     const modifEvent = async(element) => {
         
         let options = {
@@ -47,7 +48,7 @@ function DisplayEvents ({element, clicked}){
             },
             body: JSON.stringify({
                 "id" : element.id,
-                "date" : clicked,
+                "date" : date != '' ? date : clicked,
                 "startVisit": startVisit != '' ? startVisit : element.startVisit, 
                 "endVisit":  endVisit != '' ? endVisit : element.endVisit,
                 "adresse":  adresse != '' ? adresse : element.adresse,
@@ -60,17 +61,25 @@ function DisplayEvents ({element, clicked}){
         };
 
         try{
-            
+            console.log("option", options);
             const response = await fetch(`${import.meta.env.VITE_API_URL13}`,options);
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
             const data = await response.json();
             
-
             if(data){
                 alert(data.message);
                 
+                if(data.status == 'true'){
+                        
+                // stock les events actualisé
+                localStorage.setItem('events', JSON.stringify(data.events));
+                // va stocker dans local storage le jour selectionné
+                localStorage.setItem('reset', JSON.stringify(clicked));
+                
+                // va appeler la page , la reset
+                window.location.replace('/calendar');
+                
+                }
+                console.log("data", data);
             } else {
                 alert("try again");
             }
@@ -80,6 +89,7 @@ function DisplayEvents ({element, clicked}){
         }
     }
 
+    // supprime un evenement
     const deleteEvent = async(element) => {
         let options = {
             method: "POST",
@@ -93,25 +103,26 @@ function DisplayEvents ({element, clicked}){
         };
 
         try{
-            console.log("option", options);
             const response = await fetch(`${import.meta.env.VITE_API_URL14}`,options);
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
             const data = await response.json();
-            console.log("creation product", data);
 
             if(data){
                 alert(data.message);
                 
-            } else {
-                alert("try again");
             }
             if (data.status == 'true') {
-                console.log('display 1');
-                resetEvents();
-                console.log('display 2');
-                /* window.location.reload(false); */
+
+                // va recupere les events
+                let ev = JSON.parse(localStorage.getItem('events'));
+                // filtre les event en supprimant l'element supprimer 
+                let resultEv = ev.filter(item => item.id != element.id);
+                // stock les events actualisé
+                localStorage.setItem('events', JSON.stringify(resultEv));
+                // va stocker dans local storage le jour selectionné
+                localStorage.setItem('reset', JSON.stringify(clicked));   
+                // va appeler la page , la reset
+                window.location.replace('/calendar');
+                
 
             }
 

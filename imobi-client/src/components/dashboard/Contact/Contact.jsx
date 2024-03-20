@@ -69,10 +69,6 @@ function Contact(){
                 `
             }
         });
-
-        
-
-
         console.log("produc", messageArray);
         setIdMessage(customer_id);
 /* 
@@ -126,7 +122,7 @@ function Contact(){
         }
     }
     useEffect(() => {
-        /* getContact(); */
+        
         getMessages();
     }, [])
 

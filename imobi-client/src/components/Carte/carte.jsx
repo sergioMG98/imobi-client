@@ -16,22 +16,29 @@ function Carte({values ,setSeller_id, latitude, longitude}) {
     const markers = [
         
     ];
-    // va insere des valeurs dans le tableu markers 
-    for(let index = 0; index < values.length; index++) {
-        if (values[index].latitude != null && values[index].longitude != null) {
-            markers.push(
-                {
-                    geocode:[values[index].latitude, values[index].longitude],
-                    popUp: `hello i'am here ${index} `,
-                    lastname: values[index].lastname ,
-                    firstname: values[index].firstname,
-                    seller_id: values[index].seller_id,
-                    phone: values.phone
-                },
-            )
+    /* console.log('va',typeof(values)); */
+    if(values != null){
+        /* console.log('test',values); */
+        // va insere des valeurs dans le tableu markers 
+        for(let index = 0; index < values.length; index++) {
+            /* console.log('test'); */
+            if (values[index].latitude != null && values[index].longitude != null) {
+                markers.push(
+                    {
+                        geocode:[values[index].latitude, values[index].longitude],
+                        popUp: `hello i'am here ${index} `,
+                        lastname: values[index].lastname ,
+                        firstname: values[index].firstname,
+                        seller_id: values[index].seller_id,
+                        phone: values.phone
+                    },
+                )
+            }
         }
-
     }
+
+   
+
     // visuel de l'icon
     const customIcon = L.icon({
         iconUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3SPYGZOym3ZgkAwHKEbzieVI93Gcytqnh_g&usqp=CAU',

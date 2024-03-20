@@ -32,13 +32,17 @@ function DetailDashboard(){
     const [deleteImage, setDeleteImage] = useState([]);
     const [imageNumber, setImageNumber] = useState(0);
 
-
+    const [lastnameOwner, setLastnameOwner] = useState();
+    const [firstnameOwner, setFirstnameOwner] = useState();
+    const [phoneOwner, setPhoneOwner] = useState();
+    const [emailOwner, setEmailOwner] = useState();
 /*     const [longitude, setLongitude] = useState();
     const [latitude, setLatitude] = useState();
     const [ville, setVille] = useState(); */
     
     // va recuperer les informations du produits qui correspond a l'id
     const getProductById = async() => {
+        console.log(location.state);
         let options = {
             method: 'POST',
             headers: {
@@ -77,6 +81,11 @@ function DetailDashboard(){
             
             setImg(data.imageProduct);
 
+            // client 
+            setLastnameOwner(data.productOwner.lastname);
+            setFirstnameOwner(data.productOwner.firstname);
+            setPhoneOwner(data.productOwner.phone);
+            setEmailOwner(data.productOwner.email);
         } catch(error){
 
         }
@@ -96,65 +105,44 @@ function DetailDashboard(){
         formData.append('ges', ges);
         formData.append('dpe', dpe);
         formData.append('type', type);
-        formData.append('piece', piece);
-        formData.append('surfaceTerrain', surfaceTerrain);
-        formData.append('salleDeBain', salleDeBain);
 
-        formData.append('chambre', chambre);
-        formData.append('terrasse', terrasse);
-        formData.append('balcon', balcon);
-        formData.append('garage', garage);
-        formData.append('piscine', piscine);
-        formData.append('ascenseur', ascenseur);
-        formData.append('cave', cave);
+        piece ? formData.append('piece', piece) : null;
+        surfaceTerrain ? formData.append('surfaceTerrain', surfaceTerrain) : null;
+        salleDeBain ? formData.append('salleDeBain', salleDeBain) : null;
+        chambre ? formData.append('chambre', chambre) : null;
+        terrasse ? formData.append('terrasse', terrasse) : null;
+        balcon ? formData.append('balcon', balcon) : null;
+        garage ? formData.append('garage', garage) : null;
+        piscine ? formData.append('piscine', piscine) : null;
+        ascenseur ? formData.append('ascenseur', ascenseur) : null;
+        cave ? formData.append('cave', cave) : null;
 /*         formData.append('longitude', longitude)
         formData.append('latitude', latitude)
         formData.append('ville', ville) */
 
-/*         formData.append('lastname', lastname)
-        formData.append('firstname', firstname)
-        formData.append('email', email)
-        formData.append('phone', phone)
-        formData.append('idCustomer', idCustomer);
-        formData.append('label', label); */
-        formData.append('image', img);
-        formData.append('newImage', newImage);
-        formData.append('deleteImage', deleteImage);
+        formData.append('lastname', lastnameOwner)
+        formData.append('firstname', firstnameOwner)
+        formData.append('email', emailOwner)
+        formData.append('phone', phoneOwner)
+
+        img ? formData.append('image', img) : null;
+        newImage ? formData.append('newImage', newImage) : null;
+        deleteImage ? formData.append('deleteImage', deleteImage) : null;
         
         let options = {
             method: 'POST',
             headers: {
-                /* 'Content-Type': 'application/json', */
                 Authorization: `Bearer ${token}`,
             },
-/*             body: JSON.stringify({
-                "id_product" : id_product,
-                "description" : description, 
-                "piece" : piece, 
-                "surfaceTerrain" : surfaceTerrain,
-                "surface" : surface,
-                "salleDeBain" : salleDeBain, 
-                "chambre" : chambre, 
-                "terrasse" : terrasse, 
-                "cave" : cave, 
-                "ges" : ges,
-                "dpe" : dpe,
-                "prix" : prix,
-                "status" : status,
-                "type" : type,
-                "balcon" : balcon,
-                "garage" : garage,
-                "piscine" : piscine,
-                "ascenseur" : ascenseur,
-            }), */
+
             body: formData,
         };
         try {
-            console.log("op", ges);
+            console.log("op", newImage);
             const response = await fetch(`${import.meta.env.VITE_API_URL17}`, options);
             const data = await response.json();
-            
-            console.log("ded", data);
+            console.log("data",data);
+            alert(data.message);
 
 
         } catch(error){
@@ -182,7 +170,7 @@ function DetailDashboard(){
     }
     // delete image 
     const deleteImg = (value) => {
-        console.log('delet', imageNumber);
+        
         setImg(img.filter(element => element != value));
         setDeleteImage([...deleteImage, value]);
 
@@ -242,7 +230,7 @@ function DetailDashboard(){
                     </div>
                      
                     <div className="updateDiv">
-                        {/* <input type="text" name="ges" id="ges" value={ges} onChange={(e) => setGes(e.target.value)}/> */}
+                        
                         <select name="ges" id="ges" value={ges} onChange={(e) => setGes(e.target.value)} required>
                             <option value="a">a</option>
                             <option value="b">b</option>
@@ -338,12 +326,32 @@ function DetailDashboard(){
                             <button onClick={() => deleteImg(img != undefined ? img[imageNumber] : null)}>supprimer</button>
                             <input type="file" name=""  onChange={(e) => setNewImg(e.target.files[0])}/>
                         </div>
-                    </div>                    
-                
-                    <button onClick={() => changeValueProduct()}>modifier</button>
+                    </div>         
                     
                 </div>
 
+                <h2>proprietaire du produit</h2>
+
+                <div className="productOwner">
+                    <div className="updateDiv">
+                        <input type="text" name="lastname" id="lastnameOwner" value={lastnameOwner} onChange={(e) => setLastnameOwner(e.target.value)} required/>
+                        <label htmlFor="lastnameOwner">lastnameOwner</label>
+                    </div>
+                    <div className="updateDiv">
+                        <input type="text" name="firstname" id="firstnameOwner" value={firstnameOwner} onChange={(e) => setFirstnameOwner(e.target.value)} required/>
+                        <label htmlFor="firstnameOwner">firstnameOwner</label>
+                    </div>
+                    <div className="updateDiv">
+                        <input type="number" name="phone" id="phoneOwner" value={phoneOwner} onChange={(e) => setPhoneOwner(e.target.value)} required/>
+                        <label htmlFor="phoneOwner">phoneOwner</label>
+                    </div>
+                    <div className="updateDiv">
+                        <input type="email" name="email" id="emailOwner" value={emailOwner} onChange={(e) => setEmailOwner(e.target.value)} required/>
+                        <label htmlFor="emailOwner">emailOwner</label>
+                    </div>
+                </div>
+
+                <button onClick={() => changeValueProduct()}>modifier</button>
             </div>
         </div>
     )

@@ -7,8 +7,6 @@ function Day({day, onClick}){
     return (
         <div onClick={onClick} className={className}>
             {day.value === 'padding' ? '' : day.value}
-            
-           {/*  {console.log("day", day)} */}
 
             {day.event && 
                 

@@ -14,6 +14,7 @@ import DetailDashboard from './components/dashboard/detailDashboard/DetailsDashb
 import Calendar from './components/dashboard/calendar/calendar';
 import Contact from './components/dashboard/Contact/Contact';
 import Profil from './components/dashboard/profil/profil';
+import ResetPassword from './components/ResetPassword/ResetPassword';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -62,6 +63,10 @@ function App() {
     {
       path: `${import.meta.env.VITE_API_URL30}`,
       element: <Profil/>
+    },
+    {
+      path: `${import.meta.env.VITE_API_URL31}`,
+      element: <ResetPassword/>
     }
   ])
   return (

@@ -36,14 +36,13 @@ function DetailsPage(props){
             }),
         };
         try {
-/*             console.log("detail 2" , location.state); */
             const response = await fetch(`${import.meta.env.VITE_API_URL2}`, options);
             const data = await response.json();
-            console.log("data page" ,data);
+            
             setProduct(data.product);
             setImg(data.imageProduct);
         } catch(error){
-
+            alert('erreur lors de la recuperation des details')
         }
     }
     // faire defiler l'image
@@ -143,15 +142,8 @@ function DetailsPage(props){
                     :  
                         
                         ""
-                    
-                        
-                        
-    
                 ); 
             }
-            
-            
-            
 
         }));
             

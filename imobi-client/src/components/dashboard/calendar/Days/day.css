@@ -3,7 +3,9 @@
     width: 100%;
     box-sizing: border-box;
     padding: 10%;
-    background-color: grey;
+    background-color: white;
+    color: black;
+    flex-direction: column;
 }
 .event{
     height: 40px;
@@ -12,5 +14,6 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    background-color: blue;
+    color: white;
+    background-color: #1771db;
 }

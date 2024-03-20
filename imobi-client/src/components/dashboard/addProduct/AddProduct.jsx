@@ -144,7 +144,7 @@ function AddProduct() {
 
     // met les valeur pour les clients deja existant
     const putCustomerData = (lastname, firstname, phone, email, id) => {
-        console.log("put",lastname, firstname, phone, email, id);
+        
         setLastname(lastname);
         setFirstname(firstname);
         setEmail(email);
@@ -191,7 +191,7 @@ function AddProduct() {
     
     // insertion des valeur dans les constantes
     const putCoordonne = (element) => {
-        console.log("putCoordonne",element);
+        
         setLatitude(element.geometry.coordinates[1]);
         setLongitude(element.geometry.coordinates[0]);
         setVille(element.properties.city);
@@ -393,7 +393,7 @@ function AddProduct() {
                         <div className="allCustomerOfSeller active">
                             {
                                 customersArray?.map((element, index) => {
-                                    {console.log('loop', customersArray)}
+                                    
                                     return(
                                         <div className={`customer custo-${element.id}`}>
                                             <div>{element.lastname}</div>

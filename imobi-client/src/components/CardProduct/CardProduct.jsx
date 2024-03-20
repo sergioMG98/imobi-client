@@ -10,7 +10,6 @@ function CardProduct({product, imageProduct, key}){
     const [imageNumber, setImageNumber] = useState(0);
     
     useEffect(() => {
-        setImageNumber(0)
         setImg(imageProduct.filter(el => el.product_id == product.id))
     },[product])
 
@@ -32,7 +31,7 @@ function CardProduct({product, imageProduct, key}){
             }
         }
     }
-    
+
     console.log('image', img != undefined ? img : null , imageNumber);
     return (
         <div className="cardProduct" id={product.id}>
@@ -59,7 +58,7 @@ function CardProduct({product, imageProduct, key}){
                 </div>
                 
                 <div className="detailsBtn">
-                    <Link to={"/detailsPage"} state={product.id}>details</Link>
+                    <Link to={`${import.meta.env.VITE_API_URL26 }`} state={product.id}>details</Link>
                 </div>
             </div>
 

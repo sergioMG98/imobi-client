@@ -67,7 +67,7 @@ function Dashboard(){
                     <Link className="product dashLink" to={`${import.meta.env.VITE_API_URL22}`}>product</Link>
                     <Link className="dashLink" to={`${import.meta.env.VITE_API_URL23}`}>Add Product</Link>
                     <Link className="agenda dashLink" to={`${import.meta.env.VITE_API_URL28}`}>agenda</Link>
-                    <Link className="contact dashLink" to={`${import.meta.env.VITE_API_URL29}`}>contact</Link>
+                    <Link className=" dashLink" to={`${import.meta.env.VITE_API_URL29}`}>contact</Link>
                 </div>
 
                 <div>

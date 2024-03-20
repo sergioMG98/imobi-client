@@ -3,6 +3,8 @@
     width: 100vw;
     display: flex;
     flex-direction: row;
+    background: rgb(38,45,196);
+    background: linear-gradient(180deg, rgba(38,45,196,1) 20%, rgba(0,221,255,1) 100%);
 }
 .profilContent{
     height: 100%;
@@ -36,7 +38,7 @@
 .profilDiv input{
     height: 100%;
     width: 100%;
-    border: 2px solid white;
+    border: 2px solid red;
     border-radius: 20px;
     outline: none;
     box-sizing: border-box;
@@ -53,9 +55,23 @@
     text-transform: uppercase;
     border-radius: 20%;
 }
+/*  */
+.lastnameProfil label,
+.firstnameProfil label {
+    background-color: #272DC5;
+}
+.emailProfil label,
+.passwordProfil label {
+    background-color: #2C5CD4;
+}
+.phoneProfil label,
+.cityProfil label {
+    background-color: #288DE5;
+}
+/*  */
 .profilDiv input:valid,
 .profilDiv input:focus {
-    border: 2px solid blue; 
+    border: 2px solid white; 
 }
 
 .profilDiv input:valid + label,
@@ -88,10 +104,11 @@
 .formProfil button {
     height: 50px;
     width: 90%;
-    background-color: blue;
+    background-color: #1771db;
     border-radius: 20px;
     text-transform: uppercase;
     font-size: large;
+    border: 1px solid white;
 }
 @media (max-width: 575px) {
     .profilContent {

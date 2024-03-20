@@ -3,6 +3,8 @@
     width: 100vw;
     display: flex;
     flex-direction: row;
+    background: rgb(38,45,196);
+    background: linear-gradient(180deg, rgba(38,45,196,1) 20%, rgba(23,113,219,1) 65%, rgba(0,221,255,1) 100%);
 }
 
 .calendarContent{
@@ -33,7 +35,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: cadetblue;
+    color: white;
 }
 /* --------------- --------------- */
 
@@ -43,7 +45,7 @@
     display: flex;
     flex-wrap: wrap;
 /*     background-color: darkblue; */
-    gap: 15px;
+    gap: 20px;
     overflow-y: auto;
 }
 

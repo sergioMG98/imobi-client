@@ -44,7 +44,7 @@ function Page(){
             
             const response = await fetch(`${import.meta.env.VITE_API_URL1}`, options);
             const data = await response.json();
-            console.log("page" ,data);
+            
             setProduct(data.product);
             setImg(data.imageProduct);
 
@@ -55,9 +55,6 @@ function Page(){
 
     //bouton du filtre 
     const moreFilter = (x) => {
-        
-        /* setFilterChoice(x); */
-
         let form = document.querySelector(`.${x}`);
         let filterDiv = document.querySelectorAll(`.filterDiv`);
         let bigFilter = document.querySelector('.allFilter');
@@ -67,7 +64,6 @@ function Page(){
             if (filterChoice == x) {
 
                 bigFilter.classList.remove('active');
-
                 setFilterChoice('');
 
             } else {
@@ -75,13 +71,9 @@ function Page(){
                 filterDiv.forEach(element => {
                     element.classList.remove('active');
                 });
-
                 bigFilter.classList.add('active');
-
                 setFilterChoice(x);
             }
-
-
 
         } else {
 
@@ -170,12 +162,9 @@ function Page(){
     }
 
     const BigFilter = (btn) => {
-
+       
         /* -------------- */
         let temporary = [];
-
-        
-
 
         // filtre budget  
         if (budgetMax != 0 || budgetMin != 0) {
@@ -184,8 +173,10 @@ function Page(){
 
             if (budgetMin != 0 && budgetMax == 0) {
                 tempo.push( product.filter((element) => element.prix >= budgetMin ));
+
             } else if(budgetMin == 0 && budgetMax != 0) {
                 tempo.push( product.filter((element) => element.prix <= budgetMax ))
+
             } else {
                 tempo.push( product.filter((element) => element.prix >= budgetMin && element.prix <= budgetMax ))
             }
@@ -214,7 +205,7 @@ function Page(){
                 
                 temporary.forEach((element,index) => {
                     
-                    if (element.ville == search) {
+                    if (element.ville.toLowerCase() == search.toLowerCase()) {
                         tempo.push(element);
                     }
                 })
@@ -222,12 +213,12 @@ function Page(){
             } else {
                 product.forEach((element,index) => {
                     console.log("search", element.ville);
-                    if (element.ville == search) {
+                    if (element.ville.toLowerCase() == search.toLowerCase()) {
                         tempo.push(element);
                     }
                 })
             }
-            console.log("avant",tempo);
+            
             // reset temporary
             while (temporary.length != 0) {
                 temporary.pop();
@@ -236,10 +227,6 @@ function Page(){
             for (let index = 0; index < tempo.length; index++) {
                 
                 temporary.push(tempo[index]);
-                /* tempo.forEach(element => {
-                
-                    temporary.push(element);
-                }); */
             }
             console.log("apres",temporary);
 
@@ -255,7 +242,7 @@ function Page(){
 
                 typeBien.forEach(element => {
 
-                    let t = temporary[0].filter(items => items.type == element)
+                    let t = temporary.filter(items => items.type == element)
 
                     if (t.length != 0) {
                         // je push une valeur
@@ -476,37 +463,10 @@ function Page(){
         moreFilter(btn);
     }
     
-
-    // search
-/* 
-    const getGeo = async() => {
-        let options = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        };
-        try {
-            const response = await fetch(`https://api-adresse.data.gouv.fr/search/?q=${search}`, options);
-            const data = await response.json();
-            console.log("data page" , data);
-            console.log("latitude" , data.features[0].geometry.coordinates[1]);
-            setLatitude(data.features[0].geometry.coordinates[1]),
-            setLongitude(data.features[0].geometry.coordinates[0])
-
-        } catch(error){
-
-        }
-        BigFilter('searchFilter');
-    }
- */
-
-
-
     useEffect(()=> {
         getProduct();
     }, [choice]);
-    console.log("ee",productsFiltered);
+    
     return(
         <div>
             <div className="navbarContainer">
@@ -853,7 +813,6 @@ function Page(){
                                 <CardProduct product={elements} imageProduct={img} key={index}></CardProduct>
                             )
                         : 
-                            /* console.log('filtered', productsFiltered[0]) */
 
                             productsFiltered[0] == "erreurRecherche" ?
                                 <div>

@@ -13,7 +13,7 @@
 }
 
 #monthDisplay{
-    color: red;
+    color: white;
     /* font-weight: bold; */
 }
 .calendarHeader_BTN{
@@ -21,11 +21,11 @@
 }
 
 .calendarHeaderContent button {
-    background-color: royalblue;
+    background-color: #1771db;
     height: 80%;
     width: 40%;
     border-radius: 10px;
-    border: 2px solid black;
+    border: 2px solid white;
 }
 
 @media (max-width: 575px) {

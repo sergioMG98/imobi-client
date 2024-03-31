@@ -1,0 +1,28 @@
+.calendarDay{
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10%;
+    background-color: white;
+    color: black;
+    flex-direction: column;
+}
+.event{
+    height: 40px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    color: white;
+    background-color: #1771db;
+}
+@media (max-width: 575px) {
+    .calendar{
+        height: 85%;
+    }
+    .event {
+        height: 27px;
+        font-size: 11px;
+    }
+}

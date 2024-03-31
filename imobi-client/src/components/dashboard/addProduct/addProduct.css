@@ -1,0 +1,305 @@
+.container {
+    background-color: #1771db;
+/*     background: rgb(38,45,196);
+    background: linear-gradient(180deg, rgba(38,45,196,1) 20%, rgba(23,113,219,1) 65%, rgba(0,221,255,1) 100%); */
+}
+
+.addProductContainer .form {
+    /* height: 90%; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    overflow-y: auto;
+}
+
+.addForm{
+    width: 80%;
+    
+}
+
+.addForm textarea{
+    width: 100%;
+    height: 90%;
+    resize: none;
+    border: 2px solid crimson;
+    border-radius: 10px;
+    background-color: transparent;
+}
+
+
+.textAreaAddProduct{
+    position: relative;
+    height: 30%;
+    display: flex;
+}
+.textAreaAddProduct label{
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    text-transform: uppercase;
+    transition: .5s;
+}
+.textAreaAddProduct textarea:focus,
+.textAreaAddProduct textarea:valid{
+    border: 2px solid #00ff22;
+    box-sizing: border-box;
+    padding: 20px;
+}
+.textAreaAddProduct textarea:focus + label,
+.textAreaAddProduct textarea:valid + label{
+    transform: translateY(-190%);
+    background-color: #1771db;
+    padding: 0 2%;
+}
+
+#addProductSelect{
+    border: 2px solid white;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding-left: 4%;
+    text-transform: uppercase;
+}
+#addProductSelect:valid{
+    border: 2px solid #1771db;
+}
+
+
+.entriesDataProduct{
+    height: 40%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+    justify-content: space-between;
+}
+.addForm .inputContainer {
+    position: relative;
+    height: 50px;
+    width: 45%;
+    
+    background-color: transparent;
+    /* overflow: hidden; */
+}
+
+.inputContainer input,
+.inputContainer select{
+    height: 100%;
+    width: 100%;
+    border: 2px solid crimson;
+    background-color: transparent;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+.inputContainer label{
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    text-transform: uppercase;
+    transition: .5s;
+}
+.inputContainer input:focus,
+.inputContainer input:valid,
+.inputContainer select:focus,
+.inputContainer select:valid{
+    /* border: 2px solid white; */
+    border: 2px solid #00ff22;
+}
+
+.inputContainer input:focus + label,
+.inputContainer input:valid + label,
+.inputContainer select:focus + label,
+.inputContainer select:valid + label{
+    transform: translateY(-80%);
+    background-color: #1771db;
+    padding: 0 2%;
+}
+
+
+
+/* .addForm select{
+    height: 30px;
+    width: 45%;
+} */
+
+.addProductButton{
+    height: 100px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addProductButton button {
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background-color: #1771db;
+    border: 2px solid white;
+    text-transform: uppercase;
+}
+
+.addForm textarea:focus,
+.addForm input:focus{
+    outline: none;
+}
+.addProductButton button:hover{
+    background-color: blue;
+}
+.productData{
+    height: 1000px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* ----------------------------- */
+.clientData{
+    position: relative;
+    height: 400px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.productData h2,
+.clientData h2{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+.clientInput{
+    display: none;
+}
+.clientInput.active {
+    display: flex;
+}
+#newCustomerButton{
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    height: 40px;
+    width: 120px;
+    background: #1771db;
+    border-radius: 20px;
+    text-transform: uppercase;
+    border: 2px solid white;
+}
+#newCustomerButton:hover {
+    background: blue; 
+}
+.btn_client {
+    height: 30px;
+}
+/*  */
+.allCustomerOfSeller {
+    display: none;
+}
+
+.allCustomerOfSeller.active {
+    display: flex;
+    flex-wrap: wrap;
+    height: 340px;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    justify-content: center;
+    align-content: flex-start;
+    box-sizing: border-box;
+    padding: 20px 0;
+    overflow-y: auto;
+}
+.customer{
+    height: 40px;
+    width: 80%;
+    background-color: white;
+    color: #242424;
+    box-sizing: border-box;
+    border-bottom: 2px solid #1771db;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+.customer:hover{
+    background-color: #0b3669;
+    color: white;
+    border-bottom: 2px solid #0b3669;
+}
+
+.customer div {
+    height: 100%;
+    width: calc(100% / 4);
+    display: flex;
+    align-items: center;
+}
+/*  */
+
+.allSearch{
+    display: none;
+}
+.allSearch.active{
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 270px;
+    width: 100%;
+    background-color: black;
+    overflow-y: auto;
+    z-index: 4;
+}
+.adresseChoix{
+    width: 100%;
+    height: 52px;
+    background-color: white;
+    color: black;
+    box-sizing: border-box;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+.adresseChoix:hover{
+    background-color: royalblue;
+    color: white;
+}
+@media (max-width: 575px) {
+    .addProductContainer .form {
+        width: 82%;
+    }
+    .addProductCo {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .addForm .inputContainer{
+        width: 100%;
+    }
+    .productData {
+        overflow: auto;
+    }
+    .productData h2, .clientData h2 {
+        font-size: large;
+    }
+    #newCustomerButton {
+        width: 44px;
+        right: 0px;
+        border-radius: 12px;
+        font-size: 9px;
+    }
+    .customer{
+        height: 80px;
+        flex-wrap: wrap;
+
+    }
+    .customer div {
+        height: 50%;
+        width: 50%;
+        justify-content: center;
+    }
+    .btn_client {
+        font-size: 15px;
+    }
+}

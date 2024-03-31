@@ -1,0 +1,411 @@
+.detailsContent{
+    position: relative;
+    height: calc(100vh - 100px);
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow-y: auto;
+    padding: 50px 50px;
+    box-sizing: border-box;
+    background: rgb(38,45,196);
+    background: linear-gradient(180deg, rgba(38,45,196,1) 20%, rgba(0,221,255,1) 100%);
+}
+
+/************ detail content child ****************/
+.detailsPresentation{
+    height: 700px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+/*  */
+.contactBtn{
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    background-color: #262CC4;
+
+}
+.btn_contact {
+    height: 80%;
+    background-color: #1771db;
+    width: 100px;
+    text-transform: uppercase;
+    border-radius: 15px;
+    border: 1px solid white;
+    font-size: 12px;
+}
+.formContact {
+    display: none;
+}
+
+.formContact.active {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    height: calc(100vh - 100px);
+    width: 100vw;
+    background-color: white;
+    z-index: 20;
+}
+.formContact.active .btnFerme {
+    height: 50px;
+    width: 50px;
+    background-color: transparent;
+    color: black;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    text-transform: uppercase;
+    font-size: 40px;
+    
+}
+.formContact .formContactToSeller div input {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}
+.formContact .formContactToSeller div label {
+    background-color: white;
+    color: black;
+}
+/*  */
+.detailsImage{
+    height: 80%;
+    width: 100%;
+    position: relative;
+    background-color: black;
+}
+.detailsImage img {
+    height: 100%;
+    width: 100%;
+}
+
+.detailsImage .rightBtn,
+.detailsImage .leftBtn {
+    display: none;
+}
+
+.detailsImage:hover .rightBtn,
+.detailsImage:hover .leftBtn {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    background-color: #0056ffb0;
+    align-items: center;
+}
+.detailsImage .rightBtn {
+    right: 0;
+}
+
+
+/*  */
+.detailsTitle{
+    height: 20%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 40px;
+    text-transform: uppercase;
+}
+
+/* ************ */
+.detailsDescription {
+    height: 700px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.detailsCaracteristique{
+    height: 700px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.detailsEmplacement {
+    height: 700px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.detailsBilanEnergetique{
+    height: 700px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+/**/
+.detailsContent div h2 {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 50px;
+    box-sizing: border-box;
+    font-weight: bold;
+    font-size: 30px;
+    text-transform: uppercase;
+    color: white;
+    border-bottom: 2px solid white;
+
+}
+.detailsChild{
+    height: 90%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px;
+    font-size: 20px;
+    display: flex;
+    gap: 5%;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.detailItemCara{
+    height: 50px;
+    width: 250px;
+    /* background-color: blue; */
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+}
+/*  */
+.gesContainer,
+.dpeContainer {
+    width: 50%;
+    height: 90%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.gesContainer h3,
+.dpeContainer h3{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+/*  */
+.gesEtiquette,
+.dpeEtiquette {
+    height: 90%;
+    width: 60%;
+    background-color: black;
+}
+
+.etiquettesEnergetique{
+    height: calc(100% / 7);
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 20px;
+    text-shadow: -1px 1px black;
+    font-size: 30px;
+}
+
+.gesA{
+    background-color: green;
+}
+.gesB{
+    background-color: rgb(0, 255, 0);
+}
+.gesC{
+    background-color: greenyellow;
+}
+.gesD{
+    background-color: yellow;
+}
+.gesE{
+    background-color: orange;
+}
+.gesF{
+    background-color: orangered;
+}
+.gesG{
+    background-color: red;
+}
+
+.dpeA{
+    background-color: #d1d1d1;
+}
+.dpeB{
+    background-color: rgb(219, 127, 219);
+}
+.dpeC{
+    background-color: rgb(201, 95, 201);
+}
+.dpeD{
+    background-color: rgb(181, 66, 181);
+}
+.dpeE{
+    background-color: rgb(162, 37, 162);
+}
+.dpeF{
+    background-color: rgb(149, 18, 149);
+}
+.dpeG{
+    background-color: purple;
+}
+
+.indicatorContainer{
+    position: relative;
+    height: 90%;
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+}
+.indicatorEnergetiqueGes,
+.indicatorEnergetiqueDpe{
+    position: absolute;
+    right: 0;
+    height: calc(100% / 7);
+    width: 80%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 40px;
+}
+.triangeIndicatorGes,
+.triangeIndicatorDpe{
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 40px solid transparent;
+    border-right: 39px solid black;
+    border-bottom: 40px solid transparent;
+
+}
+
+/*  */
+
+
+/* map */
+.detailMapContainer{
+    height: 90%;
+    width: 100%;
+}
+
+.leaflet-container{
+    height: 100%;
+    z-index: 9;
+}
+/*  */
+@media (max-width: 400px){
+    .detailsContent{
+        padding: 20px;
+    }
+    .detailsTitle{
+        padding-left: 0;
+    }
+    .detailsContent div h2 {
+        padding-left: 0;
+    }
+    .detailsCaracteristique {
+        height: auto;
+    }
+    .detailsChild {
+        height: auto;
+        align-content: flex-start;
+    }
+    .detailItemCara {
+        width: 100%;
+        margin-top: 5px;
+    }
+    .gesContainer, .dpeContainer {
+        width: 100%;
+    }
+    .gesEtiquette, .dpeEtiquette{
+        width: 80%;
+    }
+    .indicatorContainer{
+        width: 20%;
+    }
+    .indicatorEnergetiqueGes, .indicatorEnergetiqueDpe {
+        width: 45%;
+    }
+    .detailsBilanEnergetique{
+        height: 695px;
+    }
+}
+@media (max-width: 575px){
+    .detailsPresentation {
+        height: 250px;
+    }
+    .detailsImage {
+        height: 65%;
+    }
+    .detailsTitle {
+        height: 35%;
+    }
+    .detailsDescription {
+        height: 400px;
+    }
+    /*  */
+    .burger {
+        width: 15%;
+    }
+    .detailsContent{
+        padding: 20px;
+    }
+    .detailsTitle{
+        padding-left: 0;
+    }
+    .detailsContent div h2 {
+        padding-left: 0;
+    }
+    .detailsCaracteristique {
+        height: auto;
+    }
+    .detailsChild {
+        /* height: auto; */
+        height: 90%;
+        width: 100%;
+        align-content: flex-start;
+        overflow-y: auto;
+        box-sizing: border-box;
+        padding: 20px 0;
+    }
+    .detailItemCara {
+        width: 100%;
+        margin-top: 5px;
+    }
+    .gesEtiquette, .dpeEtiquette {
+        width: 65%;
+    }
+    .indicatorContainer{
+        width: 20%;
+    }
+    .indicatorContainer {
+        width: 35%;
+    }
+    .indicatorEnergetiqueGes, .indicatorEnergetiqueDpe {
+        width: 65%;
+    }
+    .detailsBilanEnergetique{
+        height: 695px;
+    }
+}
+@media (min-width: 1200px) {
+    .indicatorContainer {
+        width: 25%;
+    }
+    .dpeEtiquette {
+        width: 75%;
+    }
+}

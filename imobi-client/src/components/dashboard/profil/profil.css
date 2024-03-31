@@ -1,0 +1,121 @@
+.profilPage{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    background-color: #1771db;
+/*     background: rgb(38,45,196);
+    background: linear-gradient(180deg, rgba(38,45,196,1) 20%, rgba(0,221,255,1) 100%); */
+}
+.profilContent{
+    height: 100%;
+    width: 80%;
+}
+.profilContent h1 {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+/* ------------------------------ */
+.formProfil {
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    /* background-color: slategrey; */
+    align-content: space-around;
+    justify-content: space-around;
+}
+.profilDiv{
+    position: relative;
+    height: 50px;
+    width: 40%;
+}
+/* -- */
+.profilDiv input{
+    height: 100%;
+    width: 100%;
+    border: 2px solid red;
+    border-radius: 20px;
+    outline: none;
+    box-sizing: border-box;
+    padding-left: 20px;
+    background-color: transparent;
+    z-index: 4;
+}
+.profilDiv label {
+    position: absolute;
+    top: 15px;
+    left: 10%;
+    padding: 0 20px;
+    background-color: #1771db;
+    text-transform: uppercase;
+    border-radius: 20%;
+}
+/*  */
+/* .lastnameProfil label,
+.firstnameProfil label {
+    background-color: #272DC5;
+}
+.emailProfil label,
+.passwordProfil label {
+    background-color: #2C5CD4;
+}
+.phoneProfil label,
+.cityProfil label {
+    background-color: #288DE5;
+} */
+/*  */
+.profilDiv input:valid,
+.profilDiv input:focus {
+    border: 2px solid white; 
+}
+
+.profilDiv input:valid + label,
+.profilDiv input:focus + label{
+    top: -9px;
+    transition: .5s;
+}
+/*  */
+
+.allSearch{
+    display: none;
+}
+.allSearch.active{
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 270px;
+    width: 100%;
+    background-color: black;
+    overflow-y: auto;
+}
+.adresseChoix{
+    width: 100%;
+    height: 52px;
+    background-color: white;
+    color: black;
+    box-sizing: border-box;
+    padding: 10px;
+}
+/* -- */
+.formProfil button {
+    height: 50px;
+    width: 90%;
+    background-color: rgb(38,45,196);
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-size: large;
+    border: 1px solid white;
+}
+@media (max-width: 575px) {
+    .profilContent {
+        width: 100%;
+    }
+    .profilDiv {
+        width: 80%;
+    }
+}

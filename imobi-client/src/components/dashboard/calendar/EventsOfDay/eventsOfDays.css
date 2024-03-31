@@ -1,0 +1,273 @@
+.EventsOFDays{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    height: 90%;
+    width: 90%;
+    background-color: #1771db;
+}
+.closePopUp button{
+    position: absolute;
+    top: -4%;
+    right: -2%;
+    height: 60px;
+    width: 60px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    color: black;
+    font-size: large;
+    font-weight: bold;
+}
+/* --------------------------------- */
+.eventsOfDaysHeader{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+.eventsOfDaysHeader h1 {
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+}
+/* --------------------------------- */
+.eventsDayBody{
+    height: 90%;
+    width: 100%;
+}
+
+/* ---------------------------------- */
+.eventsDaysContent{
+    display: none;
+}
+.eventsDaysContent.active{
+    backdrop-filter: blur(42px);
+    background: #00000047;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    flex-direction: column;
+    align-items: center;
+}
+.eventsDay{
+    min-height: 200px;
+    width: 90%;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 20px;
+}
+.eventData{
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    overflow-y: auto;
+}
+
+.enventDataInput{
+    position: relative;
+    height: 30px;
+    width: 40%;  
+}
+.enventDataInput input{
+    height: 100%;
+    width: 100%;
+    color: black;
+    border: 2px solid #1771db;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    background-color: transparent;
+    outline: none;
+}
+.enventDataInput label {
+    position: absolute;
+    top: -40%;
+    left: 10%;
+    color: #1771db;
+    background: white;
+    padding: 0 2%;
+}
+.eventBtn{
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+}
+.eventBtn button{
+    width: 80%;
+    height: 20%;
+    border-radius: 20px;
+    font-size: 20px;
+    color: #1771db;
+    background-color: white;
+    border: 2px solid #1771db;
+}
+.eventBtn button:hover {
+    background-color: #1771db;
+    color: white;
+}
+/* --------------------------------- */
+.formEvents{
+    display: none;
+}
+.formEvents.active{
+    height: 100%;
+    width: 100%;
+    background-color: slategray;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+.formHeader{
+    height: 10%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.eventsInput{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow-y: auto;
+    padding: 20px 0;
+    gap: 20px;
+    background-color: slategray;
+}
+.boxInput{
+    position: relative;
+    height: 40px;
+    width: 45%;
+}
+.boxInput input{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid white;
+    background-color: transparent;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+.boxInput label{
+    position: absolute;
+    top: 30%;
+    left: 1%;
+    padding-left: 9%;
+    transition: .5s;
+    background-color: slategray;
+}
+.boxInput input:focus ,
+.boxInput input:valid{
+    outline: none;
+    border: 2px solid #00ff22;
+}
+.boxInput input:focus + label,
+.boxInput input:valid + label {
+    top: -25%;
+    left: 7%;
+    padding: 0 10px;
+    /* background-color: brown; */
+}
+.eventsInput button {
+    background-color: #1771db;
+    height: 40px;
+    width: 94%;
+    border-radius: 10px;
+    font-size: large;
+    border: 2px solid white;
+}
+
+
+.AllContact{
+    height: 90%;
+    width: 0%;
+    background-color: darkcyan;
+}
+
+/* --------------------------------- */
+.btnAddEvents {
+    height: 100%;
+    width: 20%;
+    /* background-color: antiquewhite; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btnAddEvents button{
+    height: 60%;
+    width: 60%;
+    border: 2px solid white;
+    background-color: #1771db;
+    border-radius: 20px;
+    font-size: 20px;
+}
+/* ------------------------------ */
+
+@media (max-width: 575px) {
+
+    .eventsOfDaysHeader h1 {
+        font-size: large;
+        width: 48%;
+    }
+    .btnAddEvents {
+        width: 40%;
+        justify-content: flex-start;
+
+    } 
+    .closePopUp button {
+        top: 0%;
+        right: 0%;
+        height: 40px;
+        width: 40px;
+    }
+    .eventsInput{
+        width: 100%;
+    }
+    .EventsOFDays {
+        height: 100%;
+        width: 100%;
+        top: 0;
+        left: 0;
+    }
+    /*  */
+    .eventsDay{
+        height: 300px;
+    }
+    .eventData{
+        height: 70%;
+        width: 100%;
+    }
+    .eventBtn {
+        height: 30%;
+        width: 100%;
+        flex-direction: row;
+    }
+    .eventBtn button {
+        width: 45%;
+        height: 45%;
+    }
+    .btnAddEvents button {
+        font-size: 15px;
+    }
+}

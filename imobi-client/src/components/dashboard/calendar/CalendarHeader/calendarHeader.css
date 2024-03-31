@@ -1,0 +1,39 @@
+#header{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.calendarHeaderContent{
+    width: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#monthDisplay{
+    color: white;
+    /* font-weight: bold; */
+}
+.calendarHeader_BTN{
+    gap: 5px;
+}
+
+.calendarHeaderContent button {
+    background-color: #1771db;
+    height: 80%;
+    width: 40%;
+    border-radius: 10px;
+    border: 2px solid white;
+}
+
+@media (max-width: 575px) {
+
+    #header {
+        justify-content: flex-end;
+    }
+    .calendarHeaderContent button {
+        font-size: 9px;
+    }
+}

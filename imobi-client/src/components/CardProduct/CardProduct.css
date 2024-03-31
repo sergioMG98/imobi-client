@@ -1,0 +1,113 @@
+
+.cardProduct{
+    height: 420px;
+    width: 45%;
+    background-color: rgb(198, 198, 198);
+    border-radius: 20px;
+    overflow: hidden;
+    /* border: 1px solid blue; */
+    box-sizing: border-box;
+}
+/*  */
+.imageCard{
+    height: 45%;
+    width: 100%;
+    position: relative;
+    background-color: transparent;
+}
+.imageCard img{
+    height: 100%;
+    width: 100%;
+}
+
+.imageCard .rightBtn,
+.imageCard .leftBtn {
+    display: none;
+}
+
+.imageCard:hover .rightBtn,
+.imageCard:hover .leftBtn {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    background-color: #1771db;
+    align-items: center;
+}
+.imageCard .rightBtn {
+    right: 0;
+}
+
+
+/*  */
+.descriptionCard{
+    height: 55%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+}
+.cardPrice{
+    height: 33%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #1771db;
+    font-weight: bold;
+    /* background-color: palegreen; */
+}
+.cardLieux{
+    height: 33%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 13%;
+    color: #1771db;
+    /* background-color: cadetblue; */
+}
+.cardType {
+    height: 33%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: #1771db;
+}
+.detailsBtn{
+    height: 33%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.detailsBtn a{
+    text-decoration: none;
+    text-transform: uppercase;
+    background-color: #1771db;
+    height: 60%;
+    width: 50%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+/*  */
+@media (max-width: 575px) {
+    .cardProduct {
+        width: 100%;
+    }
+}
+@media (min-width: 1460px) {
+
+    .cardProduct {
+        width: 30%;
+    }
+}

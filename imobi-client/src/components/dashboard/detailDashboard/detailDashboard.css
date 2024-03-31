@@ -1,0 +1,212 @@
+.detailDashboard{
+    display: flex;
+    flex-direction: row;
+    background: #1771db;
+    /* background: linear-gradient(180deg, rgba(38,45,196,1) 20%, rgba(0,221,255,1) 100%); */
+}
+.dashContent{
+    height: 100vh;
+    width: 80vw;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+    /* flex-direction: column; */
+    box-sizing: border-box;
+    padding: 20px 0 40px 0;
+    flex-wrap: wrap;
+}
+
+.sellerProductDetail,
+.productOwner{
+    height: 1700px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* overflow-y: auto; */
+    /* background-color: darkblue; */
+    box-sizing: border-box;
+    padding: 20px;
+    gap: 2%;
+}
+.productOwner {
+    height: 400px;
+}
+.detailDashboard h2{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+/* ----------------------- */
+
+.updateTextareaDiv{
+    position: relative;
+    height: 200px;
+    width: 82%;
+    /* background-color: blueviolet; */
+}
+.updateTextareaDiv textarea {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    resize: none;
+    border-radius: 20px;
+    border: 2px solid white;
+    background-color: transparent;
+}
+.updateTextareaDiv label {
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    padding: 0 20px;
+    background-color: #1771db;
+    text-transform: uppercase;
+}
+
+.updateDiv {
+    position: relative;
+    height: 50px;
+    width: 40%;
+    margin-top: 30px;
+}
+.updateDiv input,
+.updateDiv select {
+    box-sizing: border-box;
+    padding: 0 20px;
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
+    border: 2px solid crimson;
+    background-color: transparent;
+}
+.updateDiv label {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    text-transform: uppercase;
+    padding: 0 20px;
+    background-color:  #1771db;
+    font-size: 14px;
+}
+
+.updateDiv input:valid ,
+.updateDiv input:focus,
+.updateDiv select:valid,
+.updateDiv select:focus{
+    border: 2px solid white;
+}
+
+.updateDiv input:valid + label, 
+.updateDiv input:focus + label{
+    top: -10px;
+    left: 20px; 
+    font-size: 14px;
+}
+
+
+
+.detailDashboard .dashContent button {
+    height: 50px;
+    width: 40%;
+    border-radius: 20px;
+    border: 2px solid white;
+    background-color: #272DC5;
+    text-transform: uppercase;
+    font-size: large;
+    margin-top: 30px;
+}
+
+#addProductTypeLabel {
+    width: 64%;
+}
+
+.imagePlace {
+    margin-top: 20px;
+    height: 400px;
+    width: 83%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.imagePlace .image {
+    height: 100%;
+    width: 70%;
+    box-sizing: border-box;
+    padding: 2%;
+    position: relative;
+}
+.imagePlace .image img {
+    height: 100%;
+    width: 100%;
+}
+
+.imagePlace .image .rightBtn,
+.imagePlace .image .leftBtn {
+    display: none;
+}
+
+.imagePlace .image:hover .rightBtn,
+.imagePlace .image:hover .leftBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    background-color: #0056ffb0;
+}
+.imagePlace .image .rightBtn {
+    right: 14px;
+}
+
+.imagePlace div {
+    height: 100%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.imagePlace div button,
+.imagePlace div input {
+    width: 80%;
+}
+
+@media (max-width: 575px) {
+    .dashContent{
+        width: 100vw;
+    }
+    .updateDiv{ 
+        width: 68%;
+    }
+    .updateTextareaDiv{
+        width: 68%;
+        height: 300px;
+    }
+    .dashDetailCo{
+        z-index: 14;
+    }
+    .sellerProductDetail {
+        overflow-y: auto;
+    }
+    .imagePlace .image {
+        height: 50%;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 2%;
+        position: relative;
+    }
+    .imagePlace div {
+        height: 50%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .detailDashboard .dashContent button {
+        font-size: 15px;
+    }
+
+}

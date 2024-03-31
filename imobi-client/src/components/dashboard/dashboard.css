@@ -1,10 +1,16 @@
 .dashboardNav{
     height: 100vh;
-    width: 20vw;
-    background-color: blue;
+    width: 14vw;
+    background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    color: black;
+    font-weight: bold;
+}
+.dashboardNav a {
+    text-decoration: none;
+    color: black;
 }
 .dashLink{
     height: 50px;
@@ -16,6 +22,69 @@
     text-transform: uppercase;
 }
 .dashLink:hover{
-    background-color: white;
-    color: blue;
+    background-color: #1771db;
+    color: white;
+}
+
+/*  */
+
+.dashboard.burgerMode {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 19;
+    transition: .5s;
+}
+
+.dashboard.burgerMode .dashBurger{
+    height: 60px;
+    width: 60px;
+}
+.dashboard.burgerMode .dashboardNav{
+    display: flex;
+    width: 100%;
+    background-color: black;
+}
+.dashboard.burgerMode .dashboardNav .dashLink {
+    justify-content: center;
+}
+
+
+@media (max-width: 575px) {
+
+    .dashboardNav {
+        display: none;
+        color: white;
+    }
+    .dashboard {
+        height: 100%;
+        width: 100%;
+    }
+    .dashBurger {
+        position: absolute;
+        display: flex;
+        top: 10px;
+        left: 10px;
+        height: 100%;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-content: space-around;
+    }
+    .line1,
+    .line2,
+    .line3{
+        height: 4px;
+        width: 80%;
+        background-color: white;
+    }
+    .dashboardNav a {
+        color: white;
+    }
+    .filtreButton {
+        font-size: 15px;
+    }
+    
 }

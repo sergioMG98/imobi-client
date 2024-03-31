@@ -45,6 +45,8 @@ function Page(){
             const response = await fetch(`${import.meta.env.VITE_API_URL1}`, options);
             const data = await response.json();
             
+            console.log('data',data);
+
             setProduct(data.product);
             setImg(data.imageProduct);
 
@@ -198,11 +200,13 @@ function Page(){
 
         // filtre search 
         if (search != undefined) {
+            console.log("search 1", search); // <-----------------
 
             let tempo = [];
             
             if (temporary.length != 0) {
-                
+                console.log("search 2"); // <-----------------
+
                 temporary.forEach((element,index) => {
                     
                     if (element.ville.toLowerCase() == search.toLowerCase()) {
@@ -211,8 +215,11 @@ function Page(){
                 })
 
             } else {
+                console.log("search 3"); // <-----------------
+
                 product.forEach((element,index) => {
-                    console.log("search", element.ville);
+                    console.log("search 3_1", element.ville); // <-----------------
+
                     if (element.ville.toLowerCase() == search.toLowerCase()) {
                         tempo.push(element);
                     }
@@ -478,12 +485,12 @@ function Page(){
                 <div className="filterContainer">
                     <div className="someFilter">
                         <div className="projectFilter filterDiv" onClick={() => moreFilter('projectFilter')}>
-                            <button onClick={() => window.location.reload(true)}>clear</button>   
+                            <button onClick={() => window.location.reload(true)}>réinitialiser</button>   
                         </div>
 
                         <div className="searchFilter filterDiv" >
                             
-                            <button onClick={() => moreFilter('searchFilter')}>search</button>
+                            <button onClick={() => moreFilter('searchFilter')}>chercher</button>
 
                             <div className="formFilter">
                                 <h2>chercher une ville</h2>
@@ -568,7 +575,7 @@ function Page(){
 
                     </div>
                     <div className="allFilter">
-                        <button onClick={() => moreFilter('bigFilter')}> big filter</button>
+                        <button onClick={() => moreFilter('bigFilter')}>filtre</button>
 
                         <div className="allFormFilter">
                             <div className="allFilterInput">

@@ -39,6 +39,8 @@ function DetailDashboard(){
 /*     const [longitude, setLongitude] = useState();
     const [latitude, setLatitude] = useState();
     const [ville, setVille] = useState(); */
+
+    let emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
     
     // va recuperer les informations du produits qui correspond a l'id
     const getProductById = async() => {
@@ -92,7 +94,8 @@ function DetailDashboard(){
     }
 
     // envoie les informations au back-end
-    const changeValueProduct = async() => {
+    const changeValueProduct = async(e) => {
+        e.preventDefault();
         console.log("cououc", deleteImage);
         
 
@@ -137,17 +140,23 @@ function DetailDashboard(){
 
             body: formData,
         };
-        try {
-            console.log("op", newImage);
-            const response = await fetch(`${import.meta.env.VITE_API_URL17}`, options);
-            const data = await response.json();
-            console.log("data",data);
-            alert(data.message);
 
-
-        } catch(error){
-
+        if (emailOwner.match(emailPattern)) {
+            try {
+                console.log("op", newImage);
+                const response = await fetch(`${import.meta.env.VITE_API_URL17}`, options);
+                const data = await response.json();
+                console.log("data",data);
+                alert(data.message);
+    
+    
+            } catch(error){
+    
+            }
+        } else {
+            alert ("les condition de l'email ne sont pas respecter");
         }
+
     }
 
     // faire defiler l'image
@@ -197,7 +206,7 @@ function DetailDashboard(){
                 <Dashboard></Dashboard>
             </div>
 
-            <div className="dashContent ">
+            <form className="dashContent ">
                 <h1>product details</h1>
 
                 <div className="sellerProductDetail">
@@ -335,24 +344,24 @@ function DetailDashboard(){
                 <div className="productOwner">
                     <div className="updateDiv">
                         <input type="text" name="lastname" id="lastnameOwner" value={lastnameOwner} onChange={(e) => setLastnameOwner(e.target.value)} required/>
-                        <label htmlFor="lastnameOwner">lastnameOwner</label>
+                        <label htmlFor="lastnameOwner">lastname Owner</label>
                     </div>
                     <div className="updateDiv">
                         <input type="text" name="firstname" id="firstnameOwner" value={firstnameOwner} onChange={(e) => setFirstnameOwner(e.target.value)} required/>
-                        <label htmlFor="firstnameOwner">firstnameOwner</label>
+                        <label htmlFor="firstnameOwner">firstname Owner</label>
                     </div>
                     <div className="updateDiv">
-                        <input type="number" name="phone" id="phoneOwner" value={phoneOwner} onChange={(e) => setPhoneOwner(e.target.value)} required/>
-                        <label htmlFor="phoneOwner">phoneOwner</label>
+                        <input type="tel" name="phone" id="phoneOwner" value={phoneOwner} onChange={(e) => setPhoneOwner(e.target.value)} required/>
+                        <label htmlFor="phoneOwner">phone Owner</label>
                     </div>
                     <div className="updateDiv">
                         <input type="email" name="email" id="emailOwner" value={emailOwner} onChange={(e) => setEmailOwner(e.target.value)} required/>
-                        <label htmlFor="emailOwner">emailOwner</label>
+                        <label htmlFor="emailOwner">email Owner</label>
                     </div>
                 </div>
 
-                <button onClick={() => changeValueProduct()}>modifier</button>
-            </div>
+                <button onClick={(e) => changeValueProduct(e)}>modifier</button>
+            </form>
         </div>
     )
 }

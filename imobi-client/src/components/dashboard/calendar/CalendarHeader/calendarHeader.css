@@ -33,4 +33,7 @@
     #header {
         justify-content: flex-end;
     }
+    .calendarHeaderContent button {
+        font-size: 9px;
+    }
 }

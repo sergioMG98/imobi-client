@@ -40,12 +40,13 @@ function AddProduct() {
     const [searchMenu, setSearchMenu] = useState([]);
 
     let addProduct = {status, prix, description, surface, ges, dpe, type, piece, surfaceTerrain, salleDeBain, chambre, terrasse, balcon, garage, piscine, ascenseur, cave, longitude, latitude, ville, lastname, firstname, email, phone, idCustomer, label, image};
+    let emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
     const [stateButton, setStateButton] = useState(false);
 
     // envoie les donnée pour crée les products
     const handleAddProduct = async(e) => {
-        /* e.preventDefault(); */
+        e.preventDefault();
         console.log('test', piece);
 
         let formData = new FormData();
@@ -88,21 +89,26 @@ function AddProduct() {
             body: formData,
         };
 
-        try{
-            console.log("option", options);
-            const response = await fetch(`${import.meta.env.VITE_API_URL8}`,options);
-            const data = await response.json();
-            console.log("creation product", data);
-
-            if(data.status == 'true' ){
-                alert(data.message);
-                // refresh la page 
-                window.location.reload(false);
+        if (email.match(emailPattern)) {
+            try{
+                console.log("option", image);
+                const response = await fetch(`${import.meta.env.VITE_API_URL8}`,options);
+                const data = await response.json();
+                console.log("creation product", data);
+    
+                if(data.status == 'true' ){
+                    alert(data.message);
+                    // refresh la page 
+                    window.location.reload(false);
+                }
+    
+            } catch (error){
+                console.error("Fetch error:" , error);
             }
-
-        } catch (error){
-            console.error("Fetch error:" , error);
+        } else {
+            alert ("les condition de l'email ne sont pas respecter");
         }
+
     }
 
     const newCustomerButton = () => {
@@ -200,7 +206,6 @@ function AddProduct() {
         document.querySelector('.allSearch').classList.remove('active');
     }
 
-
     useEffect(() => {
         getCustomers();
     }, [])
@@ -266,8 +271,7 @@ function AddProduct() {
                             </div>
 {/* image */}
                             <div className="inputContainer">
-                                <input type="file" name="image"  id="image" required onChange={(e) => setImage(e.target.files[0])} />
-                        
+                                <input type="file" name="image"  id="image" required onChange={(e) =>/*  console.log("img",e.target.value) */setImage(e.target.files[0])} />
                             </div>
 
                             <div className="inputContainer">
@@ -384,7 +388,7 @@ function AddProduct() {
                             </div>
 
                             <div className="inputContainer">
-                                <input type="number" name="numberClient" id="numberClient" onChange={(e) => setPhone(e.target.value)}/>
+                                <input type="tel" name="numberClient" id="numberClient" onChange={(e) => setPhone(e.target.value)}/>
                                 <label htmlFor="numberClient">number</label>
                             </div>
 
@@ -399,7 +403,7 @@ function AddProduct() {
                                             <div>{element.lastname}</div>
                                             <div>{element.firstname}</div>
                                             <div>{element.phone}</div>
-                                            <div><button onClick={() => putCustomerData(element.lastname, element.firstname, element.phone, element.email, element.id)}>choisir</button></div>
+                                            <div><button className="btn_client" onClick={() => putCustomerData(element.lastname, element.firstname, element.phone, element.email, element.id)}>choisir</button></div>
                                         </div>
                                     )
                                 })
@@ -409,7 +413,7 @@ function AddProduct() {
                     </div>
                 
                     <div className="addProductButton">
-                        <button  className="addForm" onClick={() => handleAddProduct()}>valider</button>
+                        <button  className="addForm" onClick={(e) => handleAddProduct(e)}>valider</button>
                     </div>
 
                 </div>

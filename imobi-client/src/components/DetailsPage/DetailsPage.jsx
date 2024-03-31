@@ -20,6 +20,8 @@ function DetailsPage(props){
     const [mailOfCustomer , setMailOfCustomer] = useState();
     const [phoneOfCustomer, setPhoneOfCustomer] = useState();
 
+    let emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+
 
     useEffect(()=> {
         getProductById();
@@ -44,6 +46,7 @@ function DetailsPage(props){
         } catch(error){
             alert('erreur lors de la recuperation des details')
         }
+        
     }
     // faire defiler l'image
     const numberImg = (choice) => {
@@ -255,7 +258,10 @@ function DetailsPage(props){
 
     }
     // envoye message
-    const sendMessage = async(id_seller) => {
+    const sendMessage = async(id_seller, e) => {
+        e.preventDefault();
+        let emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+        
         if (id_seller != undefined) {
             let options = {
                 method: 'POST',
@@ -272,15 +278,22 @@ function DetailsPage(props){
                     "referenceAnnonce" :product.id
                 }),
             };
-            try {
+            if (mailOfCustomer.match(emailPattern)) {
+                try {
                 
-                const response = await fetch(`${import.meta.env.VITE_API_URL6}`, options);
-                const data = await response.json();
-                console.log("data page" ,data);
-                /* setProduct(data.product); */
-            } catch(error){
-                
+                    const response = await fetch(`${import.meta.env.VITE_API_URL6}`, options);
+                    const data = await response.json();
+                    console.log("data page" ,data);
+                    /* setProduct(data.product); */
+
+                    alert(data.message);
+                } catch(error){
+                    alert('erreur')
+                }
+            } else {
+                alert ("les condition de l'email ne sont pas respecter");
             }
+
         } else {
             alert("veuillez selectionner un agent immobilier pour le contacter")
         }
@@ -295,11 +308,11 @@ function DetailsPage(props){
                 <Navbar></Navbar>
             </div>
             <div className="contactBtn">
-                <button onClick={() => contactSeller()}>contacter</button>
+                <button className='btn_contact' onClick={() => contactSeller()}>contacter</button>
                 <div className="formContact">
                     <button className='btnFerme' onClick={() => contactSeller()}>X</button>
                     
-                    <div className="formContactToSeller">
+                    <form className="formContactToSeller">
                         <div>
                             <input type="text" onChange={(e) => setMessageToSeller(e.target.value)} id="messageToSeller"/>
                             <label htmlFor="messageToSeller">message</label>
@@ -325,8 +338,8 @@ function DetailsPage(props){
                             <label htmlFor="phoneOfCustomer">phone</label>
                         </div>
                         
-                        <button onClick={() => sendMessage(product?.user_id)}>envoyer</button>
-                    </div>
+                        <button onClick={(e) => sendMessage(product?.user_id, e)}>envoyer</button>
+                    </form>
                 </div>
             </div>
 
@@ -339,7 +352,7 @@ function DetailsPage(props){
                     </div>
 
                     <div className="detailsTitle">
-                        {product?.type} t-{product?.piece}
+                        {product?.type} {product?.piece ? "t-"+product?.piece : null}
                     </div>
                 </div>
                 <div className="detailsDescription">

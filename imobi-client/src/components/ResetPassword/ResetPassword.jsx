@@ -15,8 +15,10 @@ import { useNavigate } from "react-router-dom";
 
 function ResetPassword(params) {
     // récupére l'url puis le decortique
-    let email = document.URL?.split('?email=')[1];
+    let url = document.URL?.split('resetPassword?');
 
+
+    console.log("key",url[1]);
     const [password, setPassword] = useState();
     const [passwordAgain, setPasswordAgain] = useState();
 
@@ -35,7 +37,7 @@ function ResetPassword(params) {
                     headers: {
                         "Content-Type": "application/json",
                     },
-                    body : JSON.stringify({email , password}),
+                    body : JSON.stringify({"idReset" : url[1], password}),
                 };
 
                 try {

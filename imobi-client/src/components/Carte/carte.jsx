@@ -41,7 +41,7 @@ function Carte({values ,setSeller_id, latitude, longitude}) {
 
     // visuel de l'icon
     const customIcon = L.icon({
-        iconUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3SPYGZOym3ZgkAwHKEbzieVI93Gcytqnh_g&usqp=CAU',
+        iconUrl: 'http://127.0.0.1:8000/storage/map/mZRIQ0q3vWdKbZ0LYfWxajBRTFk35aONJr8IfVaM.png',
         iconSize: [38, 38] // size of the icon
     });
     //creation de contenu pour seller_id

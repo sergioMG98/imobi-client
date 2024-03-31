@@ -17,3 +17,12 @@
     color: white;
     background-color: #1771db;
 }
+@media (max-width: 575px) {
+    .calendar{
+        height: 85%;
+    }
+    .event {
+        height: 27px;
+        font-size: 11px;
+    }
+}

@@ -90,3 +90,43 @@
     padding-left: 20px;
 }
 /* ------------------------------------------ */
+@media (max-width: 575px) {
+
+    .allContact.active .allCustomers{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+    }
+    .allContact.active .allCustomers .customersContent{
+        height: 100%;
+        width: 100%;
+        overflow-y: auto;
+    }
+    .allContact.active .allCustomers .detailCustomerProducts{
+        display: flex;
+        flex-wrap: wrap;
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        color: black;
+        overflow-y: auto;
+    }
+    .allContact.active .allCustomers .detailCustomerProducts div{
+        height: 80px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .allContact.active .allCustomers .detailCustomerProducts div div{
+        height: 40px;
+        width: 100% !important;
+        display: flex;
+        flex-direction: row;
+    }
+    .allContact.active .allCustomers .detailCustomerProducts:nth-child(3){
+        color: royalblue !important;
+    }
+    .allContact.active .allCustomers .detailCustomerProducts .refProduct {
+        padding: 0 !important;
+    }
+}

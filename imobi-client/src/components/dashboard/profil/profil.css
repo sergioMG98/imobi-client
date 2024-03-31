@@ -3,8 +3,9 @@
     width: 100vw;
     display: flex;
     flex-direction: row;
-    background: rgb(38,45,196);
-    background: linear-gradient(180deg, rgba(38,45,196,1) 20%, rgba(0,221,255,1) 100%);
+    background-color: #1771db;
+/*     background: rgb(38,45,196);
+    background: linear-gradient(180deg, rgba(38,45,196,1) 20%, rgba(0,221,255,1) 100%); */
 }
 .profilContent{
     height: 100%;
@@ -51,12 +52,12 @@
     top: 15px;
     left: 10%;
     padding: 0 20px;
-    background-color: #242424;
+    background-color: #1771db;
     text-transform: uppercase;
     border-radius: 20%;
 }
 /*  */
-.lastnameProfil label,
+/* .lastnameProfil label,
 .firstnameProfil label {
     background-color: #272DC5;
 }
@@ -67,7 +68,7 @@
 .phoneProfil label,
 .cityProfil label {
     background-color: #288DE5;
-}
+} */
 /*  */
 .profilDiv input:valid,
 .profilDiv input:focus {
@@ -104,7 +105,7 @@
 .formProfil button {
     height: 50px;
     width: 90%;
-    background-color: #1771db;
+    background-color: rgb(38,45,196);
     border-radius: 20px;
     text-transform: uppercase;
     font-size: large;

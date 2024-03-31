@@ -38,11 +38,12 @@ function Calendar(props){
             
             const response = await fetch(`${import.meta.env.VITE_API_URL20_1}`, options);
             const data = await response.json();
-            /* console.log('=> :', data.data); */
-            /* setEvents(data.data); */
+            // console.log('=> :', data.data);
+            // setEvents(data.data);
 
 
             localStorage.setItem('events', JSON.stringify(data.data));
+           
         } catch(error){
             console.log("error");
         }

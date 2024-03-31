@@ -56,6 +56,7 @@
 
     .dashboardNav {
         display: none;
+        color: white;
     }
     .dashboard {
         height: 100%;
@@ -79,4 +80,11 @@
         width: 80%;
         background-color: white;
     }
+    .dashboardNav a {
+        color: white;
+    }
+    .filtreButton {
+        font-size: 15px;
+    }
+    
 }

@@ -30,13 +30,14 @@
     background-color: #262CC4;
 
 }
-.contactBtn button {
+.btn_contact {
     height: 80%;
     background-color: #1771db;
     width: 100px;
     text-transform: uppercase;
     border-radius: 15px;
     border: 1px solid white;
+    font-size: 12px;
 }
 .formContact {
     display: none;
@@ -170,6 +171,7 @@
     gap: 5%;
     flex-wrap: wrap;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .detailItemCara{
@@ -342,6 +344,19 @@
     }
 }
 @media (max-width: 575px){
+    .detailsPresentation {
+        height: 250px;
+    }
+    .detailsImage {
+        height: 65%;
+    }
+    .detailsTitle {
+        height: 35%;
+    }
+    .detailsDescription {
+        height: 400px;
+    }
+    /*  */
     .burger {
         width: 15%;
     }
@@ -358,24 +373,29 @@
         height: auto;
     }
     .detailsChild {
-        height: auto;
+        /* height: auto; */
+        height: 90%;
+        width: 100%;
         align-content: flex-start;
+        overflow-y: auto;
+        box-sizing: border-box;
+        padding: 20px 0;
     }
     .detailItemCara {
         width: 100%;
         margin-top: 5px;
     }
-    .gesContainer, .dpeContainer {
-        width: 100%;
-    }
-    .gesEtiquette, .dpeEtiquette{
-        width: 80%;
+    .gesEtiquette, .dpeEtiquette {
+        width: 65%;
     }
     .indicatorContainer{
         width: 20%;
     }
+    .indicatorContainer {
+        width: 35%;
+    }
     .indicatorEnergetiqueGes, .indicatorEnergetiqueDpe {
-        width: 62%;
+        width: 65%;
     }
     .detailsBilanEnergetique{
         height: 695px;

@@ -50,17 +50,28 @@
     display: flex;
     flex-direction: row;
 }
-
 .contactSeller{
+    display: none;
+}
+.contactSeller.active {
+    display: flex;
     height: 100%;
     width: 30%;
     /* background-color: purple; */
-    display: flex;
     flex-direction: column;
+    transition: 1.7s;
 }
-.carteContainer {
+.carteContainer.active {
     height: 100%;
     width: 70%;
+    transition: 1.7s;
+}
+
+
+.carteContainer {
+    height: 100%;
+    width: 100%;
+    transition: 1.7s;
 }
 
 /*  */
@@ -157,5 +168,11 @@
         box-sizing: border-box;
         margin: 0 10px;
         width: 40%;
+    }
+    .contactSeller.active {
+        width: 100%;
+    }
+    .searchSeller label {
+        font-size: 14px;
     }
 }

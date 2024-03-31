@@ -22,7 +22,7 @@ function Profil(){
 
     // condition pour le mot de passe
     let pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$";
-
+    let emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
     // pour obliger a l'ulitisateur de remplir son profil
     const [responseModif , setResponseModif] = useState();
@@ -60,43 +60,49 @@ function Profil(){
     }
 
     // modification du profil
-    const updateProfil = async() => {
+    const updateProfil = async(e) => {
+        e.preventDefault();
         console.log("pa",password);
-        if (password != undefined ? password.match(pattern) : null || password == undefined) {
-            let options = {
-                method: "POST",
-                headers: {
-                    "Content-Type" : "application/json",
-                    Authorization: `Bearer ${token}`,
-                },
-                body: JSON.stringify({
-                    "lastname" : lastname != null ? lastname : ProfilArray.lastname,
-                    "firstname" : firstname != null ? firstname : ProfilArray.firstname,
-                    "email" : email != null ? email : ProfilArray.email,
-                    "phone" : phone != null ? phone : ProfilArray.phone,
-                    "password" : password != null ? password : ProfilArray.password,
-                    "latitude" : latitude != null ? latitude : ProfilArray.latitude,
-                    "longitude": longitude != null ? longitude : ProfilArray.longitude,
-                    "city" : city != null ? city : ProfilArray.city,
-                    "label" : label
-                }),
-            };
 
-            try{
-                const response = await fetch(`${import.meta.env.VITE_API_URL20}`,options);
-
-                const data = await response.json();
-                console.log("modif", data);
-
-                setResponseModif(data.status);
-
-            } catch (error){
-                console.error("Fetch error:" , error);
+        if (email.match(emailPattern)) {
+            if (password != undefined ? password.match(pattern) : null || password == undefined) {
+                let options = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type" : "application/json",
+                        Authorization: `Bearer ${token}`,
+                    },
+                    body: JSON.stringify({
+                        "lastname" : lastname != null ? lastname : ProfilArray.lastname,
+                        "firstname" : firstname != null ? firstname : ProfilArray.firstname,
+                        "email" : email != null ? email : ProfilArray.email,
+                        "phone" : phone != null ? phone : ProfilArray.phone,
+                        "password" : password != null ? password : ProfilArray.password,
+                        "latitude" : latitude != null ? latitude : ProfilArray.latitude,
+                        "longitude": longitude != null ? longitude : ProfilArray.longitude,
+                        "city" : city != null ? city : ProfilArray.city,
+                        "label" : label
+                    }),
+                };
+    
+                try{
+                    const response = await fetch(`${import.meta.env.VITE_API_URL20}`,options);
+    
+                    const data = await response.json();
+                    console.log("modif", data);
+    
+                    setResponseModif(data.status);
+                    alert(data.message);
+                } catch (error){
+                    console.error("Fetch error:" , error);
+                }
+            } else {
+                alert('les condition du mot de passe ne sont pas respecter');
             }
+    
         } else {
-            alert('les condition du mot de passe ne sont pas respecter');
+            alert ("les condition de l'email ne sont pas respecter");
         }
-
 
     }
 
@@ -153,7 +159,7 @@ function Profil(){
             <div className="profilContent">
                 <h1>votre profil</h1>
 
-                <div className="formProfil">
+                <form className="formProfil">
                     <div className="lastnameProfil profilDiv">
                         <input type="text" id="lastname" value={lastname} onChange={(e) => setLastname(e.target.value)} required />
                         <label htmlFor="lastname">nom</label>
@@ -197,8 +203,8 @@ function Profil(){
                         </div>
                     </div>
 
-                    <button onClick={() => updateProfil()}>valider modification</button>
-                </div>
+                    <button onClick={(e) => updateProfil(e)}>valider modification</button>
+                </form>
             </div>
         </div>
 

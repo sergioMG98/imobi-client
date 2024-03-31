@@ -66,6 +66,7 @@
     }
     .calendar {
         gap: 0;
+        height: 85%;
     }
     .calendarHeaderContainer{ 
         height: 10%;

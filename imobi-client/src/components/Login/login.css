@@ -78,6 +78,16 @@
     border-radius: 20px;
     text-transform: uppercase;
 }
+/* ul */
+.condiPassword {
+    color: #1771db;
+    width: 100%;
+}
+.condiPassword li{
+    color: slategray;
+    padding-left: 40px;
+    list-style: none;
+}
 /* change form area */
 .changeFormArea{
     color: black;
@@ -92,5 +102,11 @@
 @media (max-width: 575px) {
     .loginFormContainer, .registerFormContainer {
         width: 100%;
+    }
+    .registerTitle, .loginTitle{
+        font-size: 45px;
+    }
+    .condiPassword {
+        font-size: 8px;
     }
 }

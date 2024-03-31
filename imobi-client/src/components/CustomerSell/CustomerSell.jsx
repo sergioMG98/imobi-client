@@ -18,6 +18,8 @@ function CustomerSell(){
     const [latitude ,setLatitude] = useState();
     const [longitude, setLongitude] = useState();
 
+    let emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+
     // va chercher tout les vendeurs inscript dans l'application
     const getCoordonnes = async() => {
         let options = {
@@ -36,36 +38,56 @@ function CustomerSell(){
         }
     }
 
-    const sendMessage = async(id_seller) => {
-        if (id_seller != undefined) {
-            let options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    "message" : messageToSeller,
-                    "lastnameOfCustomer" : lastnameOfCustomer,
-                    "firstnameOfCustomer" : firstnameOfCustomer,
-                    "mailOfCustomer" : mailOfCustomer,
-                    "phoneOfCustomer" : phoneOfCustomer,
-                    "seller_id" : seller_id,
-                }),
-            };
-            try {
+    const sendMessage = async(id_seller, e) => {
+        e.preventDefault();
+        console.log("seller_id", seller_id);
+        if (mailOfCustomer.match(emailPattern)) {
+            if (id_seller != undefined) {
+                let options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        "message" : messageToSeller,
+                        "lastnameOfCustomer" : lastnameOfCustomer,
+                        "firstnameOfCustomer" : firstnameOfCustomer,
+                        "mailOfCustomer" : mailOfCustomer,
+                        "phoneOfCustomer" : phoneOfCustomer,
+                        "seller_id" : seller_id,
+                    }),
+                };
+                try {
+                    
+                    const response = await fetch(`${import.meta.env.VITE_API_URL6}`, options);
+                    const data = await response.json();
+                    console.log("data page" ,data);
+                    if (data.status = 'true') {
+                        let contactDiv = document.querySelector('.contactSeller');
+                        let carteDiv = document.querySelector('.carteContainer');
                 
-                const response = await fetch(`${import.meta.env.VITE_API_URL6}`, options);
-                const data = await response.json();
-                console.log("data page" ,data);
-                
-            } catch(error){
-                alert("une erreur a eu lieu lors de l'envoie")
+                        contactDiv.classList.remove('active');
+                        carteDiv.classList.remove('active')
+                    }
+    
+                    alert(data.message);
+                } catch(error){
+                    alert("une erreur a eu lieu lors de l'envoie")
+                }
+            } else {
+                alert("veuillez selectionner un agent immobilier pour le contacter")
             }
         } else {
-            alert("veuillez selectionner un agent immobilier pour le contacter")
+            alert ("les condition de l'email ne sont pas respecter");
         }
+    }
 
+    if (seller_id != undefined) {
+        let contactDiv = document.querySelector('.contactSeller');
+        let carteDiv = document.querySelector('.carteContainer');
 
+        contactDiv.classList.add('active');
+        carteDiv.classList.add('active')
     }
 
     const getCity = async() =>{
@@ -119,7 +141,7 @@ function CustomerSell(){
 
                         </div>
 
-                        <div className="formContactToSeller">
+                        <form className="formContactToSeller">
                             <div id="messageToSellerParent">
                                 <input type="text" onChange={(e) => setMessageToSeller(e.target.value)} id="messageToSeller"/>
                                 <label htmlFor="messageToSeller">message</label>
@@ -127,25 +149,25 @@ function CustomerSell(){
 
                             <div id="lastnameOfCustomerParent">
                                 <input type="text" onChange={(e) => setLastnameOfCustomer(e.target.value)} id="lastnameOfCustomer"/>
-                                <label htmlFor="lastnameOfCustomer">lastname</label>
+                                <label htmlFor="lastnameOfCustomer">nom</label>
                             </div>
                             <div id="firstnameOfCustomerParent">
                                 <input type="text" onChange={(e) => setFirstnameOfCustomer(e.target.value)} id="firstnameOfCustomer"/>
-                                <label htmlFor="firstnameOfCustomer">firstname</label>
+                                <label htmlFor="firstnameOfCustomer">prénom</label>
                             </div>
 
                             <div id="mailOfCustomerParent">
-                                <input type="mail" onChange={(e) => setMailOfCustomer(e.target.value)} id="mailOfCustomer"/>
-                                <label htmlFor="mailOfCustomer">mail</label>
+                                <input type="email" onChange={(e) => setMailOfCustomer(e.target.value)} id="mailOfCustomer"/>
+                                <label htmlFor="mailOfCustomer">email</label>
                             </div>
 
                             <div id="phoneOfCustomerParent">
-                                <input type="phone" onChange={(e) => setPhoneOfCustomer(e.target.value)} id="phoneOfCustomer"/>
-                                <label htmlFor="phoneOfCustomer">phone</label>
+                                <input type="tel" onChange={(e) => setPhoneOfCustomer(e.target.value)} id="phoneOfCustomer"/>
+                                <label htmlFor="phoneOfCustomer">téléphone</label>
                             </div>
                             
-                            <button onClick={() => sendMessage(seller_id)}>envoyer</button>
-                        </div>
+                            <button onClick={(e) => sendMessage(seller_id, e)}>envoyer</button>
+                        </form>
 
                     </div>
                     <div className="carteContainer">

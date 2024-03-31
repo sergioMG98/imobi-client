@@ -1,7 +1,7 @@
 import "./dashboard.css";
 import AddProduct from "./addProduct/AddProduct";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard(){
@@ -55,6 +55,52 @@ function Dashboard(){
         }
     }
 
+    const deleteUser = async() => {
+
+        let options = {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const response = await fetch(`http://127.0.0.1:8000/api/deleteUser`, options);
+        const data = await response.json();
+        console.log('delete',data);
+        if (data.status == "true") {
+            navigate(`${import.meta.env.VITE_API_URL21}`);
+            localStorage.clear();
+        }
+    }
+
+    // va chercher tous les events de la personne 
+    const getEvents = async() => {
+        console.log('get events');
+        let options = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        };
+        try {
+            
+            const response = await fetch(`${import.meta.env.VITE_API_URL20_1}`, options);
+            const data = await response.json();
+            // console.log('=> :', data.data);
+            // setEvents(data.data);
+
+
+            localStorage.setItem('events', JSON.stringify(data.data));
+            
+        } catch(error){
+            console.log("error");
+        }
+    }
+
+    useEffect(() => {
+        getEvents();
+    }, [])
     return(
         <div className="dashboard">
             <div className="dashboardNav">
@@ -64,15 +110,15 @@ function Dashboard(){
                 </div>
                 
                 <div className="autre">
-                    <Link className="product dashLink" to={`${import.meta.env.VITE_API_URL22}`}>product</Link>
-                    <Link className="dashLink" to={`${import.meta.env.VITE_API_URL23}`}>Add Product</Link>
+                    <Link className="product dashLink" to={`${import.meta.env.VITE_API_URL22}`}>produits</Link>
+                    <Link className="dashLink" to={`${import.meta.env.VITE_API_URL23}`}>Créé annonce</Link>
                     <Link className="agenda dashLink" to={`${import.meta.env.VITE_API_URL28}`}>agenda</Link>
                     <Link className=" dashLink" to={`${import.meta.env.VITE_API_URL29}`}>contact</Link>
                 </div>
 
                 <div>
                     <div className="logout dashLink" onClick={() => logout()}>se deconnecter</div>
-                    <div className="parametre dashLink">parametre</div>
+                    <div className="parametre dashLink" onClick={deleteUser}>supprimer</div>
                 </div>
 
             </div>

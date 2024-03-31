@@ -12,6 +12,7 @@ function Login(){
 
     // condition pour le mot de passe
     let pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$";
+    let emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
     const navigate = useNavigate();
 
@@ -21,38 +22,43 @@ function Login(){
     // connexion
     const handleLogin = async (e) => {
         e.preventDefault();
-        if (password.match(pattern)) {
-            let options = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body : JSON.stringify(userLogin),
-            };
-    
-            try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL3}`,options);
-    
-                const data = await response.json();
-   
-                if(data){
-                    alert(data.message);
-                    if (data.status == 'true') {
-                        navigate(`${import.meta.env.VITE_API_URL22}`);
+
+        if (email.match(emailPattern)) {
+            if (password.match(pattern)) {
+                let options = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body : JSON.stringify(userLogin),
+                };
+        
+                try {
+                    const response = await fetch(`${import.meta.env.VITE_API_URL3}`,options);
+        
+                    const data = await response.json();
+       
+                    if(data){
+                        alert(data.message);
+                        if (data.status == 'true') {
+                            navigate(`${import.meta.env.VITE_API_URL22}`);
+                        }
+                        if (data.token) {
+                            localStorage.setItem("TokenUserImobi", data.token);
+                        }
+                        
+                    } else {
+                        alert("try again");
                     }
-                    if (data.token) {
-                        localStorage.setItem("TokenUserImobi", data.token);
-                    }
-                    
-                } else {
-                    alert("try again");
+        
+                } catch (error){
+                    console.error("Fetch error:", error);
                 }
-    
-            } catch (error){
-                console.error("Fetch error:", error);
+            } else {
+                alert('les condition du mot de passe ne sont pas respecter');
             }
         } else {
-            alert('les condition du mot de passe ne sont pas respecter');
+            alert ("les condition de l'email ne sont pas respecter");
         }
     }
 
@@ -60,39 +66,45 @@ function Login(){
     const handleRegister = async (e) => {
         e.preventDefault();
 
-        if(password.match(pattern)){
-            let options = {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body : JSON.stringify(userRegister),
-            };
-    
-            try {
-                
-                const response = await fetch(`${import.meta.env.VITE_API_URL4}`,options);
-                const data = await response.json();
-                
-    
-                if(data){
-                    alert(data.message);
-                    if (data.status == 'true') {
-                        navigate("/profil");
+        if (email.match(emailPattern)) {
+            if(password.match(pattern)){
+                let options = {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body : JSON.stringify(userRegister),
+                };
+        
+                try {
+                    
+                    const response = await fetch(`${import.meta.env.VITE_API_URL4}`,options);
+                    const data = await response.json();
+                    
+        
+                    if(data){
+                        alert(data.message);
+                        if (data.status == 'true') {
+                            navigate("/profil");
+                        }
+                        if (data.token) {
+                            localStorage.setItem("TokenUserImobi", data.token);
+                        }
+                    } else {
+                        alert("try again");
                     }
-                    if (data.token) {
-                        localStorage.setItem("TokenUserImobi", data.token);
-                    }
-                } else {
-                    alert("try again");
+        
+                } catch (error){
+                    console.error("Fetch error:", error);
                 }
-    
-            } catch (error){
-                console.error("Fetch error:", error);
+            } else {
+                alert('les condition du mot de passe ne sont pas respecter');
             }
         } else {
-            alert('les condition du mot de passe ne sont pas respecter');
+            alert ("les condition de l'email ne sont pas respecter");
         }
+
+
 
     }
     
@@ -155,10 +167,17 @@ function Login(){
                     </div>
                     <form action="" method="post" className="loginForm">
                         <input type="email" name="loginEmail" id="loginEmail" placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
-                        <input type="password" name="loginPassword" id="loginPassword" placeholder="mot de passe" onChange={(e) => setPassword(e.target.value)}/>
-
-                        <button type="submit" onClick={handleLogin}>connexion</button>
+                        <input type="password" name="loginPassword" id="loginPassword" placeholder="mot de passe, exemple : azertyuiop1A#" onChange={(e) => setPassword(e.target.value)}/>
+                        <ul className="condiPassword">
+                            condition mot de passe
+                            <li>nombre de caractere entre 8 et 16</li>
+                            <li>minimum une lettre majuscule</li>
+                            <li>Minimum un numero</li>
+                            <li>Minimum un caractere special</li>
+                        </ul>
+                        <button type="submit" onClick={handleLogin}>valider</button>
                     </form>
+
                     <div className="changeFormArea" onClick={(e) => changeForm(e)}>
                         Pas encore de compte ? <strong>Créer un compte</strong>
                     </div>
@@ -177,10 +196,16 @@ function Login(){
                     <form action="" method="post" className="registerForm">
                         <input type="text" name="registerLastName" id="registerLastName" placeholder="votre nom" onChange={(e) => setLastname(e.target.value)}/>
                         <input type="text" name="registerFirstName" id="registerFirstName" placeholder="votre prénom" onChange={(e) => setFirstname(e.target.value)}/>
-                        <input type="email" name="registerEmail" id="registerEmail" placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
-                        <input type="password" name="registerPassword" id="registerPassword" placeholder="mot de passe" onChange={(e) => setPassword(e.target.value)}/>
-
-                        <button type="submit" onClick={handleRegister}>connexion</button>
+                        <input type="email" name="registerEmail" pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" id="registerEmail" placeholder="email" onChange={(e) => setEmail(e.target.value)}/>
+                        <input type="password" name="registerPassword" id="registerPassword" placeholder="mot de passe, exemple : azertyuiop1A#" onChange={(e) => setPassword(e.target.value)}/>
+                        <ul className="condiPassword">
+                            condition mot de passe
+                            <li>nombre de caractere entre 8 et 16</li>
+                            <li>minimum une lettre majuscule</li>
+                            <li>Minimum un numero</li>
+                            <li>Minimum un caractere special</li>
+                        </ul>
+                        <button type="submit" onClick={handleRegister}>valider</button>
                     </form>
                     <div className="changeFormArea" onClick={(e) => changeForm(e)}>
                         Déjà un compte ? <strong> se connecter </strong> 

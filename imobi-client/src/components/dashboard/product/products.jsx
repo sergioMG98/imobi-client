@@ -522,7 +522,7 @@ function Product(){
             </div>
 
             <div className="dashContent">
-                <h1>product</h1>
+                <h1>Annonces</h1>
                 
                 <button className='filtreButton' onClick={() => moreFilter('filterProduct')}>filtrer</button>
 

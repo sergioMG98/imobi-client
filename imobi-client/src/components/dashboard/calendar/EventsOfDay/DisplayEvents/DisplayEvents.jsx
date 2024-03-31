@@ -38,8 +38,8 @@ function DisplayEvents ({days, element, clicked}){
     }
 
     // modifie les valeurs
-    const modifEvent = async(element) => {
-        
+    const modifEvent = async(element, e) => {
+        e.preventDefault();
         let options = {
             method: "POST",
             headers: {
@@ -90,7 +90,8 @@ function DisplayEvents ({days, element, clicked}){
     }
 
     // supprime un evenement
-    const deleteEvent = async(element) => {
+    const deleteEvent = async(element, e) => {
+        e.preventDefault();
         let options = {
             method: "POST",
             headers: {
@@ -133,7 +134,7 @@ function DisplayEvents ({days, element, clicked}){
 
     return (
 
-        <div className="eventsDay" >
+        <form className="eventsDay" >
             
             <div className="eventData">
                 <div className="enventDataInput">
@@ -189,10 +190,10 @@ function DisplayEvents ({days, element, clicked}){
             
 
             <div className="eventBtn">
-                <button onClick={() => deleteEvent(element)}>supprimer</button>
-                <button onClick={() => modifEvent(element)}>modifier</button>
+                <button onClick={(e) => deleteEvent(element, e)}>supprimer</button>
+                <button onClick={(e) => modifEvent(element, e)}>modifier</button>
             </div>
-        </div>
+        </form>
 
     )
 }

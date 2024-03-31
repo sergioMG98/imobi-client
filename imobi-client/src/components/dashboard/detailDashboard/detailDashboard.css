@@ -1,8 +1,8 @@
 .detailDashboard{
     display: flex;
     flex-direction: row;
-    background: rgb(38,45,196);
-    background: linear-gradient(180deg, rgba(38,45,196,1) 20%, rgba(0,221,255,1) 100%);
+    background: #1771db;
+    /* background: linear-gradient(180deg, rgba(38,45,196,1) 20%, rgba(0,221,255,1) 100%); */
 }
 .dashContent{
     height: 100vh;
@@ -62,7 +62,7 @@
     top: -10px;
     left: 20px;
     padding: 0 20px;
-    background-color: #272DC5;
+    background-color: #1771db;
     text-transform: uppercase;
 }
 
@@ -88,7 +88,8 @@
     left: 20px;
     text-transform: uppercase;
     padding: 0 20px;
-    background-color:  #272DC5;
+    background-color:  #1771db;
+    font-size: 14px;
 }
 
 .updateDiv input:valid ,
@@ -102,6 +103,7 @@
 .updateDiv input:focus + label{
     top: -10px;
     left: 20px; 
+    font-size: 14px;
 }
 
 
@@ -111,7 +113,7 @@
     width: 40%;
     border-radius: 20px;
     border: 2px solid white;
-    background-color: #1771db;
+    background-color: #272DC5;
     text-transform: uppercase;
     font-size: large;
     margin-top: 30px;
@@ -184,6 +186,27 @@
     }
     .dashDetailCo{
         z-index: 14;
+    }
+    .sellerProductDetail {
+        overflow-y: auto;
+    }
+    .imagePlace .image {
+        height: 50%;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 2%;
+        position: relative;
+    }
+    .imagePlace div {
+        height: 50%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .detailDashboard .dashContent button {
+        font-size: 15px;
     }
 
 }

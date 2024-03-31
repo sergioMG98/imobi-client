@@ -68,6 +68,7 @@ function EventsOfDays({days, clicked, onClose}){
     }
 
     const createEvent = async(e) => {
+        e.preventDefault();
         let options = {
             method: "POST",
             headers: {
@@ -166,7 +167,7 @@ function EventsOfDays({days, clicked, onClose}){
                         <h2>creation d'évenement</h2>
                     </div>
 
-                    <div className="eventsInput">
+                    <form className="eventsInput">
                         <div className="boxInput">
                             <input type="text" name="titre" id="titre" required onChange={(e) => setTitre(e.target.value)}/>
                             <label htmlFor="titre">titre</label>
@@ -212,8 +213,8 @@ function EventsOfDays({days, clicked, onClose}){
                             <label htmlFor="endVisit">fin de la visite</label>
                         </div>
 
-                        <button type="submit" onClick={() => createEvent()}>valider</button>
-                    </div>
+                        <button type="submit" onClick={(e) => createEvent(e)}>valider</button>
+                    </form>
 
                     <div className="AllContact">
                         <h3>tous les contacts</h3>

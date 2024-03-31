@@ -267,4 +267,7 @@
         width: 45%;
         height: 45%;
     }
+    .btnAddEvents button {
+        font-size: 15px;
+    }
 }
